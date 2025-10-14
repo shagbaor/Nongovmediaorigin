@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money - NONGOVMEDIA</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+        /* ADDED: Metropolis Font Family Declarations */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Thin.otf') format('opentype');
+            font-weight: 100;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        /* The following are the italic versions */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
+            font-weight: 100;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
+            font-weight: 500;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
+            font-weight: 600;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
+            font-weight: 800;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
+            font-weight: 900;
+            font-style: italic;
+        }
+
+        /* Custom font and base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
+            color: #070346;
+            height: 100%; 
+            overflow-y: auto; /* Allow overall vertical scrolling */
+        }
+        
+        /* Glass Morphism Base Style (Retained for sidebar) */
+        .glass-morphism {
+            background: rgba(169, 172, 230, 0.38);
+            border-radius: 0px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(169, 172, 230, 0.3);
+        }
+        
+        /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
+        .horizontal-image-gallery {
+            /* Desktop/Default: Horizontal Scroll */
+            display: flex;
+            overflow-x: auto; 
+            overflow-y: hidden; 
+            -webkit-overflow-scrolling: touch; 
+            gap: 1.5rem; /* Gap between all items */
+            margin-top: 2rem;
+            
+            /* Hide scrollbar */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+            
+            /* Padding for scroll container */
+            padding-left: 2rem; 
+            padding-right: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .horizontal-image-gallery::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .gallery-item {
+            flex-shrink: 0; 
+            width: 90vw; /* Immersive width on mobile */
+            height: auto;
+            aspect-ratio: 16/9; 
+            border-radius: 0px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden; 
+            background-color: #ffffff; 
+        }
+
+        /* NEW: Text-only gallery item that's 15% smaller */
+        .gallery-item.text-only {
+            width: 76.5vw; /* 90vw * 0.85 = 76.5vw (15% smaller) */
+            aspect-ratio: auto; /* Remove fixed aspect ratio for text */
+            height: auto; /* Let content determine height */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling for Image-Only Items */
+        .gallery-item.image-only img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            display: block; 
+        }
+
+        /* Text content styling for the standalone text item */
+        .text-content-wrapper {
+            padding: 2rem;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 1024px) {
+            .page-container {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                min-height: 100vh;
+            }
+            
+            .gallery-item {
+                width: 75vw; /* Wider items on desktop */
+            }
+            
+            .gallery-item.text-only {
+                width: 63.75vw; /* 75vw * 0.85 = 63.75vw (15% smaller on desktop) */
+            }
+            
+            .horizontal-image-gallery {
+                padding-left: 4rem; 
+                padding-right: 4rem;
+            }
+            
+            .text-content-wrapper {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Mobile Layout (< 1024px): VERTICAL STACKING */
+        @media (max-width: 1023px) {
+            .horizontal-image-gallery {
+                flex-direction: column; 
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: auto;
+                padding-left: 1.5rem; 
+                padding-right: 1.5rem;
+                padding-top: 0;
+                margin-top: 0; 
+            }
+            
+            .gallery-item {
+                width: 100%; 
+                aspect-ratio: auto;
+                height: auto; 
+                margin-bottom: 1.5rem; 
+            }
+            
+            .gallery-item.text-only {
+                width: 100%; /* Full width on mobile */
+            }
+            
+            .text-content-wrapper {
+                padding: 1.5rem;
+            }
+        }
+        
+        .nav-link {
+            transition: color 0.15s ease-in-out;
+        }
+        .nav-link.active {
+            color: black;
+        }
+
+        /* Mobile Menu Styles (Retained) */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.95) 0%, 
+                rgba(241, 245, 249, 0.95) 50%, 
+                rgba(226, 232, 240, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-menu-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .mobile-menu-overlay.active .mobile-menu-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #070346;
+            text-align: center;
+            border-radius: 0px;
+            margin: 0.75rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.8), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+        
+        .mobile-nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .mobile-nav-link.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
+            border-color: rgba(255, 255, 255, 1);
+            font-weight: 700;
+        }
+        
+        .menu-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #070346;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-close-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Page Container -->
+    <div class="page-container flex flex-col lg:flex-row min-h-screen">
+
+        <!-- 1. LEFT SIDEBAR/NAVIGATION -->
+        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
+            <div>
+                <!-- Header Top: Logo and Mobile Menu Button -->
+                <div class="flex justify-between items-center mb-16">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                        NONGOVMEDIA
+                    </h1>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <!-- Navigation Links (Desktop) -->
+                <nav id="mobile-nav" class="hidden lg:block space-y-4">
+                    <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
+                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
+                    <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
+                    <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
+                    <a href="contact.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
+                </nav>
+            </div>
+            
+            <!-- Footer/Copyright (Desktop Only) -->
+            <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
+                <p>Copyright © All rights reserved.</p>
+                <div class="flex space-x-2 mt-2">
+                    <a href="#" class="hover:text-black transition duration-150">FB</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:text-black transition duration-150">Share</a>
+                </div>
+            </footer>
+        </header>
+
+        <!-- 2. MAIN CONTENT AREA -->
+        <main class="lg:ml-60 flex-1 flex flex-col">
+            
+            <!-- Horizontal Scrolling Image Gallery (The core of the page) -->
+            <div class="horizontal-image-gallery flex-grow">
+                
+                <!-- FIRST IMAGE ONLY -->
+                <div class="gallery-item image-only">
+                    <img 
+                        src="images/money/image_1.jpg" 
+                        alt="Money Series Image 1" 
+                        onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Money+Image+1'"
+                        class="w-full h-full object-cover"
+                    >
+                </div>
+                
+                <!-- STANDALONE TEXT ITEM (15% smaller on desktop) -->
+                <div class="gallery-item text-only">
+                    <div class="text-content-wrapper flex flex-col justify-start">
+                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Money</h2>
+                        
+                        <!-- Metadata -->
+                        <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
+                            <p><strong class="text-black">Year:</strong> 2018</p>
+                            <p><strong class="text-black">Category:</strong> Conceptual / Social Critique</p>
+                        </div>
+                        
+                        <!-- Body Text -->
+                        <div class="space-y-3 text-sm leading-relaxed text-gray-700">
+                            <p>
+                                In 2018, stories of ritual killings and money rituals flooded Nigerian news cycles. They revealed a society grappling with the desperation of poverty and the seduction of quick wealth.
+                            </p>
+                            <p>
+                                In this image, I staged a man kneeling in the rain, one hand bound in a loose cuff, the other clutching a Bible. His face lifts upward, caught between despair and prayer. The composition speaks to the contradictions of our reality: a society chained by the lust for money, yet reaching toward redemption.
+                            </p>
+                            <p>
+                                This work is less about judgment and more about reflection — on what people sacrifice at the altar of survival, and the thin line between faith and fear.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Subsequent Images (2 through 27) -->
+                <div class="gallery-item image-only">
+                    <img src="images/money/image_2.jpg" alt="Money Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Money+Image+2'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/money/image_3.jpg" alt="Money Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Money+Image+3'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/money/image_4.jpg" alt="Money Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Money+Image+4'">
+                </div>
+               
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- MOBILE ONLY FOOTER -->
+    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
+        <p>Copyright © All rights reserved.</p>
+        <div class="flex space-x-4 mt-2 justify-center">
+            <a href="#" class="hover:text-black transition duration-150">FB</a>
+            <span class="text-gray-300">|</span>
+            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <span class="text-gray-300">|</span>
+            <a href="#" class="hover:text-black transition duration-150">Share</a>
+        </div>
+    </footer>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <button id="menu-close-btn" class="menu-close-btn">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <p class="text-gray-600 text-sm"></p>
+            </div>
+            
+             <nav class="space-y-2">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="projects.html" class="mobile-nav-link active">Projects</a>
+                <a href="reviews.html" class="mobile-nav-link active">Reviews</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </nav>
+            
+            <div class="mt-8 pt-6 border-t border-gray-300 text-center">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">FB</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">Share</a>
+                </div>
+                <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+            const menuCloseBtn = document.getElementById('menu-close-btn');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+
+            const toggleMenu = () => {
+                mobileOverlay.classList.toggle('active');
+                iconMenu.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+                
+                if (mobileOverlay.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            };
+
+            if (menuButton) {
+                menuButton.addEventListener('click', toggleMenu);
+            }
+
+            if (menuCloseBtn) {
+                menuCloseBtn.addEventListener('click', toggleMenu);
+            }
+
+            mobileOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileOverlay) {
+                    toggleMenu();
+                }
+            });
+
+            mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+    </script>
+</body>
+</html>

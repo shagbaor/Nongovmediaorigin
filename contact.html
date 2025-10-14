@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NONGOVMEDIA</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+        /* ADDED: Metropolis Font Family Declarations */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Thin.otf') format('opentype');
+            font-weight: 100;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        /* The following are the italic versions */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
+            font-weight: 100;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
+            font-weight: 500;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
+            font-weight: 600;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
+            font-weight: 800;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
+            font-weight: 900;
+            font-style: italic;
+        }
+
+        /* --- METROPOLIS FONT DEFINITIONS --- */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('fonts/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('fonts/Metropolis-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Custom font and base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        html, body {
+            /* UPDATED: Using Metropolis as the primary font */
+            font-family: 'Metropolis', sans-serif;
+            /* UPDATED: Match background to projects/about page */
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
+            color: #070346;
+            height: 100%; 
+            overflow-y: auto; /* Allow scrolling */
+        }
+
+        /* --- BACKGROUND IMAGE REMOVED --- */
+        .page-container {
+            position: relative;
+            z-index: 1; 
+            background-color: transparent;
+            min-height: 100vh;
+        }
+
+        /* Full page background layer removed */
+        
+        /* Glass Morphism Base Style (Now applies consistently) */
+        .glass-morphism {
+            background: rgba(169, 172, 230, 0.38);
+            border-radius: 0px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(169, 172, 230, 0.3);
+            /* Removed background-color override to rely on the glass effect */
+        }
+        
+        /* Desktop Layout (Sidebar and Content) */
+        @media (min-width: 1024px) {
+            .page-container {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                height: 100vh;
+            }
+        }
+        
+        /* Mobile: Reset glass for simplicity and allow scroll */
+        @media (max-width: 1023px) {
+            body { overflow-y: auto; }
+            .glass-morphism {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background-color: #ffffff;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+        
+        .nav-link {
+            transition: color 0.15s ease-in-out;
+        }
+        .nav-link.active {
+            color: black;
+        }
+
+        /* UPDATED: Styling for the minimalist full-box outline inputs */
+        .form-group {
+            /* Ensures border is placed around the input group */
+            border: 1px solid #e5e7eb; /* Light gray border */
+            border-radius: 8px; /* Slightly rounded corners */
+            margin-bottom: 1.5rem; /* Space between fields */
+            transition: border-color 0.3s;
+            overflow: hidden;
+        }
+        
+        .form-group:focus-within {
+            border-color: #4f46e5; /* Indigo on focus */
+            box-shadow: 0 0 0 1px #4f46e5;
+        }
+        
+        .contact-input {
+            border: none;
+            outline: none;
+            padding: 1rem; /* Added padding to fill the box */
+            width: 100%;
+            background: transparent;
+            /* Reset the previous bottom-border styles */
+            border-bottom: none !important;
+        }
+        
+        .contact-input:focus {
+            border-bottom-color: transparent; /* Ensure no conflicting styles */
+        }
+
+        /* New Image Placeholder Style */
+        .contact-image-container {
+            width: 100%;
+            height: 100%;
+            max-width: 384px; /* max-w-sm */
+            max-height: 384px; /* max-h-sm */
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container flex flex-col lg:flex-row">
+
+        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
+            <div>
+                <div class="flex justify-between items-center mb-16">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                        NONGOVMEDIA
+                    </h1>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <nav id="mobile-nav" class="hidden lg:block space-y-4">
+                    <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
+                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
+                    <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
+                    <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
+                    <a href="contact.html" class="nav-link block font-medium text-lg active text-black hover:text-black">Contact</a>
+                </nav>
+            </div>
+            
+            <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
+                <p>Copyright © All rights reserved.</p>
+                <div class="flex space-x-2 mt-2">
+                    <a href="#" class="hover:text-black transition duration-150">FB</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="hover:text-black transition duration-150">Share</a>
+                </div>
+            </footer>
+        </header>
+
+        <main class="lg:ml-60 flex-1 p-8 sm:p-12 lg:p-20 flex flex-col justify-center items-center">
+            
+            <div class="w-full max-w-4xl h-full lg:h-auto flex flex-col justify-center">
+
+                <div class="mb-12">
+                    <h2 class="text-5xl lg:text-6xl font-extrabold mb-6 text-center lg:text-left">Get in Touch</h2>
+                    <p class="text-lg leading-relaxed text-gray-700 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+                        We are ready to hear about your project. For all inquiries, collaborations, or partnership opportunities, please reach out to us using the form below. We aim to respond within 24 hours. Thank you for considering NONGOVMEDIA.
+                    </p>
+                </div>
+
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start flex-grow lg:flex-grow-0">
+                    
+                    <div class="flex self-stretch items-center justify-center p-4">
+                        <div class="contact-image-container">
+                            <div class="calendly-inline-widget" data-url="https://calendly.com/jdshush69/lets-have-a-call" style="min-width:320px;height:100%;"></div>
+                            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                            </div>
+                    </div>
+
+                    <form class="space-y-4 lg:space-y-0 w-full lg:w-auto mt-8 lg:mt-0">
+                        
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Name" class="contact-input text-lg" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" class="contact-input text-lg" required>
+                        </div>
+
+                        <div class="form-group h-40"> <textarea id="message" name="message" placeholder="Message" rows="5" class="contact-input resize-none text-lg h-full" required></textarea>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            
+        </main>
+    </div>
+
+    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
+        <p>Copyright © All rights reserved.</p>
+        <div class="flex space-x-4 mt-2 justify-center">
+            <a href="#" class="hover:text-black transition duration-150">FB</a>
+            <span class="text-gray-300">|</span>
+            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <span class="text-gray-300">|</span>
+            <a href="#" class="hover:text-black transition duration-150">Share</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+
+            if (menuButton) {
+                const toggleMenu = () => {
+                    mobileNav.classList.toggle('hidden');
+                    iconMenu.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                };
+
+                menuButton.addEventListener('click', toggleMenu);
+                mobileNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', toggleMenu);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
