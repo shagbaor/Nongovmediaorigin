@@ -179,6 +179,23 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
+        /* Video Container Styling */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -217,11 +234,11 @@
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-2 mt-2">
-                    <a href="#" class="hover:text-black transition duration-150">FB</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
                     <span class="text-gray-400">|</span>
                     <a href="#" class="hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">Share</a>
                 </div>
             </footer>
         </header>
@@ -243,7 +260,53 @@
 
                 <!-- Review Grid -->
                 <div id="review-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 lg:px-0">
-                    <!-- Reviews will be dynamically injected here by JavaScript -->
+                    <!-- Video Review Card (First) -->
+                    <div class="review-card p-6 rounded-xl space-y-4 md:col-span-2">
+                        <div class="flex items-center justify-between border-b pb-3 border-gray-100">
+                            <div class="flex items-center space-x-3">
+                                <!-- Client Info -->
+                                <div class="bg-indigo-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg flex-shrink-0">
+                                    V
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Video Review</p>
+                                    <div class="flex space-x-0.5 mt-0.5" aria-label="Rating: 5 out of 5">
+                                        <svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.917 1.48-8.279-6.064-5.828 8.332-1.151z"/>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.917 1.48-8.279-6.064-5.828 8.332-1.151z"/>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.917 1.48-8.279-6.064-5.828 8.332-1.151z"/>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.917 1.48-8.279-6.064-5.828 8.332-1.151z"/>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 18.896l-7.416 3.917 1.48-8.279-6.064-5.828 8.332-1.151z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Date -->
+                            <span class="text-sm text-gray-500 flex-shrink-0">Recent</span>
+                        </div>
+                        
+                        <!-- Video Content -->
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/STBvFi0QKrc" 
+                                    title="Client Video Review" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Review Content -->
+                        <p class="text-gray-700 italic leading-relaxed">"Watch this video testimonial from one of our satisfied clients."</p>
+                    </div>
+                    
+                    <!-- Text reviews will be dynamically injected here by JavaScript -->
                 </div>
 
             </div>
@@ -254,11 +317,11 @@
     <footer class="lg:hidden p-4 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-1 justify-center">
-            <a href="#" class="hover:text-black transition duration-150">FB</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
+            <span class="text-gray-300">|</span>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
             <span class="text-gray-300">|</span>
             <a href="#" class="hover:text-black transition duration-150">IN</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">Share</a>
         </div>
     </footer>
 
@@ -283,11 +346,11 @@
             </nav>
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">FB</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">IG</a>
                     <span class="text-gray-400">|</span>
                     <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">Share</a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
@@ -359,7 +422,8 @@
                 `;
             }).join('');
 
-            grid.innerHTML = reviewHtml;
+            // Append text reviews after the video review
+            grid.innerHTML += reviewHtml;
         };
 
         // --- Mobile Menu Toggle Logic ---
