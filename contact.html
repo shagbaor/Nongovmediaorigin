@@ -107,43 +107,23 @@
             font-style: italic;
         }
 
-        /* --- METROPOLIS FONT DEFINITIONS --- */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('fonts/Metropolis-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('fonts/Metropolis-Bold.otf') format('opentype');
-            font-weight: 700;
-            font-style: normal;
-        }
-
         /* Custom font and base styles */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         html, body {
-            /* UPDATED: Using Metropolis as the primary font */
             font-family: 'Metropolis', sans-serif;
-            /* UPDATED: Match background to projects/about page */
             background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
             color: #070346;
             height: 100%; 
-            overflow-y: auto; /* Allow scrolling */
+            overflow-y: auto;
         }
 
-        /* --- BACKGROUND IMAGE REMOVED --- */
         .page-container {
             position: relative;
             z-index: 1; 
             background-color: transparent;
             min-height: 100vh;
         }
-
-        /* Full page background layer removed */
         
-        /* Glass Morphism Base Style (Now applies consistently) */
+        /* Glass Morphism Base Style */
         .glass-morphism {
             background: rgba(169, 172, 230, 0.38);
             border-radius: 0px;
@@ -153,21 +133,120 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(169, 172, 230, 0.3);
-            /* Removed background-color override to rely on the glass effect */
         }
         
+        /* Mobile Menu Styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.95) 0%, 
+                rgba(241, 245, 249, 0.95) 50%, 
+                rgba(226, 232, 240, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-menu-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .mobile-menu-overlay.active .mobile-menu-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #070346;
+            text-align: center;
+            border-radius: 0px;
+            margin: 0.75rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+        
+        .mobile-nav-link.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
+            border-color: rgba(255, 255, 255, 1);
+            font-weight: 700;
+        }
+        
+        .menu-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #070346;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-close-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
+            color: #000000;
+        }
+
         /* Desktop Layout (Sidebar and Content) */
         @media (min-width: 1024px) {
             .page-container {
                 display: grid;
                 grid-template-columns: 240px 1fr;
-                height: 100vh;
+                min-height: 100vh;
             }
         }
         
-        /* Mobile: Reset glass for simplicity and allow scroll */
+        /* Mobile: Reset glass for simplicity */
         @media (max-width: 1023px) {
-            body { overflow-y: auto; }
             .glass-morphism {
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
@@ -185,51 +264,138 @@
             color: black;
         }
 
-        /* UPDATED: Styling for the minimalist full-box outline inputs */
+        /* Styling for the minimalist full-box outline inputs */
         .form-group {
-            /* Ensures border is placed around the input group */
-            border: 1px solid #e5e7eb; /* Light gray border */
-            border-radius: 8px; /* Slightly rounded corners */
-            margin-bottom: 1.5rem; /* Space between fields */
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
             transition: border-color 0.3s;
             overflow: hidden;
         }
         
         .form-group:focus-within {
-            border-color: #4f46e5; /* Indigo on focus */
+            border-color: #4f46e5;
             box-shadow: 0 0 0 1px #4f46e5;
         }
         
         .contact-input {
             border: none;
             outline: none;
-            padding: 1rem; /* Added padding to fill the box */
+            padding: 1rem;
             width: 100%;
             background: transparent;
-            /* Reset the previous bottom-border styles */
             border-bottom: none !important;
         }
         
         .contact-input:focus {
-            border-bottom-color: transparent; /* Ensure no conflicting styles */
+            border-bottom-color: transparent;
         }
 
-        /* New Image Placeholder Style */
-        .contact-image-container {
+        /* Google Calendar Button Style */
+        .calendar-button {
+            background: #4285F4;
+            color: white;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(66, 133, 244, 0.2);
+        }
+        
+        .calendar-button:hover {
+            background: #3367D6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(66, 133, 244, 0.3);
+        }
+        
+        /* Calendar Container */
+        .calendar-container {
             width: 100%;
             height: 100%;
-            max-width: 384px; /* max-w-sm */
-            max-height: 384px; /* max-h-sm */
+            max-width: 384px;
+            max-height: 384px;
             aspect-ratio: 1/1;
-            overflow: hidden;
             border-radius: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .calendar-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #070346;
+        }
+        
+        .calendar-description {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* Success/Error Message Styles */
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .form-message.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .form-message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 0.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-container flex flex-col lg:flex-row">
+    <div class="page-container flex flex-col lg:flex-row min-h-screen">
 
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
@@ -255,93 +421,255 @@
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-2 mt-2">
-                    <a href="#" class="hover:text-black transition duration-150">FB</a>
+                    <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
                     <span class="text-gray-400">|</span>
                     <a href="#" class="hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">Share</a>
                 </div>
             </footer>
         </header>
 
-        <main class="lg:ml-60 flex-1 p-8 sm:p-12 lg:p-20 flex flex-col justify-center items-center">
+        <main class="lg:ml-60 flex-1 p-8 sm:p-12 lg:p-10 flex flex-col max-w-5xl mx-auto">
+            <h2 class="text-5xl font-extrabold mb-4 text-center lg:text-left">Get in Touch</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-12 text-center lg:text-left">
+                We are ready to hear about your project. For all inquiries, collaborations, or partnership opportunities, please reach out to us using the form below. We aim to respond within 24 hours. Thank you for considering NONGOVMEDIA.
+            </p>
             
-            <div class="w-full max-w-4xl h-full lg:h-auto flex flex-col justify-center">
-
-                <div class="mb-12">
-                    <h2 class="text-5xl lg:text-6xl font-extrabold mb-6 text-center lg:text-left">Get in Touch</h2>
-                    <p class="text-lg leading-relaxed text-gray-700 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-                        We are ready to hear about your project. For all inquiries, collaborations, or partnership opportunities, please reach out to us using the form below. We aim to respond within 24 hours. Thank you for considering NONGOVMEDIA.
-                    </p>
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+                
+                <div class="flex self-stretch items-center justify-center p-4 mb-8 lg:mb-0">
+                    <div class="calendar-container">
+                        <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 2V6" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2V6" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 10H21" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="#4285F4" stroke-width="2"/>
+                            <path d="M8 14H16" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 18H16" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 14V18" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3 class="calendar-title">Schedule a Meeting</h3>
+                        <p class="calendar-description">Book a time that works for you to discuss your project</p>
+                        <a href="https://calendar.app.google/SPhBgjw2xpC4ChdV7" target="_blank" class="calendar-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.36 14.3C16.36 14.69 16.05 15 15.66 15H8.34C7.95 15 7.64 14.69 7.64 14.3V9.7C7.64 9.31 7.95 9 8.34 9H15.66C16.05 9 16.36 9.31 16.36 9.7V14.3Z" fill="white"/>
+                            </svg>
+                            Book with Google Calendar
+                        </a>
+                    </div>
                 </div>
 
-                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start flex-grow lg:flex-grow-0">
+                <form id="contact-form" class="space-y-4 lg:space-y-0 w-full">
+                    <div id="form-message" class="form-message hidden"></div>
                     
-                    <div class="flex self-stretch items-center justify-center p-4">
-                        <div class="contact-image-container">
-                            <div class="calendly-inline-widget" data-url="https://calendly.com/jdshush69/lets-have-a-call" style="min-width:320px;height:100%;"></div>
-                            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                            </div>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Name" class="contact-input text-lg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" class="contact-input text-lg" required>
                     </div>
 
-                    <form class="space-y-4 lg:space-y-0 w-full lg:w-auto mt-8 lg:mt-0">
-                        
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Name" class="contact-input text-lg" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" class="contact-input text-lg" required>
-                        </div>
-
-                        <div class="form-group h-40"> <textarea id="message" name="message" placeholder="Message" rows="5" class="contact-input resize-none text-lg h-full" required></textarea>
-                        </div>
-                        
-                        <div class="pt-4">
-                            <button type="submit" class="w-full bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
+                    <div class="form-group h-40"> 
+                        <textarea id="message" name="message" placeholder="Message" rows="5" class="contact-input resize-none text-lg h-full" required></textarea>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" id="submit-button" class="w-full bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
             </div>
-            
+
         </main>
     </div>
 
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="#" class="hover:text-black transition duration-150">FB</a>
+            <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
+            <span class="text-gray-300">|</span>
+            <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
             <span class="text-gray-300">|</span>
             <a href="#" class="hover:text-black transition duration-150">IN</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">Share</a>
         </div>
     </footer>
 
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <button id="menu-close-btn" class="menu-close-btn">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <p class="text-gray-600 text-sm"></p>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="projects.html" class="mobile-nav-link">Projects</a>
+                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="contact.html" class="mobile-nav-link active">Contact</a>
+            </nav>
+            
+            <div class="mt-8 pt-6 border-t border-gray-300 text-center">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <a href="https://www.youtube.com/@nongovmedia" class="text-gray-600 hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" class="text-gray-600 hover:text-black transition duration-150">IG</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                </div>
+                <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu functionality
             const menuButton = document.getElementById('mobile-menu-button');
-            const mobileNav = document.getElementById('mobile-nav');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+            const menuCloseBtn = document.getElementById('menu-close-btn');
             const iconMenu = document.getElementById('icon-menu');
             const iconClose = document.getElementById('icon-close');
 
+            const toggleMenu = () => {
+                mobileOverlay.classList.toggle('active');
+                iconMenu.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+                
+                if (mobileOverlay.classList.contains('active')) {
+                    document.body.style.overflowY = 'hidden';
+                } else {
+                    document.body.style.overflowY = 'auto';
+                }
+            };
+
             if (menuButton) {
-                const toggleMenu = () => {
-                    mobileNav.classList.toggle('hidden');
-                    iconMenu.classList.toggle('hidden');
-                    iconClose.classList.toggle('hidden');
+                menuButton.addEventListener('click', toggleMenu);
+            }
+
+            if (menuCloseBtn) {
+                menuCloseBtn.addEventListener('click', toggleMenu);
+            }
+
+            mobileOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileOverlay) {
+                    toggleMenu();
+                }
+            });
+
+            mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            // Contact form functionality
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            const submitButton = document.getElementById('submit-button');
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    message: document.getElementById('message').value
                 };
 
-                menuButton.addEventListener('click', toggleMenu);
-                mobileNav.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', toggleMenu);
-                });
+                // Validate form
+                if (!formData.name || !formData.email || !formData.message) {
+                    showMessage('Please fill in all fields.', 'error');
+                    return;
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+
+                // Show loading state
+                submitButton.classList.add('loading');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                try {
+                    // Send email using EmailJS
+                    await sendEmail(formData);
+                    showMessage('Thank you! Your message has been sent successfully. We will get back to you within 24 hours.', 'success');
+                    contactForm.reset();
+                } catch (error) {
+                    console.error('Error sending email:', error);
+                    showMessage('Sorry, there was an error sending your message. Please try again later or email us directly at nongovmedia@gmail.com.', 'error');
+                } finally {
+                    // Reset button state
+                    submitButton.classList.remove('loading');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
+            });
+
+            function showMessage(text, type) {
+                formMessage.textContent = text;
+                formMessage.className = `form-message ${type}`;
+                formMessage.classList.remove('hidden');
+                
+                // Auto-hide success messages after 5 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                }
+            }
+
+            async function sendEmail(formData) {
+                // Using EmailJS service to send emails
+                // You'll need to set up an account at https://www.emailjs.com/
+                // and replace these values with your own
+                const serviceID = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+                const templateID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+                const userID = 'YOUR_USER_ID'; // Replace with your EmailJS user ID
+
+                // For now, we'll use a fallback method that opens the user's email client
+                // This is a client-side only solution that doesn't require a backend
+                const subject = `New Contact Form Submission from ${formData.name}`;
+                const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
+                
+                // Open user's email client with pre-filled content
+                window.location.href = `mailto:nongovmedia@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // If you want to use EmailJS instead, uncomment the code below and set up your account:
+                /*
+                return emailjs.send(serviceID, templateID, {
+                    to_email: 'nongovmedia@gmail.com',
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message,
+                    reply_to: formData.email
+                }, userID);
+                */
             }
         });
     </script>
+
+    <!-- Uncomment if using EmailJS -->
+    <!--
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS with your user ID
+        emailjs.init('YOUR_USER_ID');
+    </script>
+    -->
 
 </body>
 </html>
