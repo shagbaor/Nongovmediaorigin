@@ -186,6 +186,26 @@
              color: #000000;
          }
          
+         /* NEW: Square button styles */
+         .square-btn {
+             border-radius: 0;
+             border: 1px solid #070346;
+             background: rgba(255, 255, 255, 0.7);
+             padding: 0.75rem 1.5rem;
+             font-weight: 600;
+             color: #070346;
+             transition: all 0.3s ease;
+             text-decoration: none;
+             display: inline-block;
+             text-align: center;
+         }
+         
+         .square-btn:hover {
+             background: rgba(255, 255, 255, 0.9);
+             transform: translateY(-2px);
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+         }
+         
          /* Desktop Layout - CORRECTED */
          @media (min-width: 1024px) {
              .page-container {
@@ -253,17 +273,27 @@
                 padding: 1.5rem 2rem;
              }
              
+             /* UPDATED: Client grid for horizontal layout */
              .client-grid {
                  display: flex; 
-                 flex-wrap: wrap; 
-                 justify-content: center;
-                 align-items: center; 
-                 gap: 1.5rem; 
+                 flex-wrap: nowrap;
+                 justify-content: space-between;
+                 align-items: center;
+                 gap: 1rem;
+                 overflow-x: auto;
+                 padding: 1rem 0;
              }
              
+             /* UPDATED: Reduced logo size by golden ratio (1.618) */
              .client-logo {
-                 width: 80px;
-                 height: 80px;
+                 width: 49px; /* 80px / 1.618 ≈ 49px */
+                 height: 49px; /* 80px / 1.618 ≈ 49px */
+                 object-fit: contain;
+                 transition: all 0.3s ease;
+             }
+             
+             .client-item:hover .client-logo {
+                 transform: scale(1.1);
              }
          }
          
@@ -316,6 +346,11 @@
                  border-radius: 0.75rem;
              }
              
+             /* NEW: Mobile text alignment and sizing */
+             .mobile-hero-text {
+                 text-align: left;
+             }
+             
              .mobile-hero-text h2 {
                  font-size: 2rem;
                  line-height: 1.2;
@@ -323,7 +358,7 @@
              }
              
              .mobile-hero-text p {
-                 font-size: 0.9rem;
+                 font-size: calc(2rem / 1.618); /* Golden ratio applied */
                  line-height: 1.4;
                  margin-bottom: 0.75rem;
              }
@@ -340,15 +375,59 @@
                  padding: 1rem 0;
              }
              
-             .mobile-client-grid {
-                 display: grid;
-                 grid-template-columns: repeat(3, 1fr);
-                 gap: 0.75rem;
+             /* NEW: Carousel styles for mobile */
+             .carousel-container {
+                 position: relative;
+                 width: 100%;
+                 overflow: hidden;
+                 margin: 1rem 0;
              }
              
+             .carousel-track {
+                 display: flex;
+                 transition: transform 0.5s ease;
+                 gap: 1rem;
+             }
+             
+             .carousel-slide {
+                 flex: 0 0 33.333%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 padding: 0.5rem;
+             }
+             
+             .carousel-nav {
+                 display: flex;
+                 justify-content: center;
+                 gap: 1rem;
+                 margin-top: 1rem;
+             }
+             
+             .carousel-dot {
+                 width: 10px;
+                 height: 10px;
+                 border-radius: 50%;
+                 background: rgba(7, 3, 70, 0.3);
+                 cursor: pointer;
+                 transition: all 0.3s ease;
+             }
+             
+             .carousel-dot.active {
+                 background: #070346;
+                 transform: scale(1.2);
+             }
+             
+             /* Updated logo styles for mobile */
              .client-logo {
-                 width: 70px;
-                 height: 70px;
+                 width: 60px;
+                 height: 60px;
+                 object-fit: contain;
+                 transition: all 0.3s ease;
+             }
+             
+             .client-item:hover .client-logo {
+                 transform: scale(1.1);
              }
          }
          
@@ -373,24 +452,24 @@
              align-items: center;
              justify-content: center;
              padding: 0.5rem;
+             min-width: 80px; /* Adjusted for smaller logos */
          }
          
+         /* Removed grayscale filter and added link styling */
          .client-logo {
-             object-fit: cover;
-             margin-bottom: 0.5rem;
-             filter: grayscale(100%);
-             transition: filter 0.3s ease;
+             margin-bottom: 0;
          }
          
-         .client-item:hover .client-logo {
-             filter: grayscale(0%);
+         .client-link {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             text-decoration: none;
+             transition: all 0.3s ease;
          }
          
-         .client-name {
-             font-size: 0.75rem;
-             font-weight: 500;
-             color: #4b5563;
-             text-align: center;
+         .client-link:hover {
+             transform: translateY(-5px);
          }
          
          .cta-link {
@@ -438,11 +517,11 @@
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-2 mt-2">
-                    <a href="#" class="hover:text-black transition duration-150">FB</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
                     <span class="text-gray-400">|</span>
                     <a href="#" class="hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">Share</a>
                 </div>
             </footer>
         </header>
@@ -463,10 +542,9 @@
                                 From YouTube channels to full-length documentaries, our goal is simple: make your story unforgettable.
                             </p>
                             <section class="cta-section">
-                    <a href="projects.html" class="cta-link text-lg">See Our Work</a> 
-                    <span class="text-gray-400">—</span> 
-                    <a href="contact.html" class="cta-link text-lg">Hire Us</a>
-                </section>
+                                <a href="projects.html" class="square-btn">See Our Work</a> 
+                                <a href="contact.html" class="square-btn">Hire Us</a>
+                            </section>
                         </div>
                     </div>
 
@@ -487,30 +565,35 @@
                     <h2 class="collaboration-title">See who we've collaborated with</h2>
                     <div class="client-grid">
                         <div class="client-item">
-                        <img src="./images/logos/1.png" alt="Client 1" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C1'">
-                        <span class="client-name"></span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/2.jpg" alt="Client 2" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C2'">
-                        <span class="client-name"></span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/3.png" alt="Client 3" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C3'">
-                        <span class="client-name"></span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/4.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C4'">
-                        <span class="client-name"></span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/7.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C4'">
-                        <span class="client-name"></span>
-                    </div>
-                   
-                    <div class="client-item">
-                        <img src="./images/logos/6.png" alt="Client 6" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C6'">
-                        <span class="client-name"></span>
-                    </div>
+                            <a href="https://youtu.be/okzw252ZE7w?si=jBREewD62Qe8fUke" target="_blank" class="client-link">
+                                <img src="./images/logos/1.png" alt="Client 1" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C1'">
+                            </a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://www.youtube.com/@BetterWealth" target="_blank" class="client-link">
+                                <img src="./images/logos/2.jpg" alt="Client 2" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C2'">
+                            </a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://freelancecoalition.org/videos/" target="_blank" class="client-link">
+                                <img src="./images/logos/3.png" alt="Client 3" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C3'">
+                            </a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://birminghamglobalshapers.com/" target="_blank" class="client-link">
+                                <img src="./images/logos/4.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C4'">
+                            </a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://www.jdpcibadan.org/" target="_blank" class="client-link">
+                                <img src="./images/logos/7.png" alt="Client 5" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C5'">
+                            </a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://www.youtube.com/watch?v=Ca8C0IuyU9E" target="_blank" class="client-link">
+                                <img src="./images/logos/6.png" alt="Client 6" class="client-logo" onerror="this.src='https://placehold.co/49x49/e0e7ff/3f51b5?text=C6'">
+                            </a>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -518,7 +601,7 @@
 
         <main class="lg:hidden mobile-main-content">
             <div class="mobile-hero-section">
-                <div class="mobile-hero-text text-center mb-4">
+                <div class="mobile-hero-text mb-4">
                     <h2 class="font-extrabold text-gray-800">
                         Your Story,<br>Our Artistry,<br>Impeccable Fusion.
                     </h2>
@@ -545,39 +628,53 @@
                 </div>
             </div>
             
-            <div class="mobile-cta">
-                <a href="projects.html" class="cta-link">See Our Work</a> 
-                <span class="text-gray-400">—</span> 
-                <a href="contact.html" class="cta-link">Hire Us</a>
+            <div class="mobile-cta flex justify-center gap-4">
+                <a href="projects.html" class="square-btn">See Our Work</a> 
+                <a href="contact.html" class="square-btn">Hire Us</a>
             </div>
 
             <section class="mobile-collaboration">
                 <h2 class="collaboration-title">See who we've collaborated with</h2>
-                <div class="mobile-client-grid">
-                    <div class="client-item">
-                        <img src="./images/logos/1.png" alt="Client 1" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C1'">
-                        <span class="client-name">And asset</span>
+                
+                <!-- NEW: Carousel for mobile -->
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="carousel-slide">
+                            <a href="https://youtu.be/okzw252ZE7w?si=jBREewD62Qe8fUke" target="_blank" class="client-link">
+                                <img src="./images/logos/1.png" alt="Client 1" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C1'">
+                            </a>
+                        </div>
+                        <div class="carousel-slide">
+                            <a href="https://www.youtube.com/@BetterWealth" target="_blank" class="client-link">
+                                <img src="./images/logos/2.jpg" alt="Client 2" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C2'">
+                            </a>
+                        </div>
+                        <div class="carousel-slide">
+                            <a href="https://freelancecoalition.org/videos/" target="_blank" class="client-link">
+                                <img src="./images/logos/3.png" alt="Client 3" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C3'">
+                            </a>
+                        </div>
+                        <div class="carousel-slide">
+                            <a href="https://birminghamglobalshapers.com/" target="_blank" class="client-link">
+                                <img src="./images/logos/4.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C4'">
+                            </a>
+                        </div>
+                        <div class="carousel-slide">
+                            <a href="https://www.jdpcibadan.org/" target="_blank" class="client-link">
+                                <img src="./images/logos/7.png" alt="Client 5" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C5'">
+                            </a>
+                        </div>
+                        <div class="carousel-slide">
+                            <a href="https://www.youtube.com/watch?v=Ca8C0IuyU9E" target="_blank" class="client-link">
+                                <img src="./images/logos/6.png" alt="Client 6" class="client-logo" onerror="this.src='https://placehold.co/60x60/e0e7ff/3f51b5?text=C6'">
+                            </a>
+                        </div>
                     </div>
-                    <div class="client-item">
-                        <img src="./images/logos/2.jpg" alt="Client 2" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C2'">
-                        <span class="client-name">BetterWealth</span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/3.png" alt="Client 3" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C3'">
-                        <span class="client-name">FCDC</span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/4.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C4'">
-                        <span class="client-name">Global Shapes community Birmingham</span>
-                    </div>
-                    <div class="client-item">
-                        <img src="./images/logos/7.png" alt="Client 4" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C4'">
-                        <span class="client-name">Justice Development And Peace Commision</span>
-                    </div>
-                   
-                    <div class="client-item">
-                        <img src="./images/logos/6.png" alt="Client 6" class="client-logo" onerror="this.src='https://placehold.co/70x70/e0e7ff/3f51b5?text=C6'">
-                        <span class="client-name">JudeBela youtube</span>
+                    
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active" data-index="0"></div>
+                        <div class="carousel-dot" data-index="1"></div>
+                        <div class="carousel-dot" data-index="2"></div>
                     </div>
                 </div>
             </section>
@@ -587,11 +684,11 @@
     <footer class="lg:hidden p-4 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-1 justify-center">
-            <a href="#" class="hover:text-black transition duration-150">FB</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
+            <span class="text-gray-300">|</span>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
             <span class="text-gray-300">|</span>
             <a href="#" class="hover:text-black transition duration-150">IN</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">Share</a>
         </div>
     </footer>
 
@@ -618,11 +715,11 @@
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">FB</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">YT</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">IG</a>
                     <span class="text-gray-400">|</span>
                     <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">Share</a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
@@ -666,6 +763,38 @@
             mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
+            
+            // NEW: Carousel functionality
+            const carouselTrack = document.getElementById('carousel-track');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+            const totalSlides = 6; // 6 logos total
+            const slidesPerView = 3; // Show 3 logos at a time
+            
+            function updateCarousel() {
+                const slideWidth = 100 / slidesPerView;
+                const translateX = -currentSlide * slideWidth;
+                carouselTrack.style.transform = `translateX(${translateX}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === Math.floor(currentSlide / 2));
+                });
+            }
+            
+            // Dot click events
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index * 2; // Each dot represents 2 slides
+                    updateCarousel();
+                });
+            });
+            
+            // Auto-advance carousel
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % (totalSlides - slidesPerView + 1);
+                updateCarousel();
+            }, 3000);
             
             // Set initial overflow for the body
             document.body.style.overflowY = 'auto';
