@@ -114,8 +114,8 @@
         html, body {
             /* CHANGED to Metropolis as the primary font */
             font-family: 'Metropolis', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-            color: #070346;
+            background: #ffffff; /* Changed to white */
+            color: #000000; /* Changed to black */
             height: 100%; 
             overflow-y: auto; /* Allow overall vertical scrolling */
         }
@@ -130,6 +130,17 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(169, 172, 230, 0.3);
+        }
+        
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
         }
         
         /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
@@ -275,6 +286,49 @@
                 padding: 1.5rem;
             }
             
+            /* Mobile Video Container */
+            .mobile-video-container {
+                width: 100%;
+                background: #000;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                margin-bottom: 1rem;
+            }
+            
+            .mobile-video-wrapper {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                height: 0;
+            }
+            
+            .mobile-video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+            
+            .video-info-mobile {
+                padding: 1rem;
+                background: #000;
+                color: white;
+            }
+            
+            .video-title-mobile {
+                font-weight: 700;
+                font-size: 1.2rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .video-subtitle-mobile {
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+            
             /* Add touch-friendly spacing around videos */
             main {
                 padding: 0.5rem;
@@ -349,7 +403,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -406,7 +460,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -469,7 +523,7 @@
             font-weight: 600;
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: #070346;
+            color: #000000; /* Changed to black */
         }
         
         .video-info p {
@@ -493,7 +547,7 @@
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
@@ -513,18 +567,23 @@
             
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
 
         <main class="lg:ml-60 flex-1 flex flex-col">
             
+            <!-- Desktop Video Layout (Original) -->
             <div class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item video-only">
@@ -696,11 +755,15 @@
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-            <span class="text-gray-300">|</span>
-            <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -713,7 +776,7 @@
             </button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             
@@ -727,11 +790,15 @@
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" class="text-gray-600 hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="text-gray-600 hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
@@ -775,6 +842,46 @@
             mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
+            
+            // Mobile video container functionality
+            if (window.innerWidth <= 1023) {
+                const galleryItems = document.querySelectorAll('.gallery-item.video-only');
+                const horizontalGallery = document.querySelector('.horizontal-image-gallery');
+                
+                if (galleryItems.length > 0 && horizontalGallery) {
+                    // Create mobile video containers
+                    let mobileHTML = '';
+                    
+                    galleryItems.forEach((item, index) => {
+                        const iframe = item.querySelector('iframe');
+                        const videoInfo = item.querySelector('.video-info');
+                        const videoTitle = videoInfo ? videoInfo.querySelector('h3').textContent : 'Podcast Video';
+                        const videoDescription = videoInfo ? videoInfo.querySelector('p').textContent : 'NONGOVMEDIA Podcast';
+                        const videoMeta = videoInfo ? videoInfo.querySelector('.video-meta').innerHTML : '';
+                        
+                        mobileHTML += `
+                            <div class="mobile-video-container">
+                                <div class="mobile-video-wrapper">
+                                    <iframe 
+                                        src="${iframe.src}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <div class="video-info-mobile">
+                                    <div class="video-title-mobile">${videoTitle}</div>
+                                    <div class="video-subtitle-mobile">${videoDescription}</div>
+                                    <div class="video-meta">${videoMeta}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    // Replace the horizontal gallery with mobile containers
+                    horizontalGallery.outerHTML = `<div class="lg:hidden p-4 space-y-6">${mobileHTML}</div>`;
+                }
+            }
             
             // Add touch improvements for mobile
             if (window.innerWidth <= 1023) {
