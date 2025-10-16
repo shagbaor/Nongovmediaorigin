@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21 Days - NONGOVMEDIA</title>
+    <title>Contented - NONGOVMEDIA</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -111,12 +111,22 @@
             font-style: italic;
         }
 
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+
         /* Custom font and base styles */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         html, body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-            color: #070346;
+            font-family: 'Metropolis', sans-serif; /* Changed to Metropolis */
+            background: #ffffff; /* Changed to white */
+            color: #000000; /* Changed to black */
             height: 100%; 
             overflow-y: auto; /* Allow overall vertical scrolling */
         }
@@ -310,7 +320,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -367,7 +377,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -389,7 +399,7 @@
             <div>
                 <!-- Header Top: Logo and Mobile Menu Button -->
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
                     <!-- Mobile Menu Button -->
@@ -412,12 +422,16 @@
             <!-- Footer/Copyright (Desktop Only) -->
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
@@ -432,7 +446,7 @@
                 <div class="gallery-item image-only">
                     <img 
                         src="images/Contented/image_1.jpg" 
-                        alt="21 Days Series Image 1" 
+                        alt="Contented Series Image 1" 
                         onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+1 (Intro)'"
                         class="w-full h-full object-cover"
                     >
@@ -441,7 +455,7 @@
                 <!-- STANDALONE TEXT ITEM (15% smaller on desktop) -->
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper flex flex-col justify-start">
-                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Contended</h2>
+                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Contented</h2>
                         
                         <!-- Metadata -->
                         <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
@@ -457,85 +471,83 @@
                             </p>
                             <p>
                               This series reflects on what it means to live close to the source — lives shaped not by excess but by what the river gives each day.
-
                             </p>
-                           
                         </div>
                     </div>
                 </div>
                 
-                <!-- Subsequent Images (2 through 27) -->
+                <!-- Subsequent Images (2 through 25) -->
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_2.jpg" alt="21 Days Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+2'">
+                    <img src="images/Contented/image_2.jpg" alt="Contented Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+2'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_3.jpg" alt="21 Days Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+3'">
+                    <img src="images/Contented/image_3.jpg" alt="Contented Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+3'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_4.jpg" alt="21 Days Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+4'">
+                    <img src="images/Contented/image_4.jpg" alt="Contented Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+4'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_5.jpg" alt="21 Days Series Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+5'">
+                    <img src="images/Contented/image_5.jpg" alt="Contented Series Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+5'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_6.jpg" alt="21 Days Series Image 6" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+6'">
+                    <img src="images/Contented/image_6.jpg" alt="Contented Series Image 6" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+6'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_7.jpg" alt="21 Days Series Image 7" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+7'">
+                    <img src="images/Contented/image_7.jpg" alt="Contented Series Image 7" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+7'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_8.jpg" alt="21 Days Series Image 8" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+8'">
+                    <img src="images/Contented/image_8.jpg" alt="Contented Series Image 8" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+8'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_9.jpg" alt="21 Days Series Image 9" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+9'">
+                    <img src="images/Contented/image_9.jpg" alt="Contented Series Image 9" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+9'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_10.jpg" alt="21 Days Series Image 10" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+10'">
+                    <img src="images/Contented/image_10.jpg" alt="Contented Series Image 10" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+10'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_11.jpg" alt="21 Days Series Image 11" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+11'">
+                    <img src="images/Contented/image_11.jpg" alt="Contented Series Image 11" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+11'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_12.jpg" alt="21 Days Series Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+12'">
+                    <img src="images/Contented/image_12.jpg" alt="Contented Series Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+12'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_13.jpg" alt="21 Days Series Image 13" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+13'">
+                    <img src="images/Contented/image_13.jpg" alt="Contented Series Image 13" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+13'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_14.jpg" alt="21 Days Series Image 14" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+14'">
+                    <img src="images/Contented/image_14.jpg" alt="Contented Series Image 14" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+14'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_15.jpg" alt="21 Days Series Image 15" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+15'">
+                    <img src="images/Contented/image_15.jpg" alt="Contented Series Image 15" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+15'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_16.jpg" alt="21 Days Series Image 16" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+16'">
+                    <img src="images/Contented/image_16.jpg" alt="Contented Series Image 16" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+16'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_17.jpg" alt="21 Days Series Image 17" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+17'">
+                    <img src="images/Contented/image_17.jpg" alt="Contented Series Image 17" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+17'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_18.jpg" alt="21 Days Series Image 18" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+18'">
+                    <img src="images/Contented/image_18.jpg" alt="Contented Series Image 18" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+18'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_19.jpg" alt="21 Days Series Image 19" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+19'">
+                    <img src="images/Contented/image_19.jpg" alt="Contented Series Image 19" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+19'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_20.jpg" alt="21 Days Series Image 20" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+20'">
+                    <img src="images/Contented/image_20.jpg" alt="Contented Series Image 20" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+20'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_21.jpg" alt="21 Days Series Image 21" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+21'">
+                    <img src="images/Contented/image_21.jpg" alt="Contented Series Image 21" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+21'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_22.jpg" alt="21 Days Series Image 22" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+22'">
+                    <img src="images/Contented/image_22.jpg" alt="Contented Series Image 22" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+22'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_23.jpg" alt="21 Days Series Image 23" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+23'">
+                    <img src="images/Contented/image_23.jpg" alt="Contented Series Image 23" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+23'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_24.jpg" alt="21 Days Series Image 24" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+24'">
+                    <img src="images/Contented/image_24.jpg" alt="Contented Series Image 24" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+24'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/Contented/image_25.jpg" alt="21 Days Series Image 25" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+25'">
+                    <img src="images/Contented/image_25.jpg" alt="Contented Series Image 25" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Image+25'">
                 </div>
                 
             </div>
@@ -547,11 +559,15 @@
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-            <span class="text-gray-300">|</span>
-            <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -565,25 +581,29 @@
             </button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             
              <nav class="space-y-2">
                 <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="projects.html" class="mobile-nav-link active">Projects</a>
-                <a href="reviews.html" class="mobile-nav-link active">Reviews</a>
+                <a href="projects.html" class="mobile-nav-link">Projects</a>
+                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
                 <a href="about.html" class="mobile-nav-link">About</a>
                 <a href="contact.html" class="mobile-nav-link">Contact</a>
             </nav>
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" class="text-gray-600 hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="text-gray-600 hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
