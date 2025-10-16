@@ -111,12 +111,22 @@
             font-style: italic;
         }
 
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+
         /* Custom font and base styles */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         html, body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-            color: #070346;
+            font-family: 'Metropolis', sans-serif; /* Changed to Metropolis */
+            background: #ffffff; /* Changed to white */
+            color: #000000; /* Changed to black */
             height: 100%; 
             overflow-y: auto; /* Allow overall vertical scrolling */
         }
@@ -310,7 +320,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -367,7 +377,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -389,7 +399,7 @@
             <div>
                 <!-- Header Top: Logo and Mobile Menu Button -->
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
                     <!-- Mobile Menu Button -->
@@ -412,12 +422,16 @@
             <!-- Footer/Copyright (Desktop Only) -->
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="#" class="hover:text-black transition duration-150">FB</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">Share</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
@@ -511,11 +525,15 @@
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="#" class="hover:text-black transition duration-150">FB</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">Share</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -529,25 +547,29 @@
             </button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             
              <nav class="space-y-2">
                 <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="projects.html" class="mobile-nav-link active">Projects</a>
-                <a href="reviews.html" class="mobile-nav-link active">Reviews</a>
+                <a href="projects.html" class="mobile-nav-link">Projects</a>
+                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
                 <a href="about.html" class="mobile-nav-link">About</a>
                 <a href="contact.html" class="mobile-nav-link">Contact</a>
             </nav>
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">FB</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">Share</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
