@@ -112,11 +112,22 @@
 
          /* Custom font and base styles */
          html, body {
-             font-family: 'Metropolis', sans-serif; /* CHANGED FROM INTER TO METROPOLIS */
-             background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-             color: #070346;
+             font-family: 'Metropolis', sans-serif;
+             background: #ffffff; /* Changed to white */
+             color: #000000; /* Changed to black */
              height: 100%; 
              overflow-y: auto;
+         }
+         
+         /* Social media icon styles */
+         .social-icon {
+             width: 24px;
+             height: 24px;
+             transition: all 0.3s ease;
+         }
+         
+         .social-icon:hover {
+             transform: translateY(-2px);
          }
          
          /* Glass Morphism Base Style (Same as index.html/projects.html) */
@@ -183,7 +194,7 @@
              padding: 1.25rem 1.5rem;
              font-size: 1.25rem;
              font-weight: 600;
-             color: #070346;
+             color: #000000; /* Changed to black */
              text-align: center;
              border-radius: 0px;
              margin: 0.75rem 0;
@@ -221,7 +232,7 @@
              display: flex;
              align-items: center;
              justify-content: center;
-             color: #070346;
+             color: #000000; /* Changed to black */
              cursor: pointer;
              transition: all 0.3s ease;
          }
@@ -276,8 +287,8 @@
          }
          
          .strong-link {
-             color: #070346;
-             font-weight: 700;
+             color: #000000; /* Changed to black */
+             
              transition: color 0.2s ease;
          }
          
@@ -293,7 +304,7 @@
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
@@ -313,21 +324,25 @@
             
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
 
         <main class="lg:ml-60 flex-1 p-8 sm:p-12 lg:p-10 flex flex-col max-w-5xl mx-auto">
             <!-- FIXED: Removed text-center class and added mobile-heading-left -->
-            <h2 class="text-5xl font-extrabold mb-4 lg:text-left mobile-heading-left">Nongov Kelvin</h2>
+            <h2 class="text-5xl font-medium mb-4 lg:text-left mobile-heading-left">Nongov Kelvin</h2>
             <!-- FIXED: Removed text-center class and added mobile-heading-left -->
-            <h3 class="text-2xl font-semibold text-black-700 mb-12 lg:text-left mobile-heading-left">Founder of Project Nkali, Filmmaker & Storyteller</h3>
+            <h3 class="text-2xl font-normal text-black-700 mb-12 lg:text-left mobile-heading-left">Founder of Project Nkali, Filmmaker & Storyteller</h3>
             
             <!-- FIXED: Removed text-center class and added mobile-text-left -->
             <div class="space-y-8 text-lg leading-relaxed text-gray-700 lg:text-left mobile-text-left">
@@ -369,11 +384,15 @@
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-            <span class="text-gray-300">|</span>
-            <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -386,7 +405,7 @@
             </button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             
@@ -400,11 +419,15 @@
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" class="text-gray-600 hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="text-gray-600 hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
