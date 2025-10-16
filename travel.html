@@ -114,10 +114,21 @@
         html, body {
             /* CHANGED to Metropolis as the primary font */
             font-family: 'Metropolis', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-            color: #070346;
+            background: #ffffff; /* Changed to white */
+            color: #000000; /* Changed to black */
             height: 100%; 
             overflow-y: auto; /* Allow overall vertical scrolling */
+        }
+        
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
         }
         
         /* Glass Morphism Base Style (Retained for sidebar) */
@@ -161,29 +172,10 @@
             width: 90vw; /* Immersive width on mobile */
             height: auto;
             aspect-ratio: 16/9; 
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 0px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
             overflow: hidden; 
             background-color: #ffffff00; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* NEW: Text-only gallery item that's 15% smaller */
-        .gallery-item.text-only {
-            width: 76.5vw; /* 90vw * 0.85 = 76.5vw (15% smaller) */
-            aspect-ratio: auto; /* Remove fixed aspect ratio for text */
-            height: auto; /* Let content determine height */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         /* Styling for Image-Only Items */
@@ -192,14 +184,6 @@
             height: 100%;
             object-fit: contain; /* CHANGED from 'cover' to 'contain' */
             display: block; 
-            border-radius: 16px;
-        }
-
-        /* Text content styling for the standalone text item */
-        .text-content-wrapper {
-            padding: 2rem;
-            overflow-y: auto;
-            height: 100%;
         }
 
         /* Desktop Layout */
@@ -214,21 +198,13 @@
                 width: 75vw; /* Wider items on desktop */
             }
             
-            .gallery-item.text-only {
-                width: 63.75vw; /* 75vw * 0.85 = 63.75vw (15% smaller on desktop) */
-            }
-            
             .horizontal-image-gallery {
                 padding-left: 4rem; 
                 padding-right: 4rem;
             }
-            
-            .text-content-wrapper {
-                padding: 2.5rem;
-            }
         }
 
-        /* Mobile Layout (< 1024px): VERTICAL STACKING */
+        /* Mobile Layout (< 1024px): VERTICAL STACKING - IMPROVED FOR VIDEOS */
         @media (max-width: 1023px) {
             .horizontal-image-gallery {
                 flex-direction: column; 
@@ -239,54 +215,58 @@
                 padding-right: 1rem;
                 padding-top: 0;
                 margin-top: 0; 
-                gap: 1.5rem;
+                gap: 2rem; /* Increased gap for better separation */
             }
             
             .gallery-item {
                 width: 100%; 
-                aspect-ratio: 16/9;
+                aspect-ratio: 16/9; /* Maintain aspect ratio */
                 height: auto; 
-                margin-bottom: 0; 
-                border-radius: 16px;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                margin-bottom: 0; /* Remove bottom margin since we have gap */
+                min-height: 280px; /* Minimum height for better visibility */
             }
             
-            .gallery-item.video-only {
+            /* Mobile Video Container */
+            .mobile-video-container {
                 width: 100%;
-                height: 70vh; /* Increased height for mobile */
-                min-height: 350px; /* Ensure minimum height */
-                max-height: 500px; /* Limit maximum height */
+                background: #000;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                margin-bottom: 1rem;
             }
             
-            .gallery-item.video-only iframe {
+            .mobile-video-wrapper {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                height: 0;
+            }
+            
+            .mobile-video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
-                display: block;
-                border-radius: 16px;
+                border: 0;
             }
             
-            .gallery-item.text-only {
-                width: 100%; /* Full width on mobile */
-                height: auto;
-            }
-            
-            .text-content-wrapper {
-                padding: 1.5rem;
-            }
-            
-            /* Add touch-friendly spacing around videos */
-            main {
-                padding: 0.5rem;
-            }
-            
-            /* Mobile header adjustments */
-            header {
+            .video-info-mobile {
                 padding: 1rem;
+                background: #000;
+                color: white;
             }
             
-            header h1 {
-                font-size: 1.5rem;
+            .video-title-mobile {
+                font-weight: 700;
+                font-size: 1.2rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .video-subtitle-mobile {
+                font-size: 0.9rem;
+                opacity: 0.9;
             }
         }
         
@@ -349,7 +329,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -406,7 +386,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -417,72 +397,33 @@
             color: #000000;
         }
         
-        /* Video title overlay for mobile */
-        .video-title {
+        /* Video container improvements for desktop */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .video-info {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(rgba(0,0,0,0.7), transparent);
             color: white;
             padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 0 0 16px 16px;
+            z-index: 2;
         }
         
-        .gallery-item:hover .video-title {
-            opacity: 1;
+        .video-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
         }
         
-        /* Mobile touch improvements */
-        @media (max-width: 1023px) {
-            .gallery-item {
-                touch-action: pan-y;
-            }
-            
-            .video-title {
-                opacity: 1;
-                font-size: 1rem;
-                padding: 0.75rem;
-            }
-            
-            /* Add subtle animation for mobile interaction */
-            .gallery-item:active {
-                transform: scale(0.98);
-                transition: transform 0.1s ease;
-            }
-        }
-        
-        /* Video info card for mobile */
-        .video-info {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 16px 16px;
-            margin-top: -4px;
-        }
-        
-        .video-info h3 {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #070346;
-        }
-        
-        .video-info p {
+        .video-subtitle {
             font-size: 0.9rem;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-        }
-        
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #718096;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -493,7 +434,7 @@
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
@@ -513,38 +454,99 @@
             
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
 
         <main class="lg:ml-60 flex-1 flex flex-col">
             
+            <!-- Desktop Video Layout (Original) -->
             <div class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item video-only">
-                    <iframe 
-                        src="https://www.youtube.com/embed/aDYpIjWy7Nc" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                    <div class="video-title">Travel Filmmaking Showcase</div>
-                    <div class="video-info">
-                        <h3>Travel Filmmaking Showcase</h3>
-                        <p>Experience the world through cinematic travel storytelling and visual exploration.</p>
-                        <div class="video-meta">
-                            <span>Travel Documentary</span>
-                            <span>NONGOVMEDIA</span>
+                    <div class="video-container">
+                        <div class="video-info">
+                            <div class="video-title">Travel Filmmaking Showcase</div>
+                            <div class="video-subtitle">CINEMATIC TRAVEL STORYTELLING</div>
                         </div>
+                        <iframe 
+                            src="https://www.youtube.com/embed/aDYpIjWy7Nc" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <div class="video-info">
+                            <div class="video-title">Mountain Expedition Documentary</div>
+                            <div class="video-subtitle">ADVENTURE FILMMAKING</div>
+                        </div>
+                        <iframe 
+                            src="https://www.youtube.com/embed/IG8ZcpnW2RE" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <div class="video-info">
+                            <div class="video-title">Coastal Exploration Series</div>
+                            <div class="video-subtitle">OCEAN ADVENTURES</div>
+                        </div>
+                        <iframe 
+                            src="https://www.youtube.com/embed/xOou5xbED_s" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <div class="video-info">
+                            <div class="video-title">Cultural Immersion Journey</div>
+                            <div class="video-subtitle">WORLD HERITAGE SITES</div>
+                        </div>
+                        <iframe 
+                            src="https://www.youtube.com/embed/okzw252ZE7w?start=15" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <div class="video-info">
+                            <div class="video-title">Urban Exploration Diary</div>
+                            <div class="video-subtitle">CITYSCAPE CINEMATOGRAPHY</div>
+                        </div>
+                        <iframe 
+                            src="https://www.youtube.com/embed/xR2CvAtPfWw" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
             </div>
             
         </main>
@@ -553,11 +555,15 @@
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" class="hover:text-black transition duration-150">YT</a>
-            <span class="text-gray-300">|</span>
-            <a href="https://www.instagram.com/nongov_kelvin/" class="hover:text-black transition duration-150">IG</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -570,7 +576,7 @@
             </button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             
@@ -584,11 +590,15 @@
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" class="text-gray-600 hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" class="text-gray-600 hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
@@ -633,17 +643,42 @@
                 link.addEventListener('click', toggleMenu);
             });
             
-            // Add touch improvements for mobile
+            // Mobile video container functionality
             if (window.innerWidth <= 1023) {
-                document.querySelectorAll('.gallery-item').forEach(item => {
-                    item.addEventListener('touchstart', function() {
-                        this.style.transform = 'scale(0.98)';
+                const galleryItems = document.querySelectorAll('.gallery-item.video-only');
+                const horizontalGallery = document.querySelector('.horizontal-image-gallery');
+                
+                if (galleryItems.length > 0 && horizontalGallery) {
+                    // Create mobile video containers
+                    let mobileHTML = '';
+                    
+                    galleryItems.forEach((item, index) => {
+                        const iframe = item.querySelector('iframe');
+                        const videoInfo = item.querySelector('.video-info');
+                        const videoTitle = videoInfo ? videoInfo.querySelector('.video-title').textContent : 'Travel Film';
+                        const videoSubtitle = videoInfo ? videoInfo.querySelector('.video-subtitle').textContent : 'NONGOVMEDIA';
+                        
+                        mobileHTML += `
+                            <div class="mobile-video-container">
+                                <div class="mobile-video-wrapper">
+                                    <iframe 
+                                        src="${iframe.src}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <div class="video-info-mobile">
+                                    <div class="video-title-mobile">${videoTitle}</div>
+                                    <div class="video-subtitle-mobile">${videoSubtitle}</div>
+                                </div>
+                            </div>
+                        `;
                     });
                     
-                    item.addEventListener('touchend', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                });
+                    // Replace the horizontal gallery with mobile containers
+                    horizontalGallery.outerHTML = `<div class="lg:hidden p-4 space-y-6">${mobileHTML}</div>`;
+                }
             }
         });
     </script>
