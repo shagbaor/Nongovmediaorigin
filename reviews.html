@@ -28,18 +28,29 @@
         @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype'); font-weight: 800; font-style: italic; }
         @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-BlackItalic.otf') format('opentype'); font-weight: 900; font-style: italic; }
         
-        /* Custom font and base styles - CORRECTED */
+        /* Custom font and base styles */
         html, body {
             font-family: 'Metropolis', sans-serif;
-            color: #070346;
+            color: #000000; /* Changed to black */
             height: auto;
             min-height: 100vh;
             overflow-x: hidden;
-            background-color: #f7f7f7;
-            background-image: linear-gradient(135deg, #f7f7f7 0%, #e2e8f0 100%);
+            background-color: #ffffff; /* Changed to white */
             margin: 0;
             padding: 0;
         }
+        
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+        
         /* Glass Morphism Base Style */
         .glass-morphism {
             background: rgba(169, 172, 230, 0.38);
@@ -99,7 +110,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -134,7 +145,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -196,6 +207,15 @@
             height: 100%;
             border: 0;
         }
+        
+        /* Custom button color */
+        .custom-button {
+            background-color: #020633 !important;
+        }
+        
+        .custom-button:hover {
+            background-color: #010422 !important;
+        }
     </style>
 </head>
 <body>
@@ -208,7 +228,7 @@
                 <!-- Header Top: Logo and Mobile Menu Button -->
                 <div class="flex justify-between items-center mb-16">
                     <div>
-                        <h1 class="text-2xl lg:text-xl font-bold tracking-tighter mb-2">
+                        <h1 class="text-2xl lg:text-xl font-bold tracking-tighter mb-2" style="color: #020633;">
                             NONGOVMEDIA
                         </h1>
                         <p class="text-xs text-gray-600 leading-tight"></p>
@@ -233,12 +253,16 @@
             <!-- Footer/Copyright (Desktop Only) -->
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
@@ -253,7 +277,7 @@
                     <p class="text-lg leading-relaxed text-black-700 max-w-2xl mx-auto mb-6">
                         Hear from the people we've partnered with. All reviews below are sourced from our professional Fiverr profile.
                     </p>
-                    <a href="https://www.fiverr.com/nongov_kelvin/create-vox-explainer-style-documentary" target="_blank" class="inline-flex items-center text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg px-6 py-3 transition duration-300 shadow-md">
+                    <a href="https://www.fiverr.com/nongov_kelvin/create-vox-explainer-style-documentary" target="_blank" class="inline-flex items-center text-base font-semibold text-white custom-button rounded-lg px-6 py-3 transition duration-300 shadow-md">
                        View Profile on Fiverr
                     </a>
                 </div>
@@ -265,7 +289,7 @@
                         <div class="flex items-center justify-between border-b pb-3 border-gray-100">
                             <div class="flex items-center space-x-3">
                                 <!-- Client Info -->
-                                <div class="bg-indigo-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg flex-shrink-0">
+                                <div class="custom-button text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg flex-shrink-0">
                                     V
                                 </div>
                                 <div>
@@ -290,7 +314,7 @@
                                 </div>
                             </div>
                             <!-- Date -->
-                            <span class="text-sm text-gray-500 flex-shrink-0"></span>
+                            <span class="text-sm text-gray-500 flex-shrink-0">Recent</span>
                         </div>
                         
                         <!-- Video Content -->
@@ -317,11 +341,15 @@
     <footer class="lg:hidden p-4 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-1 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">YT</a>
-            <span class="text-gray-300">|</span>
-            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">IG</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
@@ -334,7 +362,7 @@
                 </svg>
             </button>
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
                 <p class="text-gray-600 text-sm"></p>
             </div>
             <nav class="space-y-2">
@@ -346,11 +374,15 @@
             </nav>
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">YT</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">IG</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
@@ -360,14 +392,14 @@
     <script>
         // --- Review Data ---
         const reviews = [
-            { client: "United States", rating: 5, date: "9 months ago", review: "Kelvin was extremely patient and willing to go above and beyond for an outstanding delivery. Will be working with him.", details: "$50-$100 | 9 days" },
-            { client: "United States", rating: 5, date: "2 years ago", review: "Kelvin is really good at what he does.", details: null },
-            { client: "jusdifferent720 (United States)", rating: 5, date: "2 years ago", review: "Video is high quality and always delivered fast!", details: null },
-            { client: "cadeisgay (United States)", rating: 5, date: "2 years ago", review: "Great work!", details: null },
-            { client: "jusdifferent720 (United States)", rating: 5, date: "5 years ago", review: "Amazing person to work with. Follows directions and executes!", details: null },
-            { client: "modernoptic (United States)", rating: 5, date: "5 years ago", review: "Kelvin is amazing at what he does and continues to innovate with his works and become a better video editor. Will continue doing business as always.", details: null },
-            { client: "jusdifferent720 (United States)", rating: 5, date: "2 years ago", review: "Amazing work", details: null },
-            { client: "modernoptic (United States)", rating: 5, date: "2 years ago", review: "Kelvin continues to blow me away with his advanced editing skills. Thanks again!", details: null },
+            { client: "United States", rating: 5, date: "9 months ago", review: "Kelvin was extremely patient and willing to go above and beyond for an outstanding delivery. Will be working with him." },
+            { client: "United States", rating: 5, date: "2 years ago", review: "Kelvin is really good at what he does." },
+            { client: "jusdifferent720 (United States)", rating: 5, date: "2 years ago", review: "Video is high quality and always delivered fast!" },
+            { client: "cadeisgay (United States)", rating: 5, date: "2 years ago", review: "Great work!" },
+            { client: "jusdifferent720 (United States)", rating: 5, date: "5 years ago", review: "Amazing person to work with. Follows directions and executes!" },
+            { client: "modernoptic (United States)", rating: 5, date: "5 years ago", review: "Kelvin is amazing at what he does and continues to innovate with his works and become a better video editor. Will continue doing business as always." },
+            { client: "jusdifferent720 (United States)", rating: 5, date: "2 years ago", review: "Amazing work" },
+            { client: "modernoptic (United States)", rating: 5, date: "2 years ago", review: "Kelvin continues to blow me away with his advanced editing skills. Thanks again!" },
         ];
 
         // Function to generate the star rating SVG
@@ -390,16 +422,12 @@
             if (!grid) return;
 
             const reviewHtml = reviews.map(review => {
-                const detailsHtml = review.details 
-                    ? `<p class="text-xs text-gray-500 mt-2">Project Details: ${review.details}</p>`
-                    : '';
-
                 return `
                     <div class="review-card p-6 rounded-xl space-y-4">
                         <div class="flex items-center justify-between border-b pb-3 border-gray-100">
                             <div class="flex items-center space-x-3">
                                 <!-- Client Info -->
-                                <div class="bg-indigo-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg flex-shrink-0">
+                                <div class="custom-button text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg flex-shrink-0">
                                     ${review.client[0]}
                                 </div>
                                 <div>
@@ -415,9 +443,6 @@
                         
                         <!-- Review Content -->
                         <p class="text-gray-700 italic leading-relaxed">"${review.review}"</p>
-                        
-                        <!-- Project Details (if available) -->
-                        ${detailsHtml}
                     </div>
                 `;
             }).join('');
