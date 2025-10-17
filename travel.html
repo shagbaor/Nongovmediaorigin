@@ -258,16 +258,7 @@
                 color: white;
             }
             
-            .video-title-mobile {
-                font-weight: 700;
-                font-size: 1.2rem;
-                margin-bottom: 0.25rem;
-            }
-            
-            .video-subtitle-mobile {
-                font-size: 0.9rem;
-                opacity: 0.9;
-            }
+            /* REMOVED: .video-title-mobile and .video-subtitle-mobile styling as per request */
         }
         
         .nav-link {
@@ -405,6 +396,7 @@
         }
         
         .video-info {
+            /* Kept for structure, but children are empty */
             position: absolute;
             top: 0;
             left: 0;
@@ -415,16 +407,7 @@
             z-index: 2;
         }
         
-        .video-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .video-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+        /* REMOVED: .video-title and .video-subtitle styling as per request */
     </style>
 </head>
 <body>
@@ -470,15 +453,12 @@
 
         <main class="lg:ml-60 flex-1 flex flex-col">
             
-            <!-- Desktop Video Layout (Original) -->
             <div class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item video-only">
                     <div class="video-container">
                         <div class="video-info">
-                            <div class="video-title">Travel Filmmaking Showcase</div>
-                            <div class="video-subtitle">CINEMATIC TRAVEL STORYTELLING</div>
-                        </div>
+                            </div>
                         <iframe 
                             src="https://www.youtube.com/embed/aDYpIjWy7Nc" 
                             frameborder="0" 
@@ -488,65 +468,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item video-only">
-                    <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">Mountain Expedition Documentary</div>
-                            <div class="video-subtitle">ADVENTURE FILMMAKING</div>
-                        </div>
-                        <iframe 
-                            src="https://www.youtube.com/embed/IG8ZcpnW2RE" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div class="gallery-item video-only">
-                    <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">Coastal Exploration Series</div>
-                            <div class="video-subtitle">OCEAN ADVENTURES</div>
-                        </div>
-                        <iframe 
-                            src="https://www.youtube.com/embed/xOou5xbED_s" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div class="gallery-item video-only">
-                    <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">Cultural Immersion Journey</div>
-                            <div class="video-subtitle">WORLD HERITAGE SITES</div>
-                        </div>
-                        <iframe 
-                            src="https://www.youtube.com/embed/okzw252ZE7w?start=15" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div class="gallery-item video-only">
-                    <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">Urban Exploration Diary</div>
-                            <div class="video-subtitle">CITYSCAPE CINEMATOGRAPHY</div>
-                        </div>
-                        <iframe 
-                            src="https://www.youtube.com/embed/xR2CvAtPfWw" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
+               
             </div>
             
         </main>
@@ -612,6 +534,9 @@
             const menuCloseBtn = document.getElementById('menu-close-btn');
             const iconMenu = document.getElementById('icon-menu');
             const iconClose = document.getElementById('icon-close');
+            
+            // New base URL for the mobile video logic
+            const newEmbedUrl = "https://www.youtube.com/embed/aDYpIjWy7Nc"; // Base embed URL
 
             const toggleMenu = () => {
                 mobileOverlay.classList.toggle('active');
@@ -643,7 +568,7 @@
                 link.addEventListener('click', toggleMenu);
             });
             
-            // Mobile video container functionality
+            // Mobile video container functionality (MODIFIED)
             if (window.innerWidth <= 1023) {
                 const galleryItems = document.querySelectorAll('.gallery-item.video-only');
                 const horizontalGallery = document.querySelector('.horizontal-image-gallery');
@@ -652,26 +577,21 @@
                     // Create mobile video containers
                     let mobileHTML = '';
                     
+                    // The loop now uses a simplified structure with the new, single URL
+                    // and omits the video title/subtitle content.
                     galleryItems.forEach((item, index) => {
-                        const iframe = item.querySelector('iframe');
-                        const videoInfo = item.querySelector('.video-info');
-                        const videoTitle = videoInfo ? videoInfo.querySelector('.video-title').textContent : 'Travel Film';
-                        const videoSubtitle = videoInfo ? videoInfo.querySelector('.video-subtitle').textContent : 'NONGOVMEDIA';
-                        
                         mobileHTML += `
                             <div class="mobile-video-container">
                                 <div class="mobile-video-wrapper">
                                     <iframe 
-                                        src="${iframe.src}" 
+                                        src="${newEmbedUrl}" 
                                         frameborder="0" 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                         allowfullscreen>
                                     </iframe>
                                 </div>
                                 <div class="video-info-mobile">
-                                    <div class="video-title-mobile">${videoTitle}</div>
-                                    <div class="video-subtitle-mobile">${videoSubtitle}</div>
-                                </div>
+                                    </div>
                             </div>
                         `;
                     });
