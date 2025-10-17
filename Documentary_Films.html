@@ -289,19 +289,19 @@
                 border: 0;
             }
             
-            .video-info-mobile {
+            .video-info-mobile { /* REMOVED IN HTML, but keeping style for robustness */
                 padding: 1rem;
                 background: #000;
                 color: white;
             }
             
-            .video-title-mobile {
+            .video-title-mobile { /* REMOVED IN HTML, but keeping style for robustness */
                 font-weight: 700;
                 font-size: 1.2rem;
                 margin-bottom: 0.25rem;
             }
             
-            .video-subtitle-mobile {
+            .video-subtitle-mobile { /* REMOVED IN HTML, but keeping style for robustness */
                 font-size: 0.9rem;
                 opacity: 0.9;
             }
@@ -441,7 +441,7 @@
             height: 100%;
         }
         
-        .video-info {
+        .video-info { /* REMOVED IN HTML, but keeping style for robustness */
             position: absolute;
             top: 0;
             left: 0;
@@ -452,13 +452,13 @@
             z-index: 2;
         }
         
-        .video-title {
+        .video-title { /* REMOVED IN HTML, but keeping style for robustness */
             font-weight: 700;
             font-size: 1.2rem;
             margin-bottom: 0.25rem;
         }
         
-        .video-subtitle {
+        .video-subtitle { /* REMOVED IN HTML, but keeping style for robustness */
             font-size: 0.9rem;
             opacity: 0.9;
         }
@@ -507,15 +507,10 @@
 
         <main class="lg:ml-60 flex-1 flex flex-col">
             
-            <!-- Desktop Video Layout (Original) -->
             <div class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item video-only">
                     <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">TRAGIC CATHOLIC CHURCH COLLAPSE</div>
-                            <div class="video-subtitle">20 DEAD | OFFICIAL PERMISSION</div>
-                        </div>
                         <iframe 
                             src="https://www.youtube.com/embed/93GCTp5H5I8" 
                             frameborder="0" 
@@ -527,12 +522,63 @@
                 
                 <div class="gallery-item video-only">
                     <div class="video-container">
-                        <div class="video-info">
-                            <div class="video-title">DOCUMENTARY FILM</div>
-                            <div class="video-subtitle">IN-DEPTH INVESTIGATION</div>
-                        </div>
                         <iframe 
                             src="https://www.youtube.com/embed/MoRObwpB3F8?start=128" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/y2qmU-a23d4" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/RN4IzB2lMTw" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/wux0_iyG4gY" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/r38Y3LerlIg" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="gallery-item video-only">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/CvPY7dgk2W0" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -635,7 +681,7 @@
                 link.addEventListener('click', toggleMenu);
             });
             
-            // Mobile video container functionality
+            // Mobile video container functionality (MODIFIED to remove titles)
             if (window.innerWidth <= 1023) {
                 const galleryItems = document.querySelectorAll('.gallery-item.video-only');
                 const horizontalGallery = document.querySelector('.horizontal-image-gallery');
@@ -646,9 +692,6 @@
                     
                     galleryItems.forEach((item, index) => {
                         const iframe = item.querySelector('iframe');
-                        const videoInfo = item.querySelector('.video-info');
-                        const videoTitle = videoInfo ? videoInfo.querySelector('.video-title').textContent : 'Documentary Film';
-                        const videoSubtitle = videoInfo ? videoInfo.querySelector('.video-subtitle').textContent : 'NONGOVMEDIA';
                         
                         mobileHTML += `
                             <div class="mobile-video-container">
@@ -660,11 +703,7 @@
                                         allowfullscreen>
                                     </iframe>
                                 </div>
-                                <div class="video-info-mobile">
-                                    <div class="video-title-mobile">${videoTitle}</div>
-                                    <div class="video-subtitle-mobile">${videoSubtitle}</div>
                                 </div>
-                            </div>
                         `;
                     });
                     
