@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
      <style>
         /* ADDED: Metropolis Font Family Declarations */
@@ -112,13 +111,24 @@
         }
 
         /* Custom font and base styles */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         html, body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); 
-            color: #070346;
+            /* REMOVED @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); */
+            font-family: 'Metropolis', sans-serif; /* Changed to Metropolis */
+            background: #ffffff; /* Changed to white background */
+            color: #000000; /* Changed to black primary text color */
             height: 100%; 
             overflow-y: auto; /* Allow overall vertical scrolling */
+        }
+        
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
         }
         
         /* Glass Morphism Base Style (Retained for sidebar) */
@@ -165,7 +175,7 @@
             border-radius: 0px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden; 
-            background-color: #ffffff; 
+            background-color: #ffffff; /* Ensures items have white background */
         }
 
         /* NEW: Text-only gallery item that's 15% smaller */
@@ -173,8 +183,8 @@
             width: 76.5vw; /* 90vw * 0.85 = 76.5vw (15% smaller) */
             aspect-ratio: auto; /* Remove fixed aspect ratio for text */
             height: auto; /* Let content determine height */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: #ffffff; /* Changed to solid white */
+            /* Removed backdrop-filter to ensure solid white */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -265,10 +275,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(248, 250, 252, 0.95) 0%, 
-                rgba(241, 245, 249, 0.95) 50%, 
-                rgba(226, 232, 240, 0.95) 100%);
+            background: rgba(255, 255, 255, 0.95); /* Changed to white opacity */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 100;
@@ -310,7 +317,7 @@
             padding: 1.25rem 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
-            color: #070346;
+            color: #000000; /* Changed to black */
             text-align: center;
             border-radius: 0px;
             margin: 0.75rem 0;
@@ -367,7 +374,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #070346;
+            color: #000000; /* Changed to black */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -381,25 +388,20 @@
 </head>
 <body>
 
-    <!-- Main Page Container -->
     <div class="page-container flex flex-col lg:flex-row min-h-screen">
 
-        <!-- 1. LEFT SIDEBAR/NAVIGATION -->
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
-                <!-- Header Top: Logo and Mobile Menu Button -->
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
-                    <!-- Mobile Menu Button -->
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
                         <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                         <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
                 
-                <!-- Navigation Links (Desktop) -->
                 <nav id="mobile-nav" class="hidden lg:block space-y-4">
                     <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
                     <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
@@ -409,26 +411,26 @@
                 </nav>
             </div>
             
-            <!-- Footer/Copyright (Desktop Only) -->
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-2 mt-2">
-                    <a href="#" class="hover:text-black transition duration-150">FB</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="hover:text-black transition duration-150">Share</a>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
 
-        <!-- 2. MAIN CONTENT AREA -->
         <main class="lg:ml-60 flex-1 flex flex-col">
             
-            <!-- Horizontal Scrolling Image Gallery (The core of the page) -->
             <div class="horizontal-image-gallery flex-grow">
                 
-                <!-- FIRST IMAGE ONLY -->
                 <div class="gallery-item image-only">
                     <img 
                         src="images/when the church fe/image_1.jpg" 
@@ -438,19 +440,16 @@
                     >
                 </div>
                 
-                <!-- STANDALONE TEXT ITEM (15% smaller on desktop) -->
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper flex flex-col justify-start">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">When the Church Fell</h2>
                         
-                        <!-- Metadata -->
                         <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
                             <p><strong class="text-black">Year:</strong> 2020</p>
                             <p><strong class="text-black">Location:</strong> Mbayongo-Vandelikya, Benue State</p>
                             <p><strong class="text-black">Category:</strong> Documentary / Memory</p>
                         </div>
                         
-                        <!-- Body Text -->
                         <div class="space-y-3 text-sm leading-relaxed text-gray-700">
                             <p>
                                 In 2012, tragedy struck St. Robert's Catholic Church, Adamgbe, Mbayongo, when the building collapsed during Easter celebrations. More than thirty parishioners died — most of them women and young girls.
@@ -468,7 +467,6 @@
                     </div>
                 </div>
                 
-                <!-- Subsequent Images (2 through 27) -->
                 <div class="gallery-item image-only">
                     <img src="images/when the church fe/image_2.jpg" alt="When the Church Fell Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=When+the+Church+Fell+Image+2'">
                 </div>
@@ -481,19 +479,21 @@
         </main>
     </div>
 
-    <!-- MOBILE ONLY FOOTER -->
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
-            <a href="#" class="hover:text-black transition duration-150">FB</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">IN</a>
-            <span class="text-gray-300">|</span>
-            <a href="#" class="hover:text-black transition duration-150">Share</a>
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./YT.svg" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./IG.svg" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                <img src="./x.svg" alt="X" class="social-icon">
+            </a>
         </div>
     </footer>
 
-    <!-- MOBILE MENU OVERLAY -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
         <div class="mobile-menu-content">
             <button id="menu-close-btn" class="menu-close-btn">
@@ -517,18 +517,21 @@
             
             <div class="mt-8 pt-6 border-t border-gray-300 text-center">
                 <div class="flex justify-center space-x-4 mb-4">
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">FB</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">IN</a>
-                    <span class="text-gray-400">|</span>
-                    <a href="#" class="text-gray-600 hover:text-black transition duration-150">Share</a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
                 <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuButton = document.getElementById('mobile-menu-button');
