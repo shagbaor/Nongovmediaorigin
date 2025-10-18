@@ -9,491 +9,494 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-     <style>
-         /* ADDED: Metropolis Font Family Declarations */
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Thin.otf') format('opentype');
-             font-weight: 100;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Light.otf') format('opentype');
-             font-weight: 300;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Regular.otf') format('opentype');
-             font-weight: 400;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Medium.otf') format('opentype');
-             font-weight: 500;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
-             font-weight: 600;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Bold.otf') format('opentype');
-             font-weight: 700;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
-             font-weight: 800;
-             font-style: normal;
-         }
-         @font-face {
-             font-family: 'Metropolis';
-             src: url('./Font/Metropolis-Black.otf') format('opentype');
-             font-weight: 900;
-             font-style: normal;
-         }
+    <style>
+        /* ADDED: Metropolis Font Family Declarations */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Thin.otf') format('opentype');
+            font-weight: 100;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
 
-         /* Custom font and base styles - CORRECTED */
-         html, body {
-             font-family: 'Metropolis', sans-serif;
-             color: #000000; /* Changed to black */
-             height: auto; /* Changed to auto to allow full content height */
-             min-height: 100vh; /* Ensures the page is at least full height */
-             overflow-x: hidden; /* Allows vertical scrolling but prevents horizontal scroll */
-             background-color: #ffffff; /* Changed to white */
-             margin: 0;
-             padding: 0;
-         }
-         
-         /* Glass Morphism Base Style */
-         .glass-morphism {
-             background: rgba(169, 172, 230, 0.38);
-             border-radius: 0px;
-             box-shadow: 
-                 0 10px 20px rgba(0, 0, 0, 0.25),
-                 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-             backdrop-filter: blur(5px);
-             -webkit-backdrop-filter: blur(5px);
-             border: 1px solid rgba(169, 172, 230, 0.3);
-         }
-         
-         /* Unique Mobile Menu Styles */
-         .mobile-menu-overlay {
-             position: fixed;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background: linear-gradient(135deg, 
-                 rgba(248, 250, 252, 0.95) 0%, 
-                 rgba(241, 245, 249, 0.95) 50%, 
-                 rgba(17, 26, 37, 0.95) 100%);
-             backdrop-filter: blur(20px);
-             -webkit-backdrop-filter: blur(20px);
-             z-index: 100;
-             display: none;
-             opacity: 0;
-             transition: opacity 0.3s ease;
-         }
-         
-         .mobile-menu-overlay.active {
-             display: block;
-             opacity: 1;
-         }
-         
-         .mobile-menu-content {
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             transform: translate(-50%, -50%) scale(0.9);
-             width: 90%;
-             max-width: 400px;
-             background: rgba(255, 255, 255, 0.7);
-             backdrop-filter: blur(30px);
-             -webkit-backdrop-filter: blur(30px);
-             border: 1px solid rgba(255, 255, 255, 0.8);
-             border-radius: 24px;
-             padding: 3rem 2rem;
-             box-shadow: 
-                 0 25px 50px rgba(0, 0, 0, 0.15),
-                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
-             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-         }
-         
-         .mobile-menu-overlay.active .mobile-menu-content {
-             transform: translate(-50%, -50%) scale(1);
-         }
-         
-         .mobile-nav-link {
-             display: block;
-             padding: 1.25rem 1.5rem;
-             font-size: 1.25rem;
-             font-weight: 600;
-             color: #000000; /* Changed to black */
-             text-align: center;
-             border-radius: 0px;
-             margin: 0.75rem 0;
-             background: rgba(255, 255, 255, 0.6);
-             backdrop-filter: blur(10px);
-             border: 1px solid rgba(255, 255, 255, 0.8);
-             transition: all 0.3s ease;
-         }
-         
-         .mobile-nav-link:hover {
-             background: rgba(255, 255, 255, 0.9);
-             transform: translateY(-2px);
-             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-             color: #000000;
-         }
-         
-         .mobile-nav-link.active {
-             background: rgba(255, 255, 255, 0.9);
-             color: #000000;
-             border-color: rgba(255, 255, 255, 1);
-             font-weight: 700;
-         }
-         
-         .menu-close-btn {
-             position: absolute;
-             top: 1.5rem;
-             right: 1.5rem;
-             background: rgba(255, 255, 255, 0.7);
-             backdrop-filter: blur(10px);
-             -webkit-backdrop-filter: blur(10px);
-             border: 1px solid rgba(255, 255, 255, 0.8);
-             border-radius: 50%;
-             width: 3rem;
-             height: 3rem;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             color: #000000; /* Changed to black */
-             cursor: pointer;
-             transition: all 0.3s ease;
-         }
-         
-         .menu-close-btn:hover {
-             background: rgba(255, 255, 255, 0.9);
-             transform: rotate(90deg);
-             color: #000000;
-         }
-         
-         /* NEW: Square button styles */
-         .square-btn {
-             border-radius: 0;
-             border: 1px solid #000000; /* Changed to black */
-             background: rgba(255, 255, 255, 0.7);
-             padding: 0.75rem 1.5rem;
-             font-weight: 600;
-             color: #000000; /* Changed to black */
-             transition: all 0.3s ease;
-             text-decoration: none;
-             display: inline-block;
-             text-align: center;
-             min-width: 140px; /* Added fixed width */
-         }
-         
-         .square-btn:hover {
-             background: rgba(255, 255, 255, 0.9);
-             transform: translateY(-2px);
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-         }
-         
-         /* Social media icon styles */
-         .social-icon {
-             width: 24px;
-             height: 24px;
-             transition: all 0.3s ease;
-         }
-         
-         .social-icon:hover {
-             transform: translateY(-2px);
-         }
-         
-         /* Desktop Layout - CORRECTED */
-         @media (min-width: 1024px) {
-             .page-container {
-                 display: grid;
-                 grid-template-columns: 240px 1fr;
-                 height: 100vh;
-                 overflow-y: scroll; /* Allows scrolling on the container */
-             }
-             
-             .main-content-grid {
-                 display: grid;
-                 grid-template-rows: 1fr auto auto;
-                 height: 100%; /* Changed to 100% to fill container */
-                 padding: 2rem;
-                 gap: 2rem;
-             }
-             
-             .hero-section {
-                 display: grid;
-                 grid-template-columns: 1fr 1fr;
-                 gap: 3rem;
-                 align-items: center;
-                 height: 100%;
-             }
-             
-             .video-wrapper {
-                 position: relative;
-                 width: 100%;
-                 padding-top: 75%;
-             }
-             
-             .video-wrapper iframe {
-                 position: absolute;
-                 top: 0;
-                 left: 0;
-                 width: 100%;
-                 height: 100%;
-                 border-radius: 1rem;
-             }
-             
-             .hero-text-section {
-                 padding-right: 1rem;
-             }
-             
-             .hero-text-section h2 {
-                 font-size: 2.5rem;
-                 line-height: 1.2;
-                 margin-bottom: 1.5rem;
-             }
-             
-             .hero-text-section p {
-                 font-size: 0.95rem;
-                 line-height: 1.5;
-                 margin-bottom: 1rem;
-             }
-             
-             .cta-section {
-                 display: flex;
-                 justify-content: center;
-                 gap: 2rem;
-                 padding: 1rem 0;
-             }
+        /* Custom font and base styles - CORRECTED */
+        html, body {
+            font-family: 'Metropolis', sans-serif;
+            color: #000000; /* Changed to black */
+            height: auto; /* Changed to auto to allow full content height */
+            min-height: 100vh; /* Ensures the page is at least full height */
+            overflow-x: hidden; /* Allows vertical scrolling but prevents horizontal scroll */
+            background-color: #ffffff; /* Changed to white */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Glass Morphism Base Style */
+        .glass-morphism {
+            background: rgba(169, 172, 230, 0.38);
+            border-radius: 0px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(169, 172, 230, 0.3);
+        }
+        
+        /* Unique Mobile Menu Styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.95) 0%, 
+                rgba(241, 245, 249, 0.95) 50%, 
+                rgba(17, 26, 37, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-menu-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .mobile-menu-overlay.active .mobile-menu-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #000000; /* Changed to black */
+            text-align: center;
+            border-radius: 0px;
+            margin: 0.75rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+        
+        .mobile-nav-link.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
+            border-color: rgba(255, 255, 255, 1);
+            font-weight: 700;
+        }
+        
+        .menu-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000; /* Changed to black */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-close-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
+            color: #000000;
+        }
+        
+        /* UPDATED: Square button styles with requested colors */
+        .square-btn {
+            border-radius: 0;
+            border: 1px solid #020633; /* Dark Blue Border */
+            background: #020633; /* Dark Blue Background */
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: #ffffff; /* White Text - MODIFIED */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 140px;
+        }
+        
+        .square-btn:hover {
+            background: rgba(2, 6, 51, 0.8); /* Dark blue with transparency */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #ffffff; /* Keep text white on hover */
+        }
+        
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Desktop Layout - CORRECTED */
+        @media (min-width: 1024px) {
+            .page-container {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                height: 100vh;
+                overflow-y: scroll; /* Allows scrolling on the container */
+            }
+            
+            .main-content-grid {
+                display: grid;
+                grid-template-rows: 1fr auto auto;
+                height: 100%; /* Changed to 100% to fill container */
+                padding: 2rem;
+                gap: 2rem;
+            }
+            
+            .hero-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+                height: 100%;
+            }
+            
+            .video-wrapper {
+                position: relative;
+                width: 100%;
+                padding-top: 75%;
+            }
+            
+            .video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem;
+            }
+            
+            .hero-text-section {
+                padding-right: 1rem;
+            }
+            
+            .hero-text-section h2 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-text-section p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            
+            .cta-section {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                padding: 1rem 0;
+            }
 
-             .collaboration-section {
+            .collaboration-section {
                 padding: 1.5rem 2rem;
-             }
-             
-             /* UPDATED: Client grid for horizontal layout */
-             .client-grid {
-                 display: flex; 
-                 flex-wrap: nowrap;
-                 justify-content: space-between;
-                 align-items: center;
-                 gap: 1rem;
-                 overflow-x: auto;
-                 padding: 1rem 0;
-             }
-             
-             /* UPDATED: Reduced logo size by golden ratio (1.618) */
-             .client-logo {
-                 width: 49px; /* 80px / 1.618 ≈ 49px */
-                 height: 49px; /* 80px / 1.618 ≈ 49px */
-                 object-fit: contain;
-                 transition: all 0.3s ease;
-             }
-             
-             .client-item:hover .client-logo {
-                 transform: scale(1.1);
-             }
-         }
-         
-         /* Mobile Layout - CORRECTED */
-         @media (max-width: 1023px) {
-             .page-container {
-                 height: 100%;
-                 overflow-x: hidden;
-             }
-             
-             .glass-morphism {
-                 backdrop-filter: none;
-                 -webkit-backdrop-filter: none;
-                 background-color: #ffffff;
-                 border: none;
-                 box-shadow: none;
-                 border-radius: 0;
-             }
-             
-             .mobile-main-content {
-                 height: 100%;
-                 display: flex;
-                 flex-direction: column;
-                 padding: 1rem;
-             }
-             
-             .mobile-hero-section {
-                 flex: 1;
-                 display: flex;
-                 flex-direction: column;
-                 justify-content: center;
-             }
-             
-             .mobile-video-container {
-                 margin: 1rem 0;
-             }
-             
-             .video-wrapper {
-                 position: relative;
-                 width: 100%;
-                 padding-top: 75%;
-             }
-             
-             .video-wrapper iframe {
-                 position: absolute;
-                 top: 0;
-                 left: 0;
-                 width: 100%;
-                 height: 100%;
-                 border-radius: 0.75rem;
-             }
-             
-             /* NEW: Mobile text alignment and sizing */
-             .mobile-hero-text {
-                 text-align: left;
-             }
-             
-             .mobile-hero-text h2 {
-                 font-size: 2rem;
-                 line-height: 1.2;
-                 margin-bottom: 1rem;
-             }
-             
-             .mobile-hero-text p {
-                 font-size: calc(2rem / 1.618); /* Golden ratio applied */
-                 line-height: 1.4;
-                 margin-bottom: 0.75rem;
-             }
-             
-             .mobile-cta {
-                 display: flex;
-                 justify-content: center;
-                 gap: 1rem;
-                 padding: 1rem 0;
-                 font-size: 1rem;
-             }
-             
-             .mobile-collaboration {
-                 padding: 1rem 0;
-             }
-             
-             /* NEW: Carousel styles for mobile */
-             .carousel-container {
-                 position: relative;
-                 width: 100%;
-                 overflow: hidden;
-                 margin: 1rem 0;
-             }
-             
-             .carousel-track {
-                 display: flex;
-                 transition: transform 0.5s ease;
-                 gap: 1rem;
-             }
-             
-             .carousel-slide {
-                 flex: 0 0 33.333%;
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-                 padding: 0.5rem;
-             }
-             
-             .carousel-nav {
-                 display: flex;
-                 justify-content: center;
-                 gap: 1rem;
-                 margin-top: 1rem;
-             }
-             
-             .carousel-dot {
-                 width: 10px;
-                 height: 10px;
-                 border-radius: 50%;
-                 background: rgba(0, 0, 0, 0.3); /* Changed to black */
-                 cursor: pointer;
-                 transition: all 0.3s ease;
-             }
-             
-             .carousel-dot.active {
-                 background: #000000; /* Changed to black */
-                 transform: scale(1.2);
-             }
-             
-             /* Updated logo styles for mobile */
-             .client-logo {
-                 width: 60px;
-                 height: 60px;
-                 object-fit: contain;
-                 transition: all 0.3s ease;
-             }
-             
-             .client-item:hover .client-logo {
-                 transform: scale(1.1);
-             }
-         }
-         
-         .nav-link {
-             transition: color 0.15s ease-in-out;
-         }
-         .nav-link.active {
-             color: black;
-         }
-         
-         .collaboration-title {
-             font-size: 1.5rem;
-             font-weight: 700;
-             margin-bottom: 1.5rem;
-             color: #000000; /* Changed to black */
-             text-align: center;
-         }
-         
-         .client-item {
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             justify-content: center;
-             padding: 0.5rem;
-             min-width: 80px; /* Adjusted for smaller logos */
-         }
-         
-         /* Removed grayscale filter and added link styling */
-         .client-logo {
-             margin-bottom: 0;
-         }
-         
-         .client-link {
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-             text-decoration: none;
-             transition: all 0.3s ease;
-         }
-         
-         .client-link:hover {
-             transform: translateY(-5px);
-         }
-         
-         .cta-link {
-             font-weight: 600;
-             color: #000000; /* Changed to black */
-             transition: color 0.15s ease;
-         }
-         
-         .cta-link:hover {
-             color: #4f46e5;
-         }
-         
-     </style>
+            }
+            
+            /* UPDATED: Client grid for horizontal layout */
+            .client-grid {
+                display: flex; 
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                overflow-x: auto;
+                padding: 1rem 0;
+            }
+            
+            /* UPDATED: Reduced logo size by golden ratio (1.618) */
+            .client-logo {
+                width: 49px; /* 80px / 1.618 ≈ 49px */
+                height: 49px; /* 80px / 1.618 ≈ 49px */
+                object-fit: contain;
+                transition: all 0.3s ease;
+            }
+            
+            .client-item:hover .client-logo {
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Mobile Layout - CORRECTED */
+        @media (max-width: 1023px) {
+            .page-container {
+                height: 100%;
+                overflow-x: hidden;
+            }
+            
+            .glass-morphism {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background-color: #ffffff;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .mobile-main-content {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 0.5rem 1rem; /* MODIFIED: Reduced top padding */
+            }
+            
+            .mobile-hero-section {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0; /* Ensures content starts high up */
+            }
+            
+            .mobile-video-container {
+                margin: 1rem 0;
+            }
+            
+            .video-wrapper {
+                position: relative;
+                width: 100%;
+                padding-top: 75%;
+            }
+            
+            .video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0.75rem;
+            }
+            
+            /* NEW: Mobile text alignment and sizing */
+            .mobile-hero-text {
+                text-align: left;
+                margin-top: 0.25rem; /* Small adjustment for visual balance */
+            }
+            
+            .mobile-hero-text h2 {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .mobile-hero-text p {
+                font-size: calc(2rem / 1.618); /* Golden ratio applied */
+                line-height: 1.4;
+                margin-bottom: 0.75rem;
+            }
+            
+            .mobile-cta {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                font-size: 1rem;
+            }
+            
+            .mobile-collaboration {
+                padding: 1rem 0;
+            }
+            
+            /* NEW: Carousel styles for mobile */
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                margin: 1rem 0;
+            }
+            
+            .carousel-track {
+                display: flex;
+                transition: transform 0.5s ease;
+                gap: 1rem;
+            }
+            
+            .carousel-slide {
+                flex: 0 0 33.333%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5rem;
+            }
+            
+            .carousel-nav {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .carousel-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.3); /* Changed to black */
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .carousel-dot.active {
+                background: #000000; /* Changed to black */
+                transform: scale(1.2);
+            }
+            
+            /* Updated logo styles for mobile */
+            .client-logo {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+                transition: all 0.3s ease;
+            }
+            
+            .client-item:hover .client-logo {
+                transform: scale(1.1);
+            }
+        }
+        
+        .nav-link {
+            transition: color 0.15s ease-in-out;
+        }
+        .nav-link.active {
+            color: black;
+        }
+        
+        .collaboration-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #000000; /* Changed to black */
+            text-align: center;
+        }
+        
+        .client-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            min-width: 80px; /* Adjusted for smaller logos */
+        }
+        
+        /* Removed grayscale filter and added link styling */
+        .client-logo {
+            margin-bottom: 0;
+        }
+        
+        .client-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .client-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cta-link {
+            font-weight: 600;
+            color: #000000; /* Changed to black */
+            transition: color 0.15s ease;
+        }
+        
+        .cta-link:hover {
+            color: #4f46e5;
+        }
+        
+    </style>
 </head>
 <body>
 
@@ -501,13 +504,14 @@
 
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
-                <div class="flex justify-between items-center mb-16">
+                <!-- MODIFIED: Adjusted margin-bottom for mobile responsiveness -->
+                <div class="flex justify-between items-center mb-2 sm:mb-16">
                     <div>
                         <h1 class="text-2xl lg:text-xl font-bold tracking-tighter mb-2" style="color: #020633;">
                             NONGOVMEDIA
                         </h1>
                         <p class="text-xs text-gray-600 leading-tight">
-                           
+                            
                         </p>
                     </div>
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
@@ -821,7 +825,7 @@
             const carouselTrack = document.getElementById('carousel-track');
             const dots = document.querySelectorAll('.carousel-dot');
             let currentSlide = 0;
-            const totalSlides = 6; // 6 logos total
+            const totalSlides = 9; // 9 logos total
             const slidesPerView = 3; // Show 3 logos at a time
             
             function updateCarousel() {
@@ -831,21 +835,27 @@
                 
                 // Update active dot
                 dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === Math.floor(currentSlide / 2));
+                    // This logic assumes 3 dots for 9 slides, grouping them into 3 visual slides
+                    dot.classList.toggle('active', index === Math.floor(currentSlide / 3)); 
                 });
             }
             
             // Dot click events
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
-                    currentSlide = index * 2; // Each dot represents 2 slides
+                    currentSlide = index * 3; // Each dot represents 3 slides
                     updateCarousel();
                 });
             });
             
             // Auto-advance carousel
             setInterval(() => {
-                currentSlide = (currentSlide + 1) % (totalSlides - slidesPerView + 1);
+                // Ensure we cycle through 3 dot states (0, 3, 6)
+                if (currentSlide >= totalSlides - slidesPerView) {
+                    currentSlide = 0;
+                } else {
+                    currentSlide += 1;
+                }
                 updateCarousel();
             }, 3000);
             
