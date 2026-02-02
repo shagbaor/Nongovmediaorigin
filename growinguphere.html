@@ -4,340 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Growing up Here - NONGOVMEDIA</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
      <style>
-        /* Metropolis Font Family Declarations */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Thin.otf') format('opentype');
-            font-weight: 100;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Light.otf') format('opentype');
-            font-weight: 300;
-            font-style: normal;
-        }
+        /* Metropolis Font Family */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-Regular.otf') format('opentype');
             font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Medium.otf') format('opentype');
-            font-weight: 500;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
-            font-weight: 600;
-            font-style: normal;
         }
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-Bold.otf') format('opentype');
             font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
-            font-weight: 800;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Black.otf') format('opentype');
-            font-weight: 900;
-            font-style: normal;
         }
 
-        /* Italic versions */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
-            font-weight: 100;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
-            font-weight: 400;
-            font-style: italic;
-        }
-
-        /* Social media icon styles */
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Custom font and base styles */
         html, body {
             font-family: 'Metropolis', sans-serif;
             background: #ffffff;
             color: #000000;
-            height: 100%; 
             margin: 0;
             padding: 0;
+            height: 100%;
+            width: 100%;
+            /* Prevent body from scrolling so the gallery can take over */
+            overflow: hidden; 
         }
-        
+
+        /* --- SIDEBAR --- */
         .glass-morphism {
-            background: rgba(169, 172, 230, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 1);
             border-right: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 50;
         }
         
-        /* --- CORE GALLERY CONTAINER --- */
+        /* --- HORIZONTAL GALLERY --- */
         .horizontal-image-gallery {
             display: flex;
-            overflow-x: auto; 
-            overflow-y: hidden; 
-            -webkit-overflow-scrolling: touch; 
-            gap: 2rem;
-            padding: 2rem;
+            flex-direction: row;
             height: 100vh;
-            align-items: center;
-            scroll-snap-type: x mandatory;
+            width: 100%;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            /* Hide scrollbar */
             scrollbar-width: none; 
-            -ms-overflow-style: none;  
+            -ms-overflow-style: none;
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
-            display: none; 
+            display: none;
         }
 
         .gallery-item {
-            flex-shrink: 0; 
-            height: 80vh;
-            width: auto;
-            border-radius: 0px;
-            overflow: hidden; 
-            background-color: #ffffff; 
-            scroll-snap-align: center;
+            flex-shrink: 0;
+            height: 100vh; /* Fill the screen height */
             display: flex;
             align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
+        /* Standard Image Item */
         .gallery-item img {
-            height: 100%;
+            height: 80vh; /* Leave some breathing room top/bottom */
             width: auto;
             object-fit: contain;
-            display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* Standalone Text Item Styling */
+        /* Text Block Item */
         .gallery-item.text-only {
-            width: 500px;
-            height: 80vh;
-            white-space: normal;
-            background: #fdfdfd;
-            border: 1px solid #f0f0f0;
-            padding: 3rem;
+            width: 600px;
+            padding: 4rem;
+            align-items: flex-start;
             flex-direction: column;
             justify-content: center;
-            scroll-snap-align: start;
         }
 
-        /* Mobile Layout (< 1024px) */
+        /* Mobile Layout Adjustments */
         @media (max-width: 1023px) {
+            html, body {
+                overflow-y: auto; /* Allow scrolling on mobile */
+            }
             .horizontal-image-gallery {
-                flex-direction: column; 
-                overflow-x: hidden;
-                overflow-y: auto;
+                flex-direction: column;
                 height: auto;
-                padding: 1.5rem;
-                gap: 1.5rem;
-                scroll-snap-type: none;
+                overflow-x: hidden;
+                overflow-y: visible;
             }
-            
             .gallery-item {
-                width: 100%; 
-                height: auto; 
-                scroll-snap-align: none;
+                height: auto;
+                width: 100% !important;
+                padding: 1rem;
             }
-
             .gallery-item img {
                 width: 100%;
                 height: auto;
             }
-
             .gallery-item.text-only {
-                width: 100%;
-                height: auto;
                 padding: 2rem;
+                width: 100%;
             }
-            
-            body {
-                overflow-y: auto;
-            }
-        }
-        
-        .nav-link {
-            transition: color 0.15s ease-in-out;
-        }
-        .nav-link.active {
-            color: black;
-            font-weight: 700;
         }
 
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 100;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .mobile-menu-overlay.active {
-            display: flex;
-        }
+        .nav-link { transition: color 0.2s; color: #666; }
+        .nav-link:hover, .nav-link.active { color: #000; }
+        .social-icon { width: 20px; transition: transform 0.2s; }
+        .social-icon:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="page-container flex flex-col lg:flex-row min-h-screen">
+    <div class="page-container flex flex-col lg:flex-row h-full w-full">
 
-        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between glass-morphism z-20">
+        <header class="lg:fixed lg:h-full lg:w-64 p-10 flex flex-col justify-between glass-morphism">
             <div>
-                <div class="flex justify-between items-center mb-12">
-                    <a href="index.html">
-                        <h1 class="text-2xl font-black tracking-tighter text-[#020633]">NONGOVMEDIA</h1>
-                    </a>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
-                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
+                <h1 class="text-2xl font-black tracking-tighter mb-12 text-[#020633]">NONGOVMEDIA</h1>
                 
-                <nav class="hidden lg:block space-y-4">
-                    <a href="index.html" class="nav-link block font-medium text-gray-500 hover:text-black">Home</a>
-                    <a href="projects.html" class="nav-link active block font-medium text-black">Projects</a>
-                    <a href="reviews.html" class="nav-link block font-medium text-gray-500 hover:text-black">Reviews</a>
-                    <a href="about.html" class="nav-link block font-medium text-gray-500 hover:text-black">About</a>
-                    <a href="contact.html" class="nav-link block font-medium text-gray-500 hover:text-black">Contact</a>
+                <nav class="hidden lg:block space-y-6">
+                    <a href="index.html" class="nav-link block font-medium">Home</a>
+                    <a href="projects.html" class="nav-link active block font-bold text-black">Projects</a>
+                    <a href="reviews.html" class="nav-link block font-medium">Reviews</a>
+                    <a href="about.html" class="nav-link block font-medium">About</a>
+                    <a href="contact.html" class="nav-link block font-medium">Contact</a>
                 </nav>
             </div>
             
-            <footer class="hidden lg:block">
-                <div class="flex space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank"><img src="./YT.svg" alt="YouTube" class="social-icon"></a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank"><img src="./IG.svg" alt="Instagram" class="social-icon"></a>
+            <footer class="hidden lg:block space-y-4">
+                <div class="flex space-x-5">
+                    <a href="https://youtube.com/@nongovmedia" target="_blank"><img src="./YT.svg" alt="YT" class="social-icon"></a>
+                    <a href="https://instagram.com/nongov_kelvin/" target="_blank"><img src="./IG.svg" alt="IG" class="social-icon"></a>
                     <a href="https://x.com/nongovkelvin" target="_blank"><img src="./x.svg" alt="X" class="social-icon"></a>
                 </div>
-                <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2026 NONGOVMEDIA</p>
+                <p class="text-[10px] text-gray-400 tracking-widest uppercase">© 2026 NONGOVMEDIA</p>
             </footer>
         </header>
 
-        <main class="lg:ml-60 flex-1">
-            
+        <main class="lg:ml-64 flex-1 overflow-hidden">
             <div class="horizontal-image-gallery" id="gallery">
                 
                 <div class="gallery-item text-only">
-                    <h2 class="text-4xl lg:text-5xl font-black mb-6 leading-tight">Growing up Here</h2>
-                    
-                    <div class="space-y-4 text-sm text-gray-600 mb-8 border-l-2 border-black pl-4">
-                        <p><strong>Year:</strong> 2016-2018</p>
-                        <p><strong>Location:</strong> Makurdi, Ilorin and Ibadan, Nigeria</p>
-                        <p><strong>Category:</strong> Street / Documentary</p>
+                    <h2 class="text-5xl font-black mb-6 leading-tight">Growing up Here</h2>
+                    <div class="text-xs uppercase tracking-widest text-gray-400 mb-8 space-y-2">
+                        <p><span class="text-black font-bold">Timeline:</span> 2016 - 2018</p>
+                        <p><span class="text-black font-bold">Location:</span> Nigeria (Makurdi, Ilorin, Ibadan)</p>
                     </div>
-                    
-                    <div class="space-y-4 text-base leading-relaxed text-gray-800">
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
                         <p>This ongoing series is a collection of spontaneous portraits of children I've encountered in the neighborhoods I have called home.</p>
-                        <p>What unites them is not just innocence, but resilience. Each child reflects the texture of their environment.</p>
+                        <p>What unites them is not just innocence, but resilience. Each child reflects the texture of their environment: the rough edges of the street and the bright flashes of joy.</p>
                     </div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_1.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+1'">
+                    <img src="images/growing up here/image_1.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+1'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_2.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+2'">
+                    <img src="images/growing up here/image_2.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+2'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_3.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+3'">
+                    <img src="images/growing up here/image_3.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+3'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_4.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+4'">
+                    <img src="images/growing up here/image_4.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+4'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_5.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+5'">
+                    <img src="images/growing up here/image_5.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+5'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_6.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+6'">
+                    <img src="images/growing up here/image_6.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+6'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_7.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+7'">
+                    <img src="images/growing up here/image_7.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+7'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_8.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+8'">
+                    <img src="images/growing up here/image_8.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+8'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_9.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+9'">
+                    <img src="images/growing up here/image_9.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+9'">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/growing up here/image_10.jpg" alt="Growing up Here" onerror="this.src='https://placehold.co/800x1000?text=Image+10'">
+                    <img src="images/growing up here/image_10.jpg" alt="Gallery Image" onerror="this.src='https://placehold.co/800x1200?text=Image+10'">
                 </div>
-                
+
             </div>
-            
         </main>
     </div>
 
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <button id="menu-close-btn" class="absolute top-8 right-8 p-2">
-            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-        <nav class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="text-3xl font-bold">Home</a>
-            <a href="projects.html" class="text-3xl font-bold">Projects</a>
-            <a href="reviews.html" class="text-3xl font-bold">Reviews</a>
-            <a href="about.html" class="text-3xl font-bold">About</a>
-            <a href="contact.html" class="text-3xl font-bold">Contact</a>
-        </nav>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const menuCloseBtn = document.getElementById('menu-close-btn');
-            const mobileOverlay = document.getElementById('mobile-menu-overlay');
-            const gallery = document.getElementById('gallery');
+        const gallery = document.getElementById('gallery');
 
-            // Toggle Mobile Menu
-            const toggleMenu = () => {
-                mobileOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
-            };
+        // Capture vertical wheel scroll and turn it into horizontal scroll
+        window.addEventListener('wheel', (evt) => {
+            // Only apply this on Desktop screens
+            if (window.innerWidth >= 1024) {
+                evt.preventDefault();
+                gallery.scrollLeft += evt.deltaY;
+            }
+        }, { passive: false });
 
-            menuButton.addEventListener('click', toggleMenu);
-            menuCloseBtn.addEventListener('click', toggleMenu);
+        // Optional: Allow clicking and dragging to scroll
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-            // Desktop Mouse Wheel to Horizontal Scroll
-            gallery.addEventListener('wheel', (evt) => {
-                if (window.innerWidth >= 1024) {
-                    evt.preventDefault();
-                    gallery.scrollLeft += evt.deltaY;
-                }
-            });
+        gallery.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+        });
+        gallery.addEventListener('mouseleave', () => { isDown = false; });
+        gallery.addEventListener('mouseup', () => { isDown = false; });
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2;
+            gallery.scrollLeft = scrollLeft - walk;
         });
     </script>
 </body>
