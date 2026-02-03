@@ -1,204 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creation Story - NONGOVMEDIA</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Metropolis Font Family Declarations */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Thin.otf') format('opentype');
-            font-weight: 100;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Light.otf') format('opentype');
-            font-weight: 300;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Medium.otf') format('opentype');
-            font-weight: 500;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
-            font-weight: 600;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Bold.otf') format('opentype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
-            font-weight: 800;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Black.otf') format('opentype');
-            font-weight: 900;
-            font-style: normal;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation Story - NONGOVMEDIA</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+        /* ADDED: Metropolis Font Family Declarations */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Thin.otf') format('opentype');
+            font-weight: 100;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
 
-        /* Italic versions */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
-            font-weight: 100;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
-            font-weight: 300;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
-            font-weight: 400;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
-            font-weight: 500;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
-            font-weight: 600;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
-            font-weight: 700;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
-            font-weight: 800;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
-            font-weight: 900;
-            font-style: italic;
-        }
+        /* The following are the italic versions */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
+            font-weight: 100;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
+            font-weight: 500;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
+            font-weight: 600;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
+            font-weight: 800;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
+            font-weight: 900;
+            font-style: italic;
+        }
 
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
-        }
+        /* Social media icon styles */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
 
-        html, body {
-            font-family: 'Metropolis', sans-serif;
-            background: #ffffff;
-            color: #000000;
-            height: 100%; 
-            /* Prevent body from scrolling vertically on desktop to keep sidebar fixed */
-            overflow: hidden; 
-        }
-        
-        .glass-morphism {
-            background: rgba(169, 172, 230, 0.38);
-            border-radius: 0px;
-            box-shadow: 
-                0 10px 20px rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(169, 172, 230, 0.3);
-        }
-        
-        /* --- CORE GALLERY CONTAINER --- */
-        .horizontal-image-gallery {
-            display: flex;
-            overflow-x: auto; 
-            overflow-y: hidden; 
-            -webkit-overflow-scrolling: touch; 
-            gap: 1.5rem;
-            height: 100vh;
-            align-items: center;
-            
-            /* FIXED: Scroll Snapping for smooth stopping */
-            scroll-snap-type: x mandatory;
-            
-            scrollbar-width: none; 
-            -ms-overflow-style: none;  
-            padding: 0 4rem;
-        }
+        /* Custom font and base styles */
+        html, body {
+            font-family: 'Metropolis', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            height: 100%; 
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-        .horizontal-image-gallery::-webkit-scrollbar {
-            display: none; 
-        }
+        @media (min-width: 1024px) {
+            body { overflow: hidden; } /* Prevents vertical scroll on desktop */
+        }
+        
+        /* Glass Morphism Base Style (Retained for sidebar) */
+        .glass-morphism {
+            background: rgba(169, 172, 230, 0.38);
+            border-radius: 0px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(169, 172, 230, 0.3);
+        }
+        
+        /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
+        .horizontal-image-gallery {
+            display: flex;
+            overflow-x: auto; 
+            overflow-y: hidden; 
+            -webkit-overflow-scrolling: touch; 
+            gap: 1.5rem;
+            height: 100vh;
+            align-items: center;
+            
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+            
+            padding-left: 2rem; 
+            padding-right: 2rem;
+        }
 
-        .gallery-item {
-            flex-shrink: 0; 
-            width: 80vw;
-            height: 80vh;
-            border-radius: 0px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            overflow: hidden; 
-            background-color: #ffffff; 
-            /* Snap alignment */
-            scroll-snap-align: center;
-        }
+        .horizontal-image-gallery::-webkit-scrollbar {
+            display: none; 
+        }
 
-        .gallery-item.text-only {
-            width: 60vw;
-            height: auto;
-            max-height: 80vh;
-            background: rgba(255, 255, 255, 0.95);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .gallery-item {
+            flex-shrink: 0; 
+            width: 90vw;
+            height: auto;
+            aspect-ratio: 16/9; 
+            border-radius: 0px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden; 
+            background-color: #ffffff; 
+        }
 
-        .gallery-item.image-only img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            display: block; 
-        }
+        .gallery-item.text-only {
+            width: 76.5vw;
+            aspect-ratio: auto;
+            height: auto;
+            max-height: 80vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
 
-        .text-content-wrapper {
-            padding: 3rem;
-            overflow-y: auto;
-        }
+        .gallery-item.image-only img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            display: block; 
+        }
 
-        /* Desktop Layout Fixes */
-        @media (min-width: 1024px) {
-            .page-container {
-                display: grid;
-                grid-template-columns: 240px 1fr;
-                height: 100vh;
+        .text-content-wrapper {
+            padding: 2rem;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .page-container {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                min-height: 100vh;
+            }
+            
+            .gallery-item {
+                width: 75vw;
+                height: 75vh;
+            }
+            
+            .gallery-item.text-only {
+                width: 63.75vw;
+                height: auto;
+            }
+            
+            .horizontal-image-gallery {
+                padding-left: 4rem; 
+                padding-right: 4rem;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .horizontal-image-gallery {
+                flex-direction: column; 
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: auto;
+                padding: 1.5rem;
+                margin-top: 0; 
+            }
+            
+            .gallery-item {
+                width: 100%; 
+                aspect-ratio: auto;
+                height: auto; 
+                margin-bottom: 1.5rem; 
+            }
+            
+            .gallery-item.text-only {
+                width: 100%;
+            }
+        }
+        
+        .nav-link { transition: color 0.15s ease-in-out; }
+        .nav-link.active { color: black; }
+
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(241, 245, 249, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 100; display: none; opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active { display: block; opacity: 1; }
+        
+        .mobile-menu-content {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; max-width: 400px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 24px; padding: 3rem 2rem;
+        }
+        
+        .mobile-nav-link {
+            display: block; padding: 1.25rem; font-size: 1.25rem;
+            text-align: center; color: #000; border-radius: 8px; margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container flex flex-col lg:flex-row min-h-screen">
+
+        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
+            <div>
+                <div class="flex justify-between items-center mb-16">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
+                        NONGOVMEDIA
+                    </h1>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <nav class="hidden lg:block space-y-4">
+                    <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
+                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
+                    <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
+                    <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
+                    <a href="contact.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
+                </nav>
+            </div>
+            
+            <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
+                <p>Copyright © All rights reserved.</p>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank"><img src="./YT.svg" alt="YouTube" class="social-icon"></a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank"><img src="./IG.svg" alt="Instagram" class="social-icon"></a>
+                    <a href="https://x.com/nongovkelvin" target="_blank"><img src="./x.svg" alt="X" class="social-icon"></a>
+                </div>
+            </footer>
+        </header>
+
+        <main class="lg:ml-60 flex-1 flex flex-col">
+            <div class="horizontal-image-gallery flex-grow" id="horizontal-gallery">
+                
+                <div class="gallery-item image-only">
+                    <img src="images/21days/cimage_1.jpg" alt="Image 1" onerror="this.src='https://placehold.co/700x525?text=Image+1'">
+                </div>
+                
+                <div class="gallery-item text-only">
+                    <div class="text-content-wrapper flex flex-col justify-start">
+                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Creation Story</h2>
+                        <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
+                            <p><strong class="text-black">Year:</strong> 2019</p>
+                            <p><strong class="text-black">Category:</strong> Conceptual / Reenactment</p>
+                        </div>
+                        <div class="space-y-3 text-sm leading-relaxed text-gray-700">
+                            <p>This project reimagines the biblical story of Adam and Eve — but this time, the characters are Black, and the forbidden fruit is not an apple but a coconut.</p>
+                            <p>It is a playful yet subversive retelling, challenging the dominance of Western imagery in spiritual narratives.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item image-only"><img src="images/21days/cimage_2.jpg" alt="Image 2" onerror="this.src='https://placehold.co/700x525?text=Image+2'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_3.jpg" alt="Image 3" onerror="this.src='https://placehold.co/700x525?text=Image+3'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_4.jpg" alt="Image 4" onerror="this.src='https://placehold.co/700x525?text=Image+4'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_5.jpg" alt="Image 5" onerror="this.src='https://placehold.co/700x525?text=Image+5'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_6.jpg" alt="Image 6" onerror="this.src='https://placehold.co/700x525?text=Image+6'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_7.jpg" alt="Image 7" onerror="this.src='https://placehold.co/700x525?text=Image+7'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_8.jpg" alt="Image 8" onerror="this.src='https://placehold.co/700x525?text=Image+8'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_9.jpg" alt="Image 9" onerror="this.src='https://placehold.co/700x525?text=Image+9'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_10.jpg" alt="Image 10" onerror="this.src='https://placehold.co/700x525?text=Image+10'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_11.jpg" alt="Image 11" onerror="this.src='https://placehold.co/700x525?text=Image+11'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_12.jpg" alt="Image 12" onerror="this.src='https://placehold.co/700x525?text=Image+12'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_13.jpg" alt="Image 13" onerror="this.src='https://placehold.co/700x525?text=Image+13'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_14.jpg" alt="Image 14" onerror="this.src='https://placehold.co/700x525?text=Image+14'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_15.jpg" alt="Image 15" onerror="this.src='https://placehold.co/700x525?text=Image+15'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_16.jpg" alt="Image 16" onerror="this.src='https://placehold.co/700x525?text=Image+16'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_17.jpg" alt="Image 17" onerror="this.src='https://placehold.co/700x525?text=Image+17'"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <button id="menu-close-btn" class="absolute top-4 right-4 text-2xl">&times;</button>
+            <nav class="space-y-2">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="projects.html" class="mobile-nav-link">Projects</a>
+                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+            const menuCloseBtn = document.getElementById('menu-close-btn');
+            const gallery = document.getElementById('horizontal-gallery');
+
+            const toggleMenu = () => {
+                mobileOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
+            };
+
+            menuButton?.addEventListener('click', toggleMenu);
+            menuCloseBtn?.addEventListener('click', toggleMenu);
+
+            // Desktop Horizontal Scroll logic
+            window.addEventListener('wheel', (evt) => {
+                if (window.innerWidth >= 1024) {
+                    evt.preventDefault();
+                    gallery.scrollBy({
+                        left: evt.deltaY,
+                        behavior: 'auto'
+                    });
+                }
+            }, { passive: false });
+        });
+    </script>
+</body>
+</html>
