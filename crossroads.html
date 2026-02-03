@@ -60,56 +60,6 @@
             font-style: normal;
         }
 
-        /* Italic versions */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
-            font-weight: 100;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
-            font-weight: 300;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
-            font-weight: 400;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
-            font-weight: 500;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
-            font-weight: 600;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
-            font-weight: 700;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
-            font-weight: 800;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
-            font-weight: 900;
-            font-style: italic;
-        }
-
         /* Social media icon styles */
         .social-icon {
             width: 24px;
@@ -127,7 +77,15 @@
             background: #ffffff;
             color: #000000;
             height: 100%; 
-            overflow: hidden; /* Prevent body scroll to focus on gallery scroll */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Prevent vertical scroll on desktop only */
+        @media (min-width: 1024px) {
+            body {
+                overflow: hidden; 
+            }
         }
         
         /* Glass Morphism Base Style */
@@ -142,22 +100,21 @@
             border: 1px solid rgba(169, 172, 230, 0.3);
         }
         
-        /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
+        /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
             gap: 1.5rem;
+            height: 100vh;
+            align-items: center;
+            scroll-behavior: smooth; /* Native smooth scroll for script movements */
             
             /* Hide scrollbar */
             scrollbar-width: none; 
             -ms-overflow-style: none;  
-            
-            padding-left: 2rem; 
-            padding-right: 2rem;
-            align-items: center; /* Center items vertically in the viewport */
-            height: 100vh;
+            padding: 0 4rem;
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
@@ -166,25 +123,21 @@
 
         .gallery-item {
             flex-shrink: 0; 
-            width: 90vw;
-            height: auto;
-            aspect-ratio: 16/9; 
+            width: 75vw;
+            height: 70vh;
             border-radius: 0px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden; 
             background-color: #ffffff; 
         }
 
         .gallery-item.text-only {
-            width: 76.5vw; 
-            aspect-ratio: auto;
-            max-height: 80vh; /* Prevent text item from being too tall */
+            width: 60vw;
+            height: 70vh;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-item.image-only img {
@@ -195,190 +148,47 @@
         }
 
         .text-content-wrapper {
-            padding: 2rem;
+            padding: 2.5rem;
             overflow-y: auto;
             height: 100%;
         }
 
-        /* Desktop Layout */
-        @media (min-width: 1024px) {
-            .page-container {
-                display: grid;
-                grid-template-columns: 240px 1fr;
-                height: 100vh;
-            }
-            
-            .gallery-item {
-                width: 75vw; 
-                height: 70vh; /* Set a specific height for landscape look */
-            }
-            
-            .gallery-item.text-only {
-                width: 63.75vw;
-                height: 70vh;
-            }
-            
-            .horizontal-image-gallery {
-                padding-left: 4rem; 
-                padding-right: 4rem;
-            }
-        }
-
-        /* Mobile Layout (< 1024px): VERTICAL STACKING */
+        /* Mobile Layout (< 1024px) */
         @media (max-width: 1023px) {
-            html, body {
-                overflow-y: auto; /* Re-enable vertical scroll for mobile */
-            }
             .horizontal-image-gallery {
                 flex-direction: column; 
                 overflow-x: hidden;
-                overflow-y: visible;
+                overflow-y: auto;
                 height: auto;
-                padding-left: 1.5rem; 
-                padding-right: 1.5rem;
-                padding-top: 2rem;
-                margin-top: 0; 
+                padding: 1.5rem;
             }
             
             .gallery-item {
                 width: 100%; 
-                aspect-ratio: auto;
                 height: auto; 
-                margin-bottom: 1.5rem; 
+                aspect-ratio: 16/9;
+                margin-bottom: 2rem; 
             }
             
             .gallery-item.text-only {
                 width: 100%;
-                max-height: none;
+                height: auto;
             }
         }
         
-        .nav-link {
-            transition: color 0.15s ease-in-out;
-        }
-        .nav-link.active {
-            color: black;
-        }
-
-        /* Mobile Menu Styles */
+        /* Navigation / Mobile Menu UI */
         .mobile-menu-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(248, 250, 252, 0.95) 0%, 
-                rgba(241, 245, 249, 0.95) 50%, 
-                rgba(226, 232, 240, 0.95) 100%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 100;
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
-        .mobile-menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .mobile-menu-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .mobile-menu-overlay.active .mobile-menu-content {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            padding: 1.25rem 1.5rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #000000;
-            text-align: center;
-            border-radius: 0px;
-            margin: 0.75rem 0;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mobile-nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.8), 
-                transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .mobile-nav-link:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            color: #000000;
-        }
-        
-        .mobile-nav-link:hover::before {
-            left: 100%;
-        }
-        
-        .mobile-nav-link.active {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000000;
-            border-color: rgba(255, 255, 255, 1);
-            font-weight: 700;
-        }
-        
-        .menu-close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000000;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .menu-close-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: rotate(90deg);
-            color: #000000;
-        }
+        .mobile-menu-overlay.active { display: block; opacity: 1; }
+        .mobile-nav-link { display: block; padding: 1rem; font-size: 1.25rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -388,218 +198,93 @@
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
-                        NONGOVMEDIA
-                    </h1>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
-                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">NONGOVMEDIA</h1>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
                 
-                <nav id="mobile-nav" class="hidden lg:block space-y-4">
-                    <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
-                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
-                    <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
-                    <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
-                    <a href="contact.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
+                <nav class="hidden lg:block space-y-4">
+                    <a href="index.html" class="block font-medium text-lg text-gray-800 hover:text-black">Home</a>
+                    <a href="projects.html" class="block font-medium text-lg text-black underline">Projects</a>
+                    <a href="reviews.html" class="block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
+                    <a href="about.html" class="block font-medium text-lg text-gray-800 hover:text-black">About</a>
+                    <a href="contact.html" class="block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
                 </nav>
             </div>
             
-            <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
+            <footer class="hidden lg:block text-sm text-gray-600">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-4 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    </a>
-                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./x.svg" alt="X" class="social-icon">
-                    </a>
+                    <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    <img src="./x.svg" alt="X" class="social-icon">
                 </div>
             </footer>
         </header>
 
         <main class="lg:ml-60 flex-1 flex flex-col">
-            
             <div id="gallery-container" class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item image-only">
-                    <img 
-                        src="images/21days/crimage_1.jpg" 
-                        alt="Crossroads Series Image 1" 
-                        onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+1'"
-                        class="w-full h-full object-cover"
-                    >
+                    <img src="images/21days/crimage_1.jpg" alt="1" onerror="this.src='https://placehold.co/1200x800?text=Image+1'">
                 </div>
                 
                 <div class="gallery-item text-only">
-                    <div class="text-content-wrapper flex flex-col justify-start">
+                    <div class="text-content-wrapper">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Crossroads</h2>
-                        
-                        <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
-                            <p><strong class="text-black">Year:</strong> 2019</p>
-                            <p><strong class="text-black">Location:</strong> University of Ilorin, Nigeria</p>
-                            <p><strong class="text-black">Category:</strong> Portrait Photography / Documentary</p>
-                        </div>
-                        
-                        <div class="space-y-3 text-sm leading-relaxed text-gray-700">
-                            <p>
-                                This series was born out of necessity as much as passion. In 2018, I had just graduated from the University of Ilorin with a degree in Anatomy and was serving my NYSC year in Ibadan. Moving to a new city was disorienting — no clients knew me, and work was scarce. Photography, which had sustained me during school, suddenly felt out of reach.
-                            </p>
-                            <p>
-                                When I heard that my juniors were having their convocation in Ilorin, I seized the chance. I traveled back to campus, camera in hand, to photograph their portraits. These were not just graduation pictures; they were survival, a reminder that I could still earn through my craft.
-                            </p>
-                            <p>
-                                Looking back, the images carry more weight than celebration alone. They document a community I had just left, the closing of one chapter and the uncertainty of another. For me, they mark a moment of transition — when photography became not just an artistic pursuit, but a lifeline.
-                            </p>
+                        <div class="text-gray-600 mb-6 text-xs uppercase tracking-widest">2019 • University of Ilorin • Portrait</div>
+                        <div class="space-y-4 text-sm text-gray-700">
+                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated from the University of Ilorin with a degree in Anatomy and was serving my NYSC year in Ibadan.</p>
+                            <p>Moving to a new city was disorienting — no clients knew me, and work was scarce. Photography, which had sustained me during school, suddenly felt out of reach.</p>
+                            <p>Looking back, the images carry more weight than celebration alone. They document a community I had just left, the closing of one chapter and the uncertainty of another.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_2.jpg" alt="Crossroads Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+2'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_3.jpg" alt="Crossroads Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+3'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_4.jpg" alt="Crossroads Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+4'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_5.jpg" alt="Crossroads Series Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+5'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_6.jpg" alt="Crossroads Series Image 6" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+6'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_7.jpg" alt="Crossroads Series Image 7" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+7'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_8.jpg" alt="Crossroads Series Image 8" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+8'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_9.jpg" alt="Crossroads Series Image 9" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+9'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_10.jpg" alt="Crossroads Series Image 10" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+10'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_11.jpg" alt="Crossroads Series Image 11" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+11'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_12.jpg" alt="Crossroads Series Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+12'">
-                </div>
-                
+                <div class="gallery-item image-only"><img src="images/21days/crimage_2.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+2'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_3.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+3'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_4.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+4'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_5.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+5'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_6.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+6'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_7.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+7'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_8.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+8'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_9.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+9'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_10.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+10'"></div>
             </div>
-            
         </main>
     </div>
 
-    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
-        <p>Copyright © All rights reserved.</p>
-        <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./YT.svg" alt="YouTube" class="social-icon">
-            </a>
-            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./IG.svg" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./x.svg" alt="X" class="social-icon">
-            </a>
-        </div>
-    </footer>
-
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-            <button id="menu-close-btn" class="menu-close-btn">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
-                <p class="text-gray-600 text-sm"></p>
-            </div>
-            
-             <nav class="space-y-2">
-                <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="projects.html" class="mobile-nav-link">Projects</a>
-                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
-                <a href="about.html" class="mobile-nav-link">About</a>
-                <a href="contact.html" class="mobile-nav-link">Contact</a>
-            </nav>
-            
-            <div class="mt-8 pt-6 border-t border-gray-300 text-center">
-                <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    </a>
-                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./x.svg" alt="X" class="social-icon">
-                    </a>
-                </div>
-                <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
-            </div>
-        </div>
+        <nav class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="mobile-nav-link text-2xl font-bold">Home</a>
+            <a href="projects.html" class="mobile-nav-link text-2xl font-bold">Projects</a>
+            <a href="contact.html" class="mobile-nav-link text-2xl font-bold">Contact</a>
+            <button onclick="document.getElementById('mobile-menu-overlay').classList.remove('active')" class="p-4 bg-black text-white rounded-full">Close</button>
+        </nav>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileOverlay = document.getElementById('mobile-menu-overlay');
-            const menuCloseBtn = document.getElementById('menu-close-btn');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
             const gallery = document.getElementById('gallery-container');
 
-            // --- Horizontal Scroll Logic ---
-            window.addEventListener('wheel', (e) => {
-                // Only trigger on desktop (large screens)
+            // This function converts the vertical mouse wheel into horizontal movement
+            const scrollHorizontally = (e) => {
+                // Only on Desktop screens
                 if (window.innerWidth >= 1024) {
-                    if (e.deltaY !== 0) {
-                        e.preventDefault();
-                        gallery.scrollLeft += e.deltaY;
-                    }
-                }
-            }, { passive: false });
-
-            // --- Mobile Menu Logic ---
-            const toggleMenu = () => {
-                mobileOverlay.classList.toggle('active');
-                iconMenu.classList.toggle('hidden');
-                iconClose.classList.toggle('hidden');
-                
-                if (mobileOverlay.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
+                    e.preventDefault();
+                    // 'deltaY' is the vertical scroll amount. 
+                    // We apply it to 'scrollLeft' (the horizontal axis)
+                    gallery.scrollLeft += e.deltaY;
                 }
             };
 
-            if (menuButton) {
-                menuButton.addEventListener('click', toggleMenu);
-            }
-
-            if (menuCloseBtn) {
-                menuCloseBtn.addEventListener('click', toggleMenu);
-            }
-
-            mobileOverlay.addEventListener('click', (e) => {
-                if (e.target === mobileOverlay) {
-                    toggleMenu();
-                }
-            });
-
-            mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', toggleMenu);
+            // Attach to the window to capture all scroll attempts on PC
+            window.addEventListener('wheel', scrollHorizontally, { passive: false });
+            
+            // Basic Mobile Menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', () => {
+                document.getElementById('mobile-menu-overlay').classList.add('active');
             });
         });
     </script>
