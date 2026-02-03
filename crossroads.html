@@ -10,7 +10,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
      <style>
-        /* ADDED: Metropolis Font Family Declarations */
+        /* Metropolis Font Family Declarations */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-Thin.otf') format('opentype');
@@ -60,7 +60,7 @@
             font-style: normal;
         }
 
-        /* The following are the italic versions */
+        /* Italic versions */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
@@ -110,7 +110,6 @@
             font-style: italic;
         }
 
-        /* Social media icon styles */
         .social-icon {
             width: 24px;
             height: 24px;
@@ -121,22 +120,22 @@
             transform: translateY(-2px);
         }
 
-        /* Custom font and base styles */
         html, body {
             font-family: 'Metropolis', sans-serif;
             background: #ffffff;
             color: #000000;
             height: 100%; 
-            overflow: hidden; /* Prevent body scroll on desktop to force horizontal interaction */
+            margin: 0;
+            padding: 0;
         }
         
-        @media (max-width: 1023px) {
-            html, body {
-                overflow-y: auto; /* Re-enable vertical scroll for mobile stack */
+        /* Desktop: Disable body scroll to force horizontal gallery interaction */
+        @media (min-width: 1024px) {
+            body {
+                overflow: hidden; 
             }
         }
 
-        /* Glass Morphism Base Style */
         .glass-morphism {
             background: rgba(169, 172, 230, 0.38);
             border-radius: 0px;
@@ -148,23 +147,20 @@
             border: 1px solid rgba(169, 172, 230, 0.3);
         }
         
-        /* --- CORE GALLERY CONTAINER --- */
+        /* CORE GALLERY CONTAINER */
         .horizontal-image-gallery {
             display: flex;
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
-            gap: 1.5rem;
+            gap: 2rem;
+            height: 100vh;
+            align-items: center;
+            padding: 0 4rem;
             
             /* Hide scrollbar */
             scrollbar-width: none; 
             -ms-overflow-style: none;  
-            
-            padding-left: 2rem; 
-            padding-right: 2rem;
-            padding-bottom: 2rem;
-            padding-top: 2rem;
-            align-items: center; /* Center items vertically in the scroll area */
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
@@ -173,26 +169,22 @@
 
         .gallery-item {
             flex-shrink: 0; 
-            width: 90vw; 
-            height: 80vh; /* Controlled height for landscape feel */
+            height: 75vh;
+            width: auto;
             aspect-ratio: 16/9; 
             border-radius: 0px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             overflow: hidden; 
             background-color: #ffffff; 
         }
 
         /* Standalone text item */
         .gallery-item.text-only {
-            width: 76.5vw;
+            width: 40vw; /* Adjust for better text readability */
             aspect-ratio: auto;
-            height: 80vh; 
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .gallery-item.image-only img {
@@ -203,168 +195,65 @@
         }
 
         .text-content-wrapper {
-            padding: 2rem;
+            padding: 3rem;
             overflow-y: auto;
             height: 100%;
         }
 
-        /* Desktop Layout */
+        /* Desktop Layout Override */
         @media (min-width: 1024px) {
             .page-container {
                 display: grid;
                 grid-template-columns: 240px 1fr;
                 height: 100vh;
             }
-            
-            .gallery-item {
-                width: 75vw;
-            }
-            
-            .gallery-item.text-only {
-                width: 63.75vw;
-            }
-            
-            .horizontal-image-gallery {
-                padding-left: 4rem; 
-                padding-right: 4rem;
+            .main-content {
                 height: 100vh;
-                margin-top: 0;
-            }
-            
-            .text-content-wrapper {
-                padding: 2.5rem;
+                overflow: hidden;
             }
         }
 
-        /* Mobile Layout */
+        /* Mobile Layout Override */
         @media (max-width: 1023px) {
             .horizontal-image-gallery {
                 flex-direction: column; 
                 overflow-x: hidden;
                 overflow-y: visible;
                 height: auto;
-                padding-left: 1.5rem; 
-                padding-right: 1.5rem;
-                padding-top: 1.5rem;
-                margin-top: 0; 
+                padding: 1.5rem;
+                gap: 1.5rem;
             }
-            
             .gallery-item {
                 width: 100%; 
+                height: auto;
                 aspect-ratio: 16/9;
-                height: auto; 
-                margin-bottom: 1.5rem; 
             }
-            
             .gallery-item.text-only {
                 width: 100%;
                 height: auto;
             }
-            
-            .text-content-wrapper {
-                padding: 1.5rem;
-            }
-        }
-        
-        .nav-link {
-            transition: color 0.15s ease-in-out;
-        }
-        .nav-link.active {
-            color: black;
         }
 
-        /* Mobile Menu Styles */
+        .nav-link { transition: color 0.15s ease-in-out; }
+        .nav-link.active { color: black; }
+
+        /* Mobile Menu */
         .mobile-menu-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(248, 250, 252, 0.95) 0%, 
-                rgba(241, 245, 249, 0.95) 50%, 
-                rgba(226, 232, 240, 0.95) 100%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 100;
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
-        .mobile-menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .mobile-menu-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .mobile-menu-overlay.active .mobile-menu-content {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            padding: 1.25rem 1.5rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #000000;
-            text-align: center;
-            border-radius: 0px;
-            margin: 0.75rem 0;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mobile-nav-link:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .menu-close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000000;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        .mobile-menu-overlay.active { display: block; opacity: 1; }
     </style>
 </head>
 <body>
 
-    <div class="page-container flex flex-col lg:flex-row min-h-screen">
+    <div class="page-container">
 
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
@@ -372,15 +261,14 @@
                     <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
-                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
                 
-                <nav id="mobile-nav" class="hidden lg:block space-y-4">
+                <nav class="hidden lg:block space-y-4">
                     <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
-                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
+                    <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black active">Projects</a>
                     <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
                     <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
                     <a href="contact.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
@@ -390,176 +278,85 @@
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-4 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    </a>
-                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
-                        <img src="./x.svg" alt="X" class="social-icon">
-                    </a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank"><img src="./YT.svg" alt="YouTube" class="social-icon"></a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank"><img src="./IG.svg" alt="Instagram" class="social-icon"></a>
+                    <a href="https://x.com/nongovkelvin" target="_blank"><img src="./x.svg" alt="X" class="social-icon"></a>
                 </div>
             </footer>
         </header>
 
-        <main class="lg:ml-60 flex-1 flex flex-col">
-            
-            <div id="gallery" class="horizontal-image-gallery flex-grow">
+        <main class="lg:ml-60 main-content">
+            <div id="gallery" class="horizontal-image-gallery">
                 
                 <div class="gallery-item image-only">
-                    <img 
-                        src="images/21days/crimage_1.jpg" 
-                        alt="Crossroads Series Image 1" 
-                        onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+1'"
-                        class="w-full h-full object-cover"
-                    >
+                    <img src="images/21days/crimage_1.jpg" alt="Crossroads 1" onerror="this.src='https://placehold.co/1200x800?text=Image+1'">
                 </div>
                 
                 <div class="gallery-item text-only">
-                    <div class="text-content-wrapper flex flex-col justify-start">
+                    <div class="text-content-wrapper">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Crossroads</h2>
-                        
-                        <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
-                            <p><strong class="text-black">Year:</strong> 2019</p>
-                            <p><strong class="text-black">Location:</strong> University of Ilorin, Nigeria</p>
-                            <p><strong class="text-black">Category:</strong> Portrait Photography / Documentary</p>
+                        <div class="space-y-1 text-xs text-gray-600 mb-6">
+                            <p><strong>Year:</strong> 2019</p>
+                            <p><strong>Location:</strong> University of Ilorin, Nigeria</p>
                         </div>
-                        
-                        <div class="space-y-3 text-sm leading-relaxed text-gray-700">
-                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated from the University of Ilorin with a degree in Anatomy and was serving my NYSC year in Ibadan. Moving to a new city was disorienting.</p>
-                            <p>When I heard that my juniors were having their convocation in Ilorin, I seized the chance. I traveled back to campus, camera in hand, to photograph their portraits.</p>
-                            <p>Looking back, the images carry more weight than celebration alone. They document a community I had just left, the closing of one chapter and the uncertainty of another.</p>
+                        <div class="space-y-4 text-sm text-gray-700">
+                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated and was serving my NYSC year in Ibadan.</p>
+                            <p>Moving to a new city was disorienting — no clients knew me, and work was scarce. Photography suddenly felt out of reach.</p>
+                            <p>I traveled back to campus to photograph graduation portraits. These were not just pictures; they were survival.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_2.jpg" alt="Crossroads Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+2'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_3.jpg" alt="Crossroads Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+3'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_4.jpg" alt="Crossroads Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+4'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_5.jpg" alt="Crossroads Series Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+5'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_6.jpg" alt="Crossroads Series Image 6" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+6'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_7.jpg" alt="Crossroads Series Image 7" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+7'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_8.jpg" alt="Crossroads Series Image 8" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+8'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_9.jpg" alt="Crossroads Series Image 9" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+9'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_10.jpg" alt="Crossroads Series Image 10" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+10'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_11.jpg" alt="Crossroads Series Image 11" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+11'">
-                </div>
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_12.jpg" alt="Crossroads Series Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Crossroads+Image+12'">
-                </div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_2.jpg" alt="Crossroads 2" onerror="this.src='https://placehold.co/1200x800?text=Image+2'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_3.jpg" alt="Crossroads 3" onerror="this.src='https://placehold.co/1200x800?text=Image+3'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_4.jpg" alt="Crossroads 4" onerror="this.src='https://placehold.co/1200x800?text=Image+4'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_5.jpg" alt="Crossroads 5" onerror="this.src='https://placehold.co/1200x800?text=Image+5'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_6.jpg" alt="Crossroads 6" onerror="this.src='https://placehold.co/1200x800?text=Image+6'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_7.jpg" alt="Crossroads 7" onerror="this.src='https://placehold.co/1200x800?text=Image+7'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_8.jpg" alt="Crossroads 8" onerror="this.src='https://placehold.co/1200x800?text=Image+8'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_9.jpg" alt="Crossroads 9" onerror="this.src='https://placehold.co/1200x800?text=Image+9'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_10.jpg" alt="Crossroads 10" onerror="this.src='https://placehold.co/1200x800?text=Image+10'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_11.jpg" alt="Crossroads 11" onerror="this.src='https://placehold.co/1200x800?text=Image+11'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/crimage_12.jpg" alt="Crossroads 12" onerror="this.src='https://placehold.co/1200x800?text=Image+12'"></div>
                 
             </div>
-            
         </main>
     </div>
 
-    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
-        <p>Copyright © All rights reserved.</p>
-        <div class="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./YT.svg" alt="YouTube" class="social-icon">
-            </a>
-            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./IG.svg" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
-                <img src="./x.svg" alt="X" class="social-icon">
-            </a>
-        </div>
-    </footer>
-
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-            <button id="menu-close-btn" class="menu-close-btn">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
-            </div>
-             <nav class="space-y-2">
-                <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="projects.html" class="mobile-nav-link">Projects</a>
-                <a href="reviews.html" class="mobile-nav-link">Reviews</a>
-                <a href="about.html" class="mobile-nav-link">About</a>
-                <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <div class="p-8">
+            <button id="menu-close-btn" class="mb-8 text-2xl">✕ Close</button>
+            <nav class="flex flex-col space-y-6 text-2xl font-bold">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
             </nav>
-            <div class="mt-8 pt-6 border-t border-gray-300 text-center">
-                <div class="flex justify-center space-x-4 mb-4">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    </a>
-                    <a href="https://x.com/nongovkelvin" target="_blank" class="text-gray-600 hover:text-black transition duration-150">
-                        <img src="./x.svg" alt="X" class="social-icon">
-                    </a>
-                </div>
-                <p class="text-gray-500 text-sm">Copyright © All rights reserved.</p>
-            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Horizontal Scroll Logic for Desktop
             const gallery = document.getElementById('gallery');
             
+            // FIX: Target the window to capture wheel events globally on desktop
             window.addEventListener('wheel', (evt) => {
-                // Only apply on larger screens where layout is horizontal
                 if (window.innerWidth >= 1024) {
+                    // Prevent vertical scroll
                     evt.preventDefault();
+                    // Move the gallery horizontally instead
                     gallery.scrollLeft += evt.deltaY;
                 }
             }, { passive: false });
 
-            // Mobile Menu Logic
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileOverlay = document.getElementById('mobile-menu-overlay');
-            const menuCloseBtn = document.getElementById('menu-close-btn');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
+            // Mobile menu toggle
+            const btn = document.getElementById('mobile-menu-button');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const close = document.getElementById('menu-close-btn');
 
-            const toggleMenu = () => {
-                mobileOverlay.classList.toggle('active');
-                iconMenu.classList.toggle('hidden');
-                iconClose.classList.toggle('hidden');
-                
-                if (mobileOverlay.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = window.innerWidth < 1024 ? 'auto' : 'hidden';
-                }
-            };
-
-            if (menuButton) menuButton.addEventListener('click', toggleMenu);
-            if (menuCloseBtn) menuCloseBtn.addEventListener('click', toggleMenu);
-            
-            mobileOverlay.addEventListener('click', (e) => {
-                if (e.target === mobileOverlay) toggleMenu();
-            });
+            btn.onclick = () => overlay.classList.add('active');
+            close.onclick = () => overlay.classList.remove('active');
         });
     </script>
 </body>
