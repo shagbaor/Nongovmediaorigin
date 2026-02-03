@@ -3,235 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossroads - NONGOVMEDIA</title>
+    <title>Praise Singers - NONGOVMEDIA</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+     <style>
         /* Metropolis Font Family Declarations */
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Light.otf') format('opentype'); font-weight: 300; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-ExtraBold.otf') format('opentype'); font-weight: 800; font-style: normal; }
-        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Black.otf') format('opentype'); font-weight: 900; font-style: normal; }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-        /* Social media icon styles */
-        .social-icon { width: 24px; height: 24px; transition: all 0.3s ease; }
-        .social-icon:hover { transform: translateY(-2px); }
-
-        /* Custom font and base styles */
+        /* Base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
         html, body {
-            font-family: 'Metropolis', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: #ffffff;
-            color: #000000;
-            height: 100%; 
+            color: #070346;
             margin: 0;
             padding: 0;
+            height: 100%;
+            width: 100%;
         }
 
-        /* Desktop Fix: Prevent vertical body scroll so horizontal scroll takes over */
+        /* Desktop: Lock the body to prevent vertical jumping */
         @media (min-width: 1024px) {
-            body { overflow: hidden; }
+            body {
+                overflow: hidden; 
+            }
         }
         
+        /* Sidebar Styling */
         .glass-morphism {
-            background: rgba(169, 172, 230, 0.38);
-            border-radius: 0px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(169, 172, 230, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
-            flex-wrap: nowrap; /* Prevents stacking */
+            flex-direction: row;
+            flex-wrap: nowrap; /* Keep items in a single line */
             overflow-x: auto; 
-            overflow-y: hidden; 
-            -webkit-overflow-scrolling: touch; 
-            gap: 1.5rem;
+            overflow-y: hidden;
             height: 100vh;
             align-items: center;
+            padding: 0 10vw 0 5vw; /* Extra padding at end for breathing room */
+            gap: 5rem;
+            scroll-behavior: auto; /* 'auto' feels more responsive for wheel scroll */
+            
+            /* Hide scrollbars */
             scrollbar-width: none; 
             -ms-overflow-style: none;  
-            padding: 0 4rem;
         }
 
-        .horizontal-image-gallery::-webkit-scrollbar { display: none; }
+        .horizontal-image-gallery::-webkit-scrollbar {
+            display: none; 
+        }
 
+        /* Individual Gallery Items */
         .gallery-item {
-            flex-shrink: 0; 
-            width: 75vw;
+            flex: 0 0 auto; /* PREVENTS SHRINKING - CRITICAL */
             height: 70vh;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden; 
-            background-color: #ffffff; 
-        }
-
-        .gallery-item.text-only {
-            width: 60vw;
-            height: 70vh;
-            background: rgba(255, 255, 255, 0.95);
+            width: auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            background-color: #ffffff;
             display: flex;
-            flex-direction: column;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            align-items: center;
+            justify-content: center;
         }
 
-        .gallery-item.image-only img {
-            width: 100%;
+        /* Landscape Aspect Ratio for Images */
+        .gallery-item.image-only {
+            aspect-ratio: 16/9;
+        }
+
+        .gallery-item img {
             height: 100%;
-            object-fit: contain; 
-            display: block; 
+            width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Text Card Styling */
+        .gallery-item.text-only {
+            width: 450px;
+            height: 70vh;
+            aspect-ratio: auto;
+            border: 1px solid #f0f0f0;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .text-content-wrapper {
-            padding: 2.5rem;
+            padding: 3rem;
             overflow-y: auto;
             height: 100%;
         }
 
-        /* Mobile Layout (< 1024px) */
+        /* --- MOBILE LAYOUT --- */
         @media (max-width: 1023px) {
-            body { overflow-y: auto; }
             .horizontal-image-gallery {
-                flex-direction: column; 
-                overflow-x: hidden;
-                overflow-y: visible;
+                flex-direction: column;
                 height: auto;
-                padding: 1.5rem;
-                margin-top: 1rem;
+                overflow-y: auto;
+                padding: 2rem 1.5rem;
+                gap: 3rem;
             }
             .gallery-item {
-                width: 100%; 
-                height: auto; 
+                width: 100%;
+                height: auto;
                 aspect-ratio: 16/9;
-                margin-bottom: 2rem; 
             }
             .gallery-item.text-only {
                 width: 100%;
                 height: auto;
-                aspect-ratio: auto;
             }
         }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 100;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .mobile-menu-overlay.active { display: block; opacity: 1; }
-        .mobile-nav-link { display: block; padding: 1.25rem; font-size: 1.25rem; font-weight: 600; text-align: center; }
-        .menu-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; cursor: pointer; }
+
+        .nav-link { transition: all 0.2s; }
+        .nav-link:hover { color: #000; transform: translateX(5px); }
     </style>
 </head>
 <body>
 
     <div class="page-container flex flex-col lg:flex-row min-h-screen">
 
-        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-50">
+        <header class="lg:fixed lg:h-full lg:w-64 p-10 flex flex-col justify-between glass-morphism z-20">
             <div>
-                <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">NONGOVMEDIA</h1>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
-                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
+                <div class="mb-20">
+                    <h1 class="text-2xl font-black tracking-tighter">NONGOVMEDIA</h1>
                 </div>
                 
-                <nav class="hidden lg:block space-y-4">
-                    <a href="index.html" class="block font-medium text-lg text-gray-800 hover:text-black">Home</a>
-                    <a href="projects.html" class="block font-medium text-lg text-black underline">Projects</a>
-                    <a href="reviews.html" class="block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
-                    <a href="about.html" class="block font-medium text-lg text-gray-800 hover:text-black">About</a>
-                    <a href="contact.html" class="block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
+                <nav class="hidden lg:block space-y-6">
+                    <a href="index.html" class="nav-link block font-semibold text-lg text-gray-400">Home</a>
+                    <a href="projects.html" class="nav-link block font-semibold text-lg text-black">Projects</a>
+                    <a href="reviews.html" class="nav-link block font-semibold text-lg text-gray-400">Reviews</a>
+                    <a href="about.html" class="nav-link block font-semibold text-lg text-gray-400">About</a>
+                    <a href="contact.html" class="nav-link block font-semibold text-lg text-gray-400">Contact</a>
                 </nav>
             </div>
             
-            <footer class="hidden lg:block text-sm text-gray-600">
-                <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-4 mt-2">
-                    <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    <img src="./x.svg" alt="X" class="social-icon">
+            <footer class="hidden lg:block">
+                <div class="flex space-x-4 mb-4">
+                    <a href="#"><img src="./YT.svg" alt="YT" class="w-5 opacity-50 hover:opacity-100"></a>
+                    <a href="#"><img src="./IG.svg" alt="IG" class="w-5 opacity-50 hover:opacity-100"></a>
                 </div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest">© 2026 NONGOVMEDIA</p>
             </footer>
         </header>
 
-        <main class="lg:ml-60 flex-1 flex flex-col">
-            <div id="gallery-container" class="horizontal-image-gallery flex-grow">
-                
-                <div class="gallery-item image-only">
-                    <img src="images/21days/crimage_1.jpg" alt="1" onerror="this.src='https://placehold.co/1200x800?text=Image+1'">
-                </div>
+        <main class="lg:ml-64 flex-1">
+            <div id="horizontal-scroll-box" class="horizontal-image-gallery">
                 
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper">
-                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Crossroads</h2>
-                        <div class="space-y-1 text-xs text-gray-600 mb-6">
-                            <p><strong>Year:</strong> 2019</p>
-                            <p><strong>Location:</strong> University of Ilorin, Nigeria</p>
+                        <h2 class="text-5xl font-black mb-6 leading-none">Praise Singers</h2>
+                        <div class="space-y-1 text-xs font-bold uppercase tracking-tighter text-gray-400 mb-8">
+                            <p>Year: 2018</p>
+                            <p>Location: Yoruba Land, Nigeria</p>
                         </div>
-                        <div class="space-y-4 text-sm text-gray-700">
-                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated with a degree in Anatomy. Photography, which had sustained me during school, suddenly felt out of reach.</p>
-                            <p>I traveled back to campus to photograph portraits. These were not just graduation pictures; they were survival—a reminder that I could still earn through my craft.</p>
+                        <div class="space-y-4 text-sm leading-relaxed text-gray-600">
+                            <p>In many Yoruba towns, events are rarely complete without the presence of elderly singers and drummers.</p>
+                            <p>But beneath the rhythm lies an economy of survival. Each eulogy is offered with the hope of a token in return.</p>
+                            <p>These images reflect the balance between heritage and necessity.</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="gallery-item image-only"><img src="images/21days/crimage_2.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+2'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_3.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+3'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_4.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+4'"></div>
+
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_1p.jpg" alt="Praise Singers 1" onerror="this.src='https://placehold.co/1200x800/eee/999?text=Image+1'">
+                </div>
+
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_2p.jpg" alt="Praise Singers 2" onerror="this.src='https://placehold.co/1200x800/eee/999?text=Image+2'">
+                </div>
+
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_3p.jpg" alt="Praise Singers 3" onerror="this.src='https://placehold.co/1200x800/eee/999?text=Image+3'">
+                </div>
+
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_4p.jpg" alt="Praise Singers 4" onerror="this.src='https://placehold.co/1200x800/eee/999?text=Image+4'">
+                </div>
+
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_5p.jpg" alt="Praise Singers 5" onerror="this.src='https://placehold.co/1200x800/eee/999?text=Image+5'">
+                </div>
+
             </div>
         </main>
     </div>
 
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <div class="relative h-full flex flex-col justify-center items-center">
-            <button id="menu-close-btn" class="menu-close-btn p-4">
-                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2"/></svg>
-            </button>
-            <nav class="space-y-6">
-                <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="projects.html" class="mobile-nav-link">Projects</a>
-                <a href="contact.html" class="mobile-nav-link">Contact</a>
-            </nav>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('gallery-container');
-            
-            // PC WHEEL SCROLL FIX
-            window.addEventListener('wheel', (evt) => {
-                if (window.innerWidth >= 1024) {
-                    // If moving vertically, scroll the container horizontally
-                    if (evt.deltaY !== 0) {
-                        evt.preventDefault();
-                        container.scrollLeft += evt.deltaY;
-                    }
-                }
-            }, { passive: false });
+        const scrollContainer = document.getElementById('horizontal-scroll-box');
 
-            // Mobile Menu Logic
-            const menuBtn = document.getElementById('mobile-menu-button');
-            const closeBtn = document.getElementById('menu-close-btn');
-            const overlay = document.getElementById('mobile-menu-overlay');
-
-            menuBtn.addEventListener('click', () => overlay.classList.add('active'));
-            closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
-        });
+        window.addEventListener('wheel', (evt) => {
+            // Only execute if on desktop
+            if (window.innerWidth >= 1024) {
+                evt.preventDefault();
+                // Move the container horizontally by the vertical scroll amount
+                scrollContainer.scrollLeft += evt.deltaY;
+            }
+        }, { passive: false });
     </script>
+
 </body>
 </html>
