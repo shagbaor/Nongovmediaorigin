@@ -38,7 +38,9 @@
             color: #000000;
             height: 100%; 
             margin: 0;
-            overflow-x: hidden; /* Prevent body-level horizontal scroll */
+            /* Allow vertical overflow on body so wheel events trigger, 
+               but hide the scrollbar so it looks horizontal only */
+            overflow-x: hidden;
         }
         
         /* Glass Morphism Base Style */
@@ -52,15 +54,15 @@
         /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
-            flex-wrap: nowrap; /* Forces horizontal on desktop */
+            flex-wrap: nowrap; 
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
             gap: 4rem;
             height: 100vh;
-            align-items: center; /* Centers items vertically */
+            align-items: center; 
             padding: 0 5vw;
-            scroll-snap-type: x mandatory; /* Snap effect */
+            /* Removed scroll-snap temporarily to ensure smooth custom wheel handling */
             scrollbar-width: none; 
         }
 
@@ -71,8 +73,7 @@
         .gallery-item {
             flex-shrink: 0; 
             width: auto;
-            height: 70vh; /* Controlled height for desktop */
-            scroll-snap-align: center;
+            height: 70vh; 
             display: flex;
             align-items: center;
         }
@@ -84,7 +85,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* Text item specific scaling */
         .gallery-item.text-only {
             width: 500px;
             max-width: 80vw;
@@ -95,7 +95,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Desktop Layout Fixes */
         @media (min-width: 1024px) {
             .main-content {
                 margin-left: 240px;
@@ -103,7 +102,6 @@
             }
         }
 
-        /* Mobile Layout (< 1024px): VERTICAL STACKING */
         @media (max-width: 1023px) {
             .horizontal-image-gallery {
                 flex-direction: column; 
@@ -112,13 +110,11 @@
                 height: auto;
                 padding: 2rem 1.5rem;
                 gap: 2rem;
-                scroll-snap-type: none;
             }
             
             .gallery-item {
                 width: 100%; 
                 height: auto; 
-                scroll-snap-align: none;
             }
             
             .gallery-item.image-only img {
@@ -136,7 +132,6 @@
         .nav-link { transition: color 0.15s ease-in-out; }
         .nav-link.active { color: black; font-weight: bold; }
 
-        /* Mobile Menu Overlay Styles */
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(255, 255, 255, 0.98);
@@ -217,7 +212,7 @@
                 <div class="gallery-item image-only">
                     <img src="images/Contented/image_4.jpg" alt="Contented 4" onerror="this.src='https://placehold.co/1200x800?text=Image+4'">
                 </div>
-                </div>
+            </div>
         </main>
     </div>
 
@@ -239,7 +234,7 @@
             const menuCloseBtn = document.getElementById('menu-close-btn');
             const gallery = document.getElementById('horizontal-gallery');
 
-            // --- MOBILE MENU LOGIC ---
+            // Mobile menu toggle
             const toggleMenu = () => {
                 mobileOverlay.classList.toggle('active');
                 document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
@@ -248,13 +243,18 @@
             menuButton?.addEventListener('click', toggleMenu);
             menuCloseBtn?.addEventListener('click', toggleMenu);
 
-            // --- DESKTOP HORIZONTAL SCROLL LOGIC ---
-            // This transforms vertical scroll into horizontal scroll for the gallery
-            gallery.addEventListener('wheel', (evt) => {
-                // Only apply on desktop view (tailwind lg breakpoint is 1024px)
+            // Desktop Horizontal Scroll Logic
+            // Listens to the wheel event on the whole window to catch the scroll
+            window.addEventListener('wheel', (evt) => {
                 if (window.innerWidth >= 1024) {
+                    // Prevent default vertical scroll
                     evt.preventDefault();
-                    gallery.scrollLeft += evt.deltaY;
+                    
+                    // Scroll the gallery container horizontally based on vertical wheel movement
+                    gallery.scrollBy({
+                        left: evt.deltaY,
+                        behavior: 'auto' // 'smooth' can sometimes feel laggy with wheel events
+                    });
                 }
             }, { passive: false });
         });
