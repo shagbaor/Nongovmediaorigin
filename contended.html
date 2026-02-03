@@ -187,7 +187,7 @@
         </header>
 
         <main class="main-content flex-1">
-            <div class="horizontal-image-gallery">
+            <div class="horizontal-image-gallery" id="horizontal-gallery">
                 
                 <div class="gallery-item image-only">
                     <img src="images/Contented/image_1.jpg" alt="Contented 1" onerror="this.src='https://placehold.co/1200x800?text=Image+1'">
@@ -237,7 +237,9 @@
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileOverlay = document.getElementById('mobile-menu-overlay');
             const menuCloseBtn = document.getElementById('menu-close-btn');
+            const gallery = document.getElementById('horizontal-gallery');
 
+            // --- MOBILE MENU LOGIC ---
             const toggleMenu = () => {
                 mobileOverlay.classList.toggle('active');
                 document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
@@ -245,6 +247,16 @@
 
             menuButton?.addEventListener('click', toggleMenu);
             menuCloseBtn?.addEventListener('click', toggleMenu);
+
+            // --- DESKTOP HORIZONTAL SCROLL LOGIC ---
+            // This transforms vertical scroll into horizontal scroll for the gallery
+            gallery.addEventListener('wheel', (evt) => {
+                // Only apply on desktop view (tailwind lg breakpoint is 1024px)
+                if (window.innerWidth >= 1024) {
+                    evt.preventDefault();
+                    gallery.scrollLeft += evt.deltaY;
+                }
+            }, { passive: false });
         });
     </script>
 </body>
