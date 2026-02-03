@@ -10,7 +10,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
      <style>
-        /* ADDED: Metropolis Font Family Declarations */
+        /* Metropolis Font Family Declarations */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-Thin.otf') format('opentype');
@@ -60,7 +60,7 @@
             font-style: normal;
         }
 
-        /* The following are the italic versions */
+        /* Italic versions */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
@@ -128,14 +128,11 @@
             color: #000000;
             height: 100%; 
             margin: 0;
-            overflow-x: hidden;
-        }
-
-        @media (min-width: 1024px) {
-            body { overflow: hidden; } /* Prevents vertical scroll on desktop */
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
         }
         
-        /* Glass Morphism Base Style (Retained for sidebar) */
+        /* Glass Morphism Base Style */
         .glass-morphism {
             background: rgba(169, 172, 230, 0.38);
             border-radius: 0px;
@@ -147,21 +144,21 @@
             border: 1px solid rgba(169, 172, 230, 0.3);
         }
         
-        /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
+        /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
             gap: 1.5rem;
-            height: 100vh;
-            align-items: center;
             
+            /* Hide scrollbar */
             scrollbar-width: none; 
             -ms-overflow-style: none;  
             
             padding-left: 2rem; 
             padding-right: 2rem;
+            align-items: center; /* Center items vertically in the flex container */
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
@@ -183,7 +180,6 @@
             width: 76.5vw;
             aspect-ratio: auto;
             height: auto;
-            max-height: 80vh;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             display: flex;
@@ -205,34 +201,49 @@
             height: 100%;
         }
 
+        /* Desktop Layout */
         @media (min-width: 1024px) {
+            body {
+                overflow: hidden; /* Lock vertical scroll on desktop */
+            }
+
             .page-container {
                 display: grid;
                 grid-template-columns: 240px 1fr;
-                min-height: 100vh;
+                height: 100vh;
             }
             
             .gallery-item {
                 width: 75vw;
-                height: 75vh;
+                height: 80vh; /* Make images fit the screen height better */
             }
             
             .gallery-item.text-only {
                 width: 63.75vw;
-                height: auto;
+                height: 80vh;
             }
             
             .horizontal-image-gallery {
                 padding-left: 4rem; 
                 padding-right: 4rem;
+                height: 100vh; /* Fill full height */
+            }
+            
+            .text-content-wrapper {
+                padding: 2.5rem;
             }
         }
 
+        /* Mobile Layout */
         @media (max-width: 1023px) {
+            html, body {
+                overflow-y: auto;
+            }
+
             .horizontal-image-gallery {
                 flex-direction: column; 
                 overflow-x: hidden;
-                overflow-y: auto;
+                overflow-y: visible;
                 height: auto;
                 padding: 1.5rem;
                 margin-top: 0; 
@@ -248,33 +259,137 @@
             .gallery-item.text-only {
                 width: 100%;
             }
+            
+            .text-content-wrapper {
+                padding: 1.5rem;
+            }
         }
         
-        .nav-link { transition: color 0.15s ease-in-out; }
-        .nav-link.active { color: black; }
+        .nav-link {
+            transition: color 0.15s ease-in-out;
+        }
+        .nav-link.active {
+            color: black;
+        }
 
+        /* Mobile Menu Styles */
         .mobile-menu-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(241, 245, 249, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(248, 250, 252, 0.95) 0%, 
+                rgba(241, 245, 249, 0.95) 50%, 
+                rgba(226, 232, 240, 0.95) 100%);
             backdrop-filter: blur(20px);
-            z-index: 100; display: none; opacity: 0;
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            display: none;
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
         
-        .mobile-menu-overlay.active { display: block; opacity: 1; }
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
         
         .mobile-menu-content {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%; max-width: 400px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 24px; padding: 3rem 2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .mobile-menu-overlay.active .mobile-menu-content {
+            transform: translate(-50%, -50%) scale(1);
         }
         
         .mobile-nav-link {
-            display: block; padding: 1.25rem; font-size: 1.25rem;
-            text-align: center; color: #000; border-radius: 8px; margin: 0.5rem 0;
-            background: rgba(255, 255, 255, 0.5);
+            display: block;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #000000;
+            text-align: center;
+            border-radius: 0px;
+            margin: 0.75rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.8), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            color: #000000;
+        }
+        
+        .mobile-nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .mobile-nav-link.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
+            border-color: rgba(255, 255, 255, 1);
+            font-weight: 700;
+        }
+        
+        .menu-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-close-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
+            color: #000000;
         }
     </style>
 </head>
@@ -288,13 +403,13 @@
                     <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
                         NONGOVMEDIA
                     </h1>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800">
-                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
+                        <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
                 
-                <nav class="hidden lg:block space-y-4">
+                <nav id="mobile-nav" class="hidden lg:block space-y-4">
                     <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
                     <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
                     <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
@@ -306,58 +421,91 @@
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-4 mt-2">
-                    <a href="https://www.youtube.com/@nongovmedia" target="_blank"><img src="./YT.svg" alt="YouTube" class="social-icon"></a>
-                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank"><img src="./IG.svg" alt="Instagram" class="social-icon"></a>
-                    <a href="https://x.com/nongovkelvin" target="_blank"><img src="./x.svg" alt="X" class="social-icon"></a>
+                    <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./YT.svg" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./IG.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150">
+                        <img src="./x.svg" alt="X" class="social-icon">
+                    </a>
                 </div>
             </footer>
         </header>
 
         <main class="lg:ml-60 flex-1 flex flex-col">
-            <div class="horizontal-image-gallery flex-grow" id="horizontal-gallery">
+            
+            <div class="horizontal-image-gallery flex-grow" id="gallery-scroll-container">
                 
                 <div class="gallery-item image-only">
-                    <img src="images/21days/cimage_1.jpg" alt="Image 1" onerror="this.src='https://placehold.co/700x525?text=Image+1'">
+                    <img 
+                        src="images/21days/cimage_1.jpg" 
+                        alt="Creation Story Series Image 1" 
+                        onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Creation+Story+Image+1'"
+                        class="w-full h-full object-cover"
+                    >
                 </div>
                 
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper flex flex-col justify-start">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Creation Story</h2>
+                        
                         <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
                             <p><strong class="text-black">Year:</strong> 2019</p>
                             <p><strong class="text-black">Category:</strong> Conceptual / Reenactment</p>
                         </div>
+                        
                         <div class="space-y-3 text-sm leading-relaxed text-gray-700">
-                            <p>This project reimagines the biblical story of Adam and Eve — but this time, the characters are Black, and the forbidden fruit is not an apple but a coconut.</p>
-                            <p>It is a playful yet subversive retelling, challenging the dominance of Western imagery in spiritual narratives.</p>
+                            <p>
+                                This project reimagines the biblical story of Adam and Eve — but this time, the characters are Black, and the forbidden fruit is not an apple but a coconut.
+                            </p>
+                            <p>
+                                It is a playful yet subversive retelling, challenging the dominance of Western imagery in spiritual narratives. By placing African bodies at the center of this foundational myth, the work asks: <em>Who decides what creation looks like? Who gets to see themselves in the origin of human history?</em>
+                            </p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item image-only"><img src="images/21days/cimage_2.jpg" alt="Image 2" onerror="this.src='https://placehold.co/700x525?text=Image+2'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_3.jpg" alt="Image 3" onerror="this.src='https://placehold.co/700x525?text=Image+3'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_4.jpg" alt="Image 4" onerror="this.src='https://placehold.co/700x525?text=Image+4'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_5.jpg" alt="Image 5" onerror="this.src='https://placehold.co/700x525?text=Image+5'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_6.jpg" alt="Image 6" onerror="this.src='https://placehold.co/700x525?text=Image+6'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_7.jpg" alt="Image 7" onerror="this.src='https://placehold.co/700x525?text=Image+7'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_8.jpg" alt="Image 8" onerror="this.src='https://placehold.co/700x525?text=Image+8'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_9.jpg" alt="Image 9" onerror="this.src='https://placehold.co/700x525?text=Image+9'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_10.jpg" alt="Image 10" onerror="this.src='https://placehold.co/700x525?text=Image+10'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_11.jpg" alt="Image 11" onerror="this.src='https://placehold.co/700x525?text=Image+11'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_12.jpg" alt="Image 12" onerror="this.src='https://placehold.co/700x525?text=Image+12'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_13.jpg" alt="Image 13" onerror="this.src='https://placehold.co/700x525?text=Image+13'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_14.jpg" alt="Image 14" onerror="this.src='https://placehold.co/700x525?text=Image+14'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_15.jpg" alt="Image 15" onerror="this.src='https://placehold.co/700x525?text=Image+15'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_16.jpg" alt="Image 16" onerror="this.src='https://placehold.co/700x525?text=Image+16'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/cimage_17.jpg" alt="Image 17" onerror="this.src='https://placehold.co/700x525?text=Image+17'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_2.jpg" alt="Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=2'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_3.jpg" alt="Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=3'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_4.jpg" alt="Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=4'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_5.jpg" alt="Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=5'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_6.jpg" alt="Image 6" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=6'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_7.jpg" alt="Image 7" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=7'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_8.jpg" alt="Image 8" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=8'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_9.jpg" alt="Image 9" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=9'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_10.jpg" alt="Image 10" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=10'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_11.jpg" alt="Image 11" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=11'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_12.jpg" alt="Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=12'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_13.jpg" alt="Image 13" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=13'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_14.jpg" alt="Image 14" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=14'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_15.jpg" alt="Image 15" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=15'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_16.jpg" alt="Image 16" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=16'"></div>
+                <div class="gallery-item image-only"><img src="images/21days/cimage_17.jpg" alt="Image 17" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=17'"></div>
             </div>
+            
         </main>
     </div>
 
+    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
+        <p>Copyright © All rights reserved.</p>
+        <div class="flex space-x-4 mt-2 justify-center">
+            <a href="https://www.youtube.com/@nongovmedia" target="_blank" class="hover:text-black transition duration-150"><img src="./YT.svg" alt="YouTube" class="social-icon"></a>
+            <a href="https://www.instagram.com/nongov_kelvin/" target="_blank" class="hover:text-black transition duration-150"><img src="./IG.svg" alt="Instagram" class="social-icon"></a>
+            <a href="https://x.com/nongovkelvin" target="_blank" class="hover:text-black transition duration-150"><img src="./x.svg" alt="X" class="social-icon"></a>
+        </div>
+    </footer>
+
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
         <div class="mobile-menu-content">
-            <button id="menu-close-btn" class="absolute top-4 right-4 text-2xl">&times;</button>
-            <nav class="space-y-2">
+            <button id="menu-close-btn" class="menu-close-btn">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2" style="color: #020633;">NONGOVMEDIA</h2>
+            </div>
+             <nav class="space-y-2">
                 <a href="index.html" class="mobile-nav-link">Home</a>
                 <a href="projects.html" class="mobile-nav-link">Projects</a>
                 <a href="reviews.html" class="mobile-nav-link">Reviews</a>
@@ -372,26 +520,37 @@
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileOverlay = document.getElementById('mobile-menu-overlay');
             const menuCloseBtn = document.getElementById('menu-close-btn');
-            const gallery = document.getElementById('horizontal-gallery');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            const scrollContainer = document.getElementById('gallery-scroll-container');
 
-            const toggleMenu = () => {
-                mobileOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
-            };
-
-            menuButton?.addEventListener('click', toggleMenu);
-            menuCloseBtn?.addEventListener('click', toggleMenu);
-
-            // Desktop Horizontal Scroll logic
+            // --- Horizontal Scroll Logic for Desktop ---
             window.addEventListener('wheel', (evt) => {
+                // Only apply on desktop widths
                 if (window.innerWidth >= 1024) {
                     evt.preventDefault();
-                    gallery.scrollBy({
-                        left: evt.deltaY,
-                        behavior: 'auto'
-                    });
+                    // Scroll the container horizontally based on vertical wheel delta
+                    scrollContainer.scrollLeft += evt.deltaY;
                 }
             }, { passive: false });
+
+            // --- Mobile Menu Toggle ---
+            const toggleMenu = () => {
+                mobileOverlay.classList.toggle('active');
+                iconMenu.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+                
+                if (mobileOverlay.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            };
+
+            if (menuButton) menuButton.addEventListener('click', toggleMenu);
+            if (menuCloseBtn) menuCloseBtn.addEventListener('click', toggleMenu);
+            mobileOverlay.addEventListener('click', (e) => { if (e.target === mobileOverlay) toggleMenu(); });
+            mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', toggleMenu));
         });
     </script>
 </body>
