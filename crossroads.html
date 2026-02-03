@@ -9,67 +9,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
-     <style>
+    <style>
         /* Metropolis Font Family Declarations */
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Thin.otf') format('opentype');
-            font-weight: 100;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Light.otf') format('opentype');
-            font-weight: 300;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Medium.otf') format('opentype');
-            font-weight: 500;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
-            font-weight: 600;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Bold.otf') format('opentype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
-            font-weight: 800;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Metropolis';
-            src: url('./Font/Metropolis-Black.otf') format('opentype');
-            font-weight: 900;
-            font-style: normal;
-        }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Light.otf') format('opentype'); font-weight: 300; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-ExtraBold.otf') format('opentype'); font-weight: 800; font-style: normal; }
+        @font-face { font-family: 'Metropolis'; src: url('./Font/Metropolis-Black.otf') format('opentype'); font-weight: 900; font-style: normal; }
 
         /* Social media icon styles */
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
-        }
+        .social-icon { width: 24px; height: 24px; transition: all 0.3s ease; }
+        .social-icon:hover { transform: translateY(-2px); }
 
         /* Custom font and base styles */
         html, body {
@@ -81,20 +34,15 @@
             padding: 0;
         }
 
-        /* Prevent vertical scroll on desktop only */
+        /* Desktop Fix: Prevent vertical body scroll so horizontal scroll takes over */
         @media (min-width: 1024px) {
-            body {
-                overflow: hidden; 
-            }
+            body { overflow: hidden; }
         }
         
-        /* Glass Morphism Base Style */
         .glass-morphism {
             background: rgba(169, 172, 230, 0.38);
             border-radius: 0px;
-            box-shadow: 
-                0 10px 20px rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(169, 172, 230, 0.3);
@@ -103,29 +51,24 @@
         /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
+            flex-wrap: nowrap; /* Prevents stacking */
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
             gap: 1.5rem;
             height: 100vh;
             align-items: center;
-            scroll-behavior: smooth; /* Native smooth scroll for script movements */
-            
-            /* Hide scrollbar */
             scrollbar-width: none; 
             -ms-overflow-style: none;  
             padding: 0 4rem;
         }
 
-        .horizontal-image-gallery::-webkit-scrollbar {
-            display: none; 
-        }
+        .horizontal-image-gallery::-webkit-scrollbar { display: none; }
 
         .gallery-item {
             flex-shrink: 0; 
             width: 75vw;
             height: 70vh;
-            border-radius: 0px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden; 
             background-color: #ffffff; 
@@ -137,7 +80,7 @@
             background: rgba(255, 255, 255, 0.95);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .gallery-item.image-only img {
@@ -155,32 +98,33 @@
 
         /* Mobile Layout (< 1024px) */
         @media (max-width: 1023px) {
+            body { overflow-y: auto; }
             .horizontal-image-gallery {
                 flex-direction: column; 
                 overflow-x: hidden;
-                overflow-y: auto;
+                overflow-y: visible;
                 height: auto;
                 padding: 1.5rem;
+                margin-top: 1rem;
             }
-            
             .gallery-item {
                 width: 100%; 
                 height: auto; 
                 aspect-ratio: 16/9;
                 margin-bottom: 2rem; 
             }
-            
             .gallery-item.text-only {
                 width: 100%;
                 height: auto;
+                aspect-ratio: auto;
             }
         }
         
-        /* Navigation / Mobile Menu UI */
+        /* Mobile Menu Styles */
         .mobile-menu-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             z-index: 100;
             display: none;
@@ -188,14 +132,15 @@
             transition: opacity 0.3s ease;
         }
         .mobile-menu-overlay.active { display: block; opacity: 1; }
-        .mobile-nav-link { display: block; padding: 1rem; font-size: 1.25rem; text-align: center; }
+        .mobile-nav-link { display: block; padding: 1.25rem; font-size: 1.25rem; font-weight: 600; text-align: center; }
+        .menu-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="page-container flex flex-col lg:flex-row min-h-screen">
 
-        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
+        <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-50">
             <div>
                 <div class="flex justify-between items-center mb-16">
                     <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">NONGOVMEDIA</h1>
@@ -233,11 +178,13 @@
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Crossroads</h2>
-                        <div class="text-gray-600 mb-6 text-xs uppercase tracking-widest">2019 • University of Ilorin • Portrait</div>
+                        <div class="space-y-1 text-xs text-gray-600 mb-6">
+                            <p><strong>Year:</strong> 2019</p>
+                            <p><strong>Location:</strong> University of Ilorin, Nigeria</p>
+                        </div>
                         <div class="space-y-4 text-sm text-gray-700">
-                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated from the University of Ilorin with a degree in Anatomy and was serving my NYSC year in Ibadan.</p>
-                            <p>Moving to a new city was disorienting — no clients knew me, and work was scarce. Photography, which had sustained me during school, suddenly felt out of reach.</p>
-                            <p>Looking back, the images carry more weight than celebration alone. They document a community I had just left, the closing of one chapter and the uncertainty of another.</p>
+                            <p>This series was born out of necessity as much as passion. In 2018, I had just graduated with a degree in Anatomy. Photography, which had sustained me during school, suddenly felt out of reach.</p>
+                            <p>I traveled back to campus to photograph portraits. These were not just graduation pictures; they were survival—a reminder that I could still earn through my craft.</p>
                         </div>
                     </div>
                 </div>
@@ -245,47 +192,45 @@
                 <div class="gallery-item image-only"><img src="images/21days/crimage_2.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+2'"></div>
                 <div class="gallery-item image-only"><img src="images/21days/crimage_3.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+3'"></div>
                 <div class="gallery-item image-only"><img src="images/21days/crimage_4.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+4'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_5.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+5'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_6.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+6'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_7.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+7'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_8.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+8'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_9.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+9'"></div>
-                <div class="gallery-item image-only"><img src="images/21days/crimage_10.jpg" onerror="this.src='https://placehold.co/1200x800?text=Image+10'"></div>
             </div>
         </main>
     </div>
 
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <nav class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="index.html" class="mobile-nav-link text-2xl font-bold">Home</a>
-            <a href="projects.html" class="mobile-nav-link text-2xl font-bold">Projects</a>
-            <a href="contact.html" class="mobile-nav-link text-2xl font-bold">Contact</a>
-            <button onclick="document.getElementById('mobile-menu-overlay').classList.remove('active')" class="p-4 bg-black text-white rounded-full">Close</button>
-        </nav>
+        <div class="relative h-full flex flex-col justify-center items-center">
+            <button id="menu-close-btn" class="menu-close-btn p-4">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2"/></svg>
+            </button>
+            <nav class="space-y-6">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="projects.html" class="mobile-nav-link">Projects</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </nav>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const gallery = document.getElementById('gallery-container');
-
-            // This function converts the vertical mouse wheel into horizontal movement
-            const scrollHorizontally = (e) => {
-                // Only on Desktop screens
-                if (window.innerWidth >= 1024) {
-                    e.preventDefault();
-                    // 'deltaY' is the vertical scroll amount. 
-                    // We apply it to 'scrollLeft' (the horizontal axis)
-                    gallery.scrollLeft += e.deltaY;
-                }
-            };
-
-            // Attach to the window to capture all scroll attempts on PC
-            window.addEventListener('wheel', scrollHorizontally, { passive: false });
+            const container = document.getElementById('gallery-container');
             
-            // Basic Mobile Menu toggle
-            document.getElementById('mobile-menu-button').addEventListener('click', () => {
-                document.getElementById('mobile-menu-overlay').classList.add('active');
-            });
+            // PC WHEEL SCROLL FIX
+            window.addEventListener('wheel', (evt) => {
+                if (window.innerWidth >= 1024) {
+                    // If moving vertically, scroll the container horizontally
+                    if (evt.deltaY !== 0) {
+                        evt.preventDefault();
+                        container.scrollLeft += evt.deltaY;
+                    }
+                }
+            }, { passive: false });
+
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const closeBtn = document.getElementById('menu-close-btn');
+            const overlay = document.getElementById('mobile-menu-overlay');
+
+            menuBtn.addEventListener('click', () => overlay.classList.add('active'));
+            closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
         });
     </script>
 </body>
