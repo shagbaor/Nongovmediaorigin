@@ -195,7 +195,14 @@
             overflow-y: auto;
             height: 100%;
         }
-
+          /* Scroll Hint Animation */
+        @keyframes slideHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        .animate-scroll-hint {
+            animation: slideHint 2s infinite ease-in-out;
+        }
         /* Desktop Layout */
         @media (min-width: 1024px) {
             .page-container {
@@ -427,6 +434,12 @@
 
         <!-- 2. MAIN CONTENT AREA -->
         <main class="lg:ml-60 flex-1 flex flex-col">
+            <div id="desktop-scroll-hint" class="hidden lg:flex fixed bottom-10 right-10 z-20 items-center gap-3 px-6 py-3 glass-morphism rounded-full text-sm font-semibold tracking-widest uppercase transition-opacity duration-500 pointer-events-none">
+                <span>Scroll to explore</span>
+                <svg class="w-5 h-5 animate-scroll-hint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </div>
             
             <!-- Horizontal Scrolling Image Gallery (The core of the page) -->
             <div class="horizontal-image-gallery flex-grow">
