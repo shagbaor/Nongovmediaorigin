@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pursuit of Happiness - NONGOVMEDIA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>The Pursuit of Potential - NONGOVMEDIA</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <style>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <style>
         /* Metropolis Font Family Declarations */
         @font-face {
             font-family: 'Metropolis';
             src: url('./Font/Metropolis-Thin.otf') format('opentype');
             font-weight: 100;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Light.otf') format('opentype');
+            font-weight: 300;
             font-style: normal;
         }
         @font-face {
@@ -25,8 +31,26 @@
         }
         @font-face {
             font-family: 'Metropolis';
+            src: url('./Font/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
             src: url('./Font/Metropolis-Bold.otf') format('opentype');
             font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
             font-style: normal;
         }
         @font-face {
@@ -36,31 +60,64 @@
             font-style: normal;
         }
 
-        /* Custom font and base styles */
-        html, body {
-            font-family: 'Metropolis', sans-serif;
-            background: #ffffff; 
-            color: #000000; 
-            height: 100%; 
-            margin: 0;
-            padding: 0;
+        /* The following are the italic versions */
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ThinItalic.otf') format('opentype');
+            font-weight: 100;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-LightItalic.otf') format('opentype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-RegularItalic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-MediumItalic.otf') format('opentype');
+            font-weight: 500;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-SemiBoldItalic.otf') format('opentype');
+            font-weight: 600;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BoldItalic.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-ExtraBoldItalic.otf') format('opentype');
+            font-weight: 800;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Metropolis';
+            src: url('./Font/Metropolis-BlackItalic.otf') format('opentype');
+            font-weight: 900;
+            font-style: italic;
         }
 
-        /* Desktop specific: Kill vertical scroll */
-        @media (min-width: 1024px) {
-            body {
-                overflow: hidden; 
-            }
-        }
-        
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
+        /* Custom font and base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #070346;
+            height: 100%; 
+            overflow-y: auto;
         }
         
         .glass-morphism {
@@ -74,19 +131,18 @@
             border: 1px solid rgba(169, 172, 230, 0.3);
         }
         
-        /* --- CORE GALLERY CONTAINER --- */
         .horizontal-image-gallery {
             display: flex;
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
-            gap: 1.5rem; 
+            gap: 1.5rem;
+            margin-top: 2rem;
             scrollbar-width: none; 
             -ms-overflow-style: none;  
             padding-left: 2rem; 
             padding-right: 2rem;
-            align-items: center;
-            height: 100vh;
+            padding-bottom: 2rem;
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
@@ -95,18 +151,19 @@
 
         .gallery-item {
             flex-shrink: 0; 
-            width: 90vw; 
+            width: 90vw;
             height: auto;
             aspect-ratio: 16/9; 
             border-radius: 0px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden; 
-            background-color: transparent; 
+            background-color: #ffffff; 
         }
 
         .gallery-item.text-only {
-            width: 76.5vw; 
-            aspect-ratio: auto; 
-            height: 80vh; 
+            width: 76.5vw;
+            aspect-ratio: auto;
+            height: auto;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             display: flex;
@@ -123,70 +180,125 @@
         }
 
         .text-content-wrapper {
-            padding: 2.5rem;
+            padding: 2rem;
             overflow-y: auto;
             height: 100%;
+        }
+
+        /* --- ADDED: Scroll Hint Animation --- */
+        @keyframes slideHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        .animate-scroll-hint {
+            animation: slideHint 2s infinite ease-in-out;
         }
 
         @media (min-width: 1024px) {
             .page-container {
                 display: grid;
                 grid-template-columns: 240px 1fr;
-                height: 100vh;
+                min-height: 100vh;
             }
-            
             .gallery-item {
-                width: 75vw; 
+                width: 75vw;
             }
-            
             .gallery-item.text-only {
-                width: 63.75vw; 
+                width: 63.75vw;
             }
-            
             .horizontal-image-gallery {
                 padding-left: 4rem; 
                 padding-right: 4rem;
             }
+            .text-content-wrapper {
+                padding: 2.5rem;
+            }
         }
 
         @media (max-width: 1023px) {
-            body {
-                overflow-y: auto;
-            }
             .horizontal-image-gallery {
                 flex-direction: column; 
                 overflow-x: hidden;
                 overflow-y: auto;
                 height: auto;
-                padding: 1.5rem;
+                padding-left: 1.5rem; 
+                padding-right: 1.5rem;
+                padding-top: 0;
                 margin-top: 0; 
             }
-            
             .gallery-item {
                 width: 100%; 
                 aspect-ratio: auto;
                 height: auto; 
                 margin-bottom: 1.5rem; 
             }
-            
             .gallery-item.text-only {
                 width: 100%;
-                height: auto;
+            }
+            .text-content-wrapper {
+                padding: 1.5rem;
             }
         }
+        
+        .nav-link { transition: color 0.15s ease-in-out; }
+        .nav-link.active { color: black; }
 
-        /* Mobile Menu Overlay */
         .mobile-menu-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(248, 250, 252, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 100;
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         .mobile-menu-overlay.active { display: block; opacity: 1; }
+        .mobile-menu-content {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .mobile-menu-overlay.active .mobile-menu-content { transform: translate(-50%, -50%) scale(1); }
+        .mobile-nav-link {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #070346;
+            text-align: center;
+            border-radius: 0px;
+            margin: 0.75rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .mobile-nav-link:hover { background: rgba(255, 255, 255, 0.9); transform: translateY(-2px); color: #000000; }
+        .mobile-nav-link.active { background: rgba(255, 255, 255, 0.9); color: #000000; font-weight: 700; }
+        .menu-close-btn {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 3rem; height: 3rem;
+            display: flex; align-items: center; justify-content: center;
+            color: #070346; cursor: pointer; transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -196,108 +308,121 @@
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
                 <div class="flex justify-between items-center mb-16">
-                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter" style="color: #020633;">
-                        NONGOVMEDIA
-                    </h1>
-                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 focus:outline-none">
+                    <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">NONGOVMEDIA</h1>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
                         <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
-                
-                <nav class="hidden lg:block space-y-4">
+                <nav id="mobile-nav" class="hidden lg:block space-y-4">
                     <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
-                    <a href="projects.html" class="nav-link block font-medium text-lg text-black font-bold">Projects</a>
+                    <a href="projects.html" class="nav-link active block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
                     <a href="reviews.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Reviews</a>
                     <a href="about.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">About</a>
                     <a href="contact.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Contact</a>
                 </nav>
             </div>
-            
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
-                <div class="flex space-x-4 mt-2">
-                    <img src="./YT.svg" alt="YouTube" class="social-icon">
-                    <img src="./IG.svg" alt="Instagram" class="social-icon">
-                    <img src="./x.svg" alt="X" class="social-icon">
+                <div class="flex space-x-2 mt-2">
+                    <a href="https://www.youtube.com/@nongovmedia"><img src="./YT.svg" alt="YouTube" class="h-5 w-5"></a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://www.instagram.com/nongov_kelvin/"><img src="./IG.svg" alt="Instagram" class="h-5 w-5"></a>
+                    <span class="text-gray-400">|</span>
+                    <a href="https://x.com/nongovkelvin"><img src="./x.svg" alt="X" class="h-5 w-5"></a>
                 </div>
             </footer>
         </header>
 
-        <main class="lg:ml-60 flex-1 flex flex-col overflow-hidden">
+        <main class="lg:ml-60 flex-1 flex flex-col relative">
             
-            <div id="scroll-area" class="horizontal-image-gallery flex-grow">
+            <div id="desktop-scroll-hint" class="hidden lg:flex fixed bottom-10 right-10 z-20 items-center gap-3 px-6 py-3 glass-morphism rounded-full text-sm font-semibold tracking-widest uppercase transition-opacity duration-1000 pointer-events-none">
+                <span>Scroll to explore</span>
+                <svg class="w-5 h-5 animate-scroll-hint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </div>
+
+            <div id="gallery-container" class="horizontal-image-gallery flex-grow">
                 
                 <div class="gallery-item image-only">
-                    <img src="images/pursuit/hero.jpg" alt="Pursuit of Happiness 1" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/000/fff?text=Pursuit+of+Happiness'">
+                    <img src="images/Pursuits/image_1.jpg" alt="Image 1" onerror="this.src='https://placehold.co/700x525?text=Image+1'" class="w-full h-full object-cover">
                 </div>
                 
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper flex flex-col justify-start">
-                        <h2 class="text-5xl lg:text-6xl font-black mb-4 tracking-tighter uppercase">Pursuit of Happiness</h2>
-                        <div class="space-y-1 text-xs text-gray-600 mb-6 uppercase tracking-widest">
-                            <p><strong class="text-black">Project:</strong> Editorial Series</p>
-                            <p><strong class="text-black">Timeline:</strong> 2024 - 2026</p>
-                            <p><strong class="text-black">Medium:</strong> Digital Photography & Film</p>
+                        <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">The Pursuit of Potential</h2>
+                        <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
+                            <p><strong class="text-black">Year:</strong> 2019</p>
+                            <p><strong class="text-black">Location:</strong> Ibadan, Nigeria</p>
+                            <p><strong class="text-black">Category:</strong> Documentary Photography</p>
                         </div>
-                        <div class="space-y-4 text-base text-gray-700 leading-relaxed max-w-2xl">
-                            <p>This series explores the dichotomy between the external "hustle" and the internal search for contentment. It is a visual study of the quiet moments often overlooked in our race toward a defined success.</p>
-                            <p>Captured across various urban landscapes, the work focuses on the intersection of light, architecture, and human emotion—capturing the "pursuit" not as a frantic chase, but as a deliberate walk through existence.</p>
-                            <p>Every frame is an invitation to slow down and witness the beauty of the mundane, finding the sublime in the shadows of the city.</p>
+                        <div class="space-y-3 text-sm leading-relaxed text-gray-700">
+                            <p>This series follows a group of local boxers training in makeshift gyms...</p>
+                            <p>For me, this project was more than photography — it was personal...</p>
+                            <p>These images are not about fame or fortune, but about persistence...</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item image-only"><img src="images/pursuits/img_2.jpg" alt="Image 2" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/111/fff?text=Frame+02'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_3.jpg" alt="Image 3" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/222/fff?text=Frame+03'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_4.jpg" alt="Image 4" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/111/fff?text=Frame+04'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_5.jpg" alt="Image 5" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/222/fff?text=Frame+05'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_6.jpg" alt="Image 6" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/111/fff?text=Frame+06'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_7.jpg" alt="Image 7" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/222/fff?text=Frame+07'"></div>
-                <div class="gallery-item image-only"><img src="images/pursuits/img_8.jpg" alt="Image 8" onerror="this.onerror=null; this.src='https://placehold.co/1200x675/111/fff?text=Frame+08'"></div>
-                
+                <div class="gallery-item image-only"><img src="images/Pursuits/image_2.jpg" alt="2" onerror="this.src='https://placehold.co/700x525?text=2'"></div>
+                <div class="gallery-item image-only"><img src="images/Pursuits/image_3.jpg" alt="3" onerror="this.src='https://placehold.co/700x525?text=3'"></div>
+                <div class="gallery-item image-only"><img src="images/Pursuits/image_27.jpg" alt="27" onerror="this.src='https://placehold.co/700x525?text=27'"></div>
             </div>
             
         </main>
     </div>
 
+    <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
+        <p>Copyright © All rights reserved.</p>
+    </footer>
+
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <div class="p-8 flex flex-col h-full bg-white">
-            <button id="menu-close-btn" class="self-end p-4">Close</button>
-            <nav class="flex flex-col gap-6 mt-12 text-2xl font-bold">
-                <a href="index.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+        <div class="mobile-menu-content">
+            <button id="menu-close-btn" class="menu-close-btn">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="space-y-2">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="projects.html" class="mobile-nav-link active">Projects</a>
+                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
             </nav>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const scrollContainer = document.getElementById('scroll-area');
-
-            // --- PC Horizontal Scroll Logic ---
-            window.addEventListener('wheel', (evt) => {
-                if (window.innerWidth >= 1024) {
-                    if (evt.deltaY !== 0) {
-                        evt.preventDefault();
-                        scrollContainer.scrollLeft += evt.deltaY;
-                    }
-                }
-            }, { passive: false });
-
-            // Mobile Menu Logic
+            // 1. Mobile Menu Logic
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileOverlay = document.getElementById('mobile-menu-overlay');
             const menuCloseBtn = document.getElementById('menu-close-btn');
-
+            
             const toggleMenu = () => {
                 mobileOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : (window.innerWidth >= 1024 ? 'hidden' : 'auto');
+                if (mobileOverlay.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
             };
 
             if (menuButton) menuButton.addEventListener('click', toggleMenu);
             if (menuCloseBtn) menuCloseBtn.addEventListener('click', toggleMenu);
+
+            // 2. Scroll Hint Logic
+            const gallery = document.getElementById('gallery-container');
+            const scrollHint = document.getElementById('desktop-scroll-hint');
+
+            if (gallery && scrollHint) {
+                gallery.addEventListener('scroll', () => {
+                    if (gallery.scrollLeft > 50) {
+                        scrollHint.style.opacity = '0';
+                        // Remove from DOM after fade out to keep performance clean
+                        setTimeout(() => scrollHint.remove(), 1000);
+                    }
+                }, { once: true }); // Only trigger once
+            }
         });
     </script>
 </body>
