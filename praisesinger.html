@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
      <style>
         /* ADDED: Metropolis Font Family Declarations */
@@ -115,10 +114,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         html, body {
             font-family: 'Inter', sans-serif;
-            background: #ffffff; /* Changed to white background */
+            background: #ffffff; 
             color: #070346;
             height: 100%; 
-            overflow-y: auto; /* Allow overall vertical scrolling */
+            overflow-y: auto; 
         }
         
         /* Glass Morphism Base Style (Retained for sidebar) */
@@ -135,12 +134,11 @@
         
         /* --- CORE GALLERY CONTAINER (DESKTOP: HORIZONTAL) --- */
         .horizontal-image-gallery {
-            /* Desktop/Default: Horizontal Scroll */
             display: flex;
             overflow-x: auto; 
             overflow-y: hidden; 
             -webkit-overflow-scrolling: touch; 
-            gap: 1.5rem; /* Gap between all items */
+            gap: 1.5rem; 
             margin-top: 2rem;
             
             /* Hide scrollbar */
@@ -151,10 +149,6 @@
             padding-left: 2rem; 
             padding-right: 2rem;
             padding-bottom: 2rem;
-            
-            /* Smooth scrolling for wheel navigation */
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
         }
 
         .horizontal-image-gallery::-webkit-scrollbar {
@@ -163,22 +157,19 @@
 
         .gallery-item {
             flex-shrink: 0; 
-            width: 90vw; /* Immersive width on mobile */
+            width: 90vw; 
             height: auto;
             aspect-ratio: 16/9; 
             border-radius: 0px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden; 
             background-color: #ffffff; 
-            scroll-snap-align: center;
-            scroll-snap-stop: always;
         }
 
-        /* NEW: Text-only gallery item that's 15% smaller */
         .gallery-item.text-only {
-            width: 76.5vw; /* 90vw * 0.85 = 76.5vw (15% smaller) */
-            aspect-ratio: auto; /* Remove fixed aspect ratio for text */
-            height: auto; /* Let content determine height */
+            width: 76.5vw; 
+            aspect-ratio: auto; 
+            height: auto; 
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             display: flex;
@@ -187,7 +178,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* Styling for Image-Only Items */
         .gallery-item.image-only img {
             width: 100%;
             height: 100%;
@@ -195,7 +185,6 @@
             display: block; 
         }
 
-        /* Text content styling for the standalone text item */
         .text-content-wrapper {
             padding: 2rem;
             overflow-y: auto;
@@ -211,11 +200,11 @@
             }
             
             .gallery-item {
-                width: 75vw; /* Wider items on desktop */
+                width: 75vw; 
             }
             
             .gallery-item.text-only {
-                width: 63.75vw; /* 75vw * 0.85 = 63.75vw (15% smaller on desktop) */
+                width: 63.75vw; 
             }
             
             .horizontal-image-gallery {
@@ -228,7 +217,7 @@
             }
         }
 
-        /* Mobile Layout (< 1024px): VERTICAL STACKING */
+        /* Mobile Layout (< 1024px) */
         @media (max-width: 1023px) {
             .horizontal-image-gallery {
                 flex-direction: column; 
@@ -239,7 +228,6 @@
                 padding-right: 1.5rem;
                 padding-top: 0;
                 margin-top: 0; 
-                scroll-snap-type: none; /* Disable snap on mobile */
             }
             
             .gallery-item {
@@ -247,11 +235,10 @@
                 aspect-ratio: auto;
                 height: auto; 
                 margin-bottom: 1.5rem; 
-                scroll-snap-align: none; /* Disable snap on mobile */
             }
             
             .gallery-item.text-only {
-                width: 100%; /* Full width on mobile */
+                width: 100%; 
             }
             
             .text-content-wrapper {
@@ -266,14 +253,13 @@
             color: black;
         }
 
-        /* Mobile Menu Styles (Retained) */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.95); /* Changed to white background */
+            background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 100;
@@ -382,69 +368,24 @@
             transform: rotate(90deg);
             color: #000000;
         }
-        
-        /* Optional navigation arrows (visible on desktop) */
-        .gallery-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 20;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            display: none; /* Hidden by default, shown via JS */
-        }
-        
-        .gallery-nav:hover {
-            background: rgba(255, 255, 255, 0.95);
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .gallery-nav.prev {
-            left: 280px; /* Adjusted for sidebar width */
-        }
-        
-        .gallery-nav.next {
-            right: 20px;
-        }
-        
-        @media (min-width: 1024px) {
-            .gallery-nav {
-                display: flex; /* Show only on desktop */
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Main Page Container -->
     <div class="page-container flex flex-col lg:flex-row min-h-screen">
 
-        <!-- 1. LEFT SIDEBAR/NAVIGATION -->
         <header class="lg:fixed lg:h-full lg:w-60 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100 glass-morphism z-10">
             <div>
-                <!-- Header Top: Logo and Mobile Menu Button -->
                 <div class="flex justify-between items-center mb-16">
                     <h1 class="text-3xl lg:text-2xl font-bold tracking-tighter">
                         NONGOVMEDIA
                     </h1>
-                    <!-- Mobile Menu Button -->
                     <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-800 hover:text-black focus:outline-none">
                         <svg id="icon-menu" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                         <svg id="icon-close" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
                 
-                <!-- Navigation Links (Desktop) -->
                 <nav id="mobile-nav" class="hidden lg:block space-y-4">
                     <a href="index.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Home</a>
                     <a href="projects.html" class="nav-link block font-medium text-lg text-gray-800 hover:text-black">Projects</a>
@@ -454,7 +395,6 @@
                 </nav>
             </div>
             
-            <!-- Footer/Copyright (Desktop Only) -->
             <footer class="mt-8 lg:mt-0 text-sm text-gray-600 hidden lg:block">
                 <p>Copyright © All rights reserved.</p>
                 <div class="flex space-x-2 mt-2">
@@ -473,35 +413,29 @@
             </footer>
         </header>
 
-        <!-- 2. MAIN CONTENT AREA -->
         <main class="lg:ml-60 flex-1 flex flex-col">
             
-            <!-- Horizontal Scrolling Image Gallery (The core of the page) -->
-            <div class="horizontal-image-gallery flex-grow" id="horizontal-gallery">
+            <div class="horizontal-image-gallery flex-grow">
                 
-                <!-- FIRST IMAGE ONLY -->
                 <div class="gallery-item image-only">
                     <img 
                         src="images/21days/image_1p.jpg" 
-                        alt="21days Series Image 1" 
+                        alt="Praise Singers Series Image 1" 
                         onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+1'"
                         class="w-full h-full object-cover"
                     >
                 </div>
                 
-                <!-- STANDALONE TEXT ITEM (15% smaller on desktop) -->
                 <div class="gallery-item text-only">
                     <div class="text-content-wrapper flex flex-col justify-start">
                         <h2 class="text-5xl lg:text-6xl font-extrabold mb-4">Praise Singers</h2>
                         
-                        <!-- Metadata -->
                         <div class="space-y-1 text-xs leading-relaxed text-gray-600 mb-6">
                             <p><strong class="text-black">Year:</strong> 2018</p>
                             <p><strong class="text-black">Location:</strong> Yoruba Land, Nigeria</p>
                             <p><strong class="text-black">Category:</strong> Documentary Photography</p>
                         </div>
                         
-                        <!-- Body Text -->
                         <div class="space-y-3 text-sm leading-relaxed text-gray-700">
                             <p>
                                 In many Yoruba towns, events are rarely complete without the presence of elderly singers and drummers — men and women who escort traditional rulers, circle gatherings, and shower anyone in sight with praises. Armed with talking drums, shekere, and chants, they turn every occasion into a stage.
@@ -510,21 +444,20 @@
                                 But beneath the rhythm lies an economy of survival. Each eulogy is offered with the hope of a token in return — cash slipped discreetly into waiting palms. For some, this is not just performance but livelihood: a way to eat, to endure, to remain visible in a society that often forgets its elders.
                             </p>
                             <p>
-                                Through these images, I reflect on the delicate balance between heritage and necessity — how art, once sacred and celebratory, now also becomes a plea. These 21days stand as both cultural custodians and reminders of the social systems that leave the vulnerable to fend with song.
+                                Through these images, I reflect on the delicate balance between heritage and necessity — how art, once sacred and celebratory, now also becomes a plea. These series stand as both cultural custodians and reminders of the social systems that leave the vulnerable to fend with song.
                             </p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Subsequent Images (2 through 27) -->
                 <div class="gallery-item image-only">
-                    <img src="images/21days/image_2p.jpg" alt="21days Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+2'">
+                    <img src="images/21days/image_2p.jpg" alt="Praise Singers Series Image 2" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+2'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/21days/image_3p.jpg" alt="21days Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+3'">
+                    <img src="images/21days/image_3p.jpg" alt="Praise Singers Series Image 3" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+3'">
                 </div>
                 <div class="gallery-item image-only">
-                    <img src="images/21days/image_4p.jpg" alt="21days Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+4'">
+                    <img src="images/21days/image_4p.jpg" alt="Praise Singers Series Image 4" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+4'">
                 </div>
                 <div class="gallery-item image-only">
                     <img src="images/21days/image_5p.jpg" alt="Praise Singers Series Image 5" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+5'">
@@ -550,25 +483,57 @@
                 <div class="gallery-item image-only">
                     <img src="images/21days/image_12p.jpg" alt="Praise Singers Series Image 12" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+12'">
                 </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_13p.jpg" alt="Praise Singers Series Image 13" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+13'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_14p.jpg" alt="Praise Singers Series Image 14" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+14'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_15p.jpg" alt="Praise Singers Series Image 15" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+15'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_16p.jpg" alt="Praise Singers Series Image 16" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+16'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_17p.jpg" alt="Praise Singers Series Image 17" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+17'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_18p.jpg" alt="Praise Singers Series Image 18" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+18'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_19p.jpg" alt="Praise Singers Series Image 19" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+19'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_20p.jpg" alt="Praise Singers Series Image 20" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+20'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_21p.jpg" alt="Praise Singers Series Image 21" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+21'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_22p.jpg" alt="Praise Singers Series Image 22" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+22'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_23p.jpg" alt="Praise Singers Series Image 23" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+23'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_24p.jpg" alt="Praise Singers Series Image 24" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+24'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_25p.jpg" alt="Praise Singers Series Image 25" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+25'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_26p.jpg" alt="Praise Singers Series Image 26" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+26'">
+                </div>
+                <div class="gallery-item image-only">
+                    <img src="images/21days/image_27p.jpg" alt="Praise Singers Series Image 27" onerror="this.onerror=null; this.src='https://placehold.co/700x525/e0e7ff/3f51b5?text=Praise+Singers+Image+27'">
+                </div>
                 
             </div>
             
         </main>
     </div>
-    
-    <!-- Optional Navigation Arrows -->
-    <button class="gallery-nav prev" id="prev-btn" aria-label="Previous image">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 18l-6-6 6-6"/>
-        </svg>
-    </button>
-    <button class="gallery-nav next" id="next-btn" aria-label="Next image">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 18l6-6-6-6"/>
-        </svg>
-    </button>
 
-    <!-- MOBILE ONLY FOOTER -->
     <footer class="lg:hidden p-8 text-sm text-gray-500 border-t border-gray-100 text-center">
         <p>Copyright © All rights reserved.</p>
         <div class="flex space-x-4 mt-2 justify-center">
@@ -586,7 +551,6 @@
         </div>
     </footer>
 
-    <!-- MOBILE MENU OVERLAY -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
         <div class="mobile-menu-content">
             <button id="menu-close-btn" class="menu-close-btn">
@@ -597,7 +561,6 @@
             
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">NONGOVMEDIA</h2>
-                <p class="text-gray-600 text-sm"></p>
             </div>
             
              <nav class="space-y-2">
@@ -627,7 +590,6 @@
         </div>
     </div>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuButton = document.getElementById('mobile-menu-button');
@@ -664,132 +626,6 @@
 
             mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', toggleMenu);
-            });
-        });
-    </script>
-
-    <!-- JavaScript for Horizontal Wheel Scrolling -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const gallery = document.querySelector('.horizontal-image-gallery');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            if (!gallery) return;
-            
-            // Variables for smooth scrolling
-            let isScrolling = false;
-            let scrollVelocity = 0;
-            let scrollAnimationId = null;
-            
-            // Handle wheel events for desktop
-            function handleWheel(e) {
-                if (window.innerWidth >= 1024) {
-                    e.preventDefault();
-                    
-                    // Calculate scroll with momentum
-                    scrollVelocity = e.deltaY * 1.5;
-                    
-                    if (!isScrolling) {
-                        startMomentumScroll();
-                    }
-                }
-            }
-            
-            // Momentum scrolling effect
-            function startMomentumScroll() {
-                isScrolling = true;
-                
-                function animate() {
-                    if (Math.abs(scrollVelocity) > 0.5) {
-                        gallery.scrollLeft += scrollVelocity;
-                        scrollVelocity *= 0.95; // Deceleration
-                        scrollAnimationId = requestAnimationFrame(animate);
-                    } else {
-                        isScrolling = false;
-                        scrollVelocity = 0;
-                    }
-                }
-                
-                animate();
-            }
-            
-            // Add event listeners for wheel scrolling
-            gallery.addEventListener('wheel', handleWheel, { passive: false });
-            
-            // Pause momentum on user interaction
-            gallery.addEventListener('mousedown', () => {
-                if (scrollAnimationId) {
-                    cancelAnimationFrame(scrollAnimationId);
-                    isScrolling = false;
-                    scrollVelocity = 0;
-                }
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (window.innerWidth >= 1024) {
-                    const scrollAmount = 400;
-                    
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        gallery.scrollLeft += scrollAmount;
-                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        gallery.scrollLeft -= scrollAmount;
-                    } else if (e.key === 'Home') {
-                        e.preventDefault();
-                        gallery.scrollLeft = 0;
-                    } else if (e.key === 'End') {
-                        e.preventDefault();
-                        gallery.scrollLeft = gallery.scrollWidth;
-                    }
-                }
-            });
-            
-            // Navigation arrows functionality
-            if (prevBtn && nextBtn) {
-                const scrollStep = 800; // Pixels per click
-                
-                prevBtn.addEventListener('click', () => {
-                    gallery.scrollLeft -= scrollStep;
-                });
-                
-                nextBtn.addEventListener('click', () => {
-                    gallery.scrollLeft += scrollStep;
-                });
-            }
-            
-            // Optional: Hide/show navigation arrows based on scroll position
-            function updateNavButtons() {
-                if (window.innerWidth >= 1024 && prevBtn && nextBtn) {
-                    const scrollLeft = gallery.scrollLeft;
-                    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-                    
-                    // Fade out prev button at start
-                    prevBtn.style.opacity = scrollLeft < 50 ? '0.5' : '1';
-                    
-                    // Fade out next button at end
-                    nextBtn.style.opacity = scrollLeft > maxScroll - 50 ? '0.5' : '1';
-                }
-            }
-            
-            // Update buttons on scroll
-            gallery.addEventListener('scroll', updateNavButtons);
-            
-            // Initial update
-            updateNavButtons();
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth < 1024) {
-                    // Remove wheel listener on mobile
-                    gallery.removeEventListener('wheel', handleWheel);
-                } else {
-                    // Add wheel listener on desktop
-                    gallery.addEventListener('wheel', handleWheel, { passive: false });
-                }
-                updateNavButtons();
             });
         });
     </script>
